@@ -1,7 +1,7 @@
 {
     "project": {
-        "name": "ecs-js API",
-        "description": "ecs-js: Entity Component System engine for JavaScript",
+        "name": "Jecs API",
+        "description": "Jecs: Entity Component System engine for Node.js and the browser",
         "version": "1.0.0",
         "logo": ""
     },

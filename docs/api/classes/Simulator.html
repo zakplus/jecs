@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Entity - ecs-js API</title>
+    <title>Simulator - Jecs API</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -14,8 +14,8 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="ecs-js API" src="../assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
-            ecs-js API
+	    <img alt="Jecs API" src="../assets/css/logo.png" style="max-height: 65%;" title="Jecs API">
+            Jecs API
         </h1>
 	<div class="nav">
             <li class="divider-vertical"></li>
@@ -92,14 +92,14 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>Entity <small>Class</small></h1>
+    <h1>Simulator <small>Class</small></h1>
 </div>
 
 <div class="well well-small">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_entity.js.html#l1"><code>src\entity.js:1</code></a>
+            Defined in: <a href="../files/src_simulator.js.html#l1"><code>src\simulator.js:1</code></a>
         </div>
 
             Module: <a href="../modules/jecs.html">jecs</a>
@@ -108,15 +108,16 @@
 
 
 <div class="well well-small">
-    <p>The entity class expose methods to associate
-the entity to components and to get/set components data</p>
+    <p>The Simulator is a utility class, it will setup
+a main loop and will call Ecs.tick() for you automatically
+limiting the frame per seconds.</p>
 
 </div>
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_Entity" class="method item">
-            <h3 class="name"><code>Entity</code></h3>
+        <div id="method_Simulator" class="method item">
+            <h3 class="name"><code>Simulator</code></h3>
         
                 <span class="paren">()</span>
         
@@ -130,7 +131,7 @@ the entity to components and to get/set components data</p>
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/src_entity.js.html#l1"><code>src\entity.js:1</code></a>
+                <a href="../files/src_simulator.js.html#l1"><code>src\simulator.js:1</code></a>
                 </p>
         
         
@@ -161,24 +162,40 @@ the entity to components and to get/set components data</p>
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
-                            <li class="index-item method private">
+                            <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_constructor" data-tablink="constructor">constructor</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_deleteComponent" data-tablink="deleteComponent">deleteComponent</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getFps" data-tablink="getFps">getFps</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_isPaused" data-tablink="isPaused">isPaused</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_hasComponent" data-tablink="hasComponent">hasComponent</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_isRunning" data-tablink="isRunning">isRunning</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_setComponent" data-tablink="setComponent">setComponent</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_pause" data-tablink="pause">pause</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_run" data-tablink="run">run</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setFps" data-tablink="setFps">setFps</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_start" data-tablink="start">start</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_stop" data-tablink="stop">stop</a>
 
                             </li>
                     </ul>
@@ -191,7 +208,7 @@ the entity to components and to get/set components data</p>
             <div id="methods" class="tab-pane">
                 <h2 class="off-left">Methods</h2>
 
-                    <div id="method_constructor" class="method item private">
+                    <div id="method_constructor" class="method item">
                         <h3 class="name"><code>constructor</code></h3>
                     
                             <div class="args">
@@ -199,15 +216,11 @@ the entity to components and to get/set components data</p>
                                     <li class="arg">
                                             <code>ecs</code>
                                     </li>
-                                    <li class="arg">
-                                            <code>name</code>
-                                    </li>
                                 </ul><span class="paren">)</span>
                             </div>
                     
                     
                     
-                            <span class="flag private">private</span>
                     
                     
                     
@@ -216,7 +229,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l9"><code>src\entity.js:9</code></a>
+                            <a href="../files/src_simulator.js.html#l10"><code>src\simulator.js:10</code></a>
                             </p>
                     
                     
@@ -224,7 +237,7 @@ the entity to components and to get/set components data</p>
                         </div>
                     
                         <div class="description">
-                            <p>Instantiate a new Entity</p>
+                            <p>Instantiate a new simulator</p>
                     
                         </div>
                     
@@ -238,18 +251,7 @@ the entity to components and to get/set components data</p>
                     
                     
                                         <div class="param-description">
-                                            <p>Ecs engine object this Entity belongs to</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">name</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Entity name</p>
+                                            <p>The Ecs instance this simulator will control</p>
                     
                                         </div>
                     
@@ -259,60 +261,8 @@ the entity to components and to get/set components data</p>
                     
                     
                     </div>
-                    <div id="method_deleteComponent" class="method item">
-                        <h3 class="name"><code>deleteComponent</code></h3>
-                    
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>componentName</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/src_entity.js.html#l54"><code>src\entity.js:54</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Remove a component association</p>
-                    
-                        </div>
-                    
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">componentName</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                             
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
-                    
-                    
-                    </div>
-                    <div id="method_destroy" class="method item">
-                        <h3 class="name"><code>destroy</code></h3>
+                    <div id="method_getFps" class="method item">
+                        <h3 class="name"><code>getFps</code></h3>
                     
                             <span class="paren">()</span>
                     
@@ -326,7 +276,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l69"><code>src\entity.js:69</code></a>
+                            <a href="../files/src_simulator.js.html#l38"><code>src\simulator.js:38</code></a>
                             </p>
                     
                     
@@ -334,23 +284,17 @@ the entity to components and to get/set components data</p>
                         </div>
                     
                         <div class="description">
-                            <p>Remove this entity from the engine</p>
+                            <p>Return current simulation fps limiter value.</p>
                     
                         </div>
                     
                     
                     
                     </div>
-                    <div id="method_hasComponent" class="method item">
-                        <h3 class="name"><code>hasComponent</code></h3>
+                    <div id="method_isPaused" class="method item">
+                        <h3 class="name"><code>isPaused</code></h3>
                     
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>componentName</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
+                            <span class="paren">()</span>
                     
                             <span class="returns-inline">
                                 <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
@@ -365,7 +309,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l23"><code>src\entity.js:23</code></a>
+                            <a href="../files/src_simulator.js.html#l90"><code>src\simulator.js:90</code></a>
                             </p>
                     
                     
@@ -373,49 +317,132 @@ the entity to components and to get/set components data</p>
                         </div>
                     
                         <div class="description">
-                            <p>Check if the entity is associated to a component</p>
+                            <p>Check whether the simulation is paused</p>
                     
                         </div>
                     
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">componentName</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Name of the component</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
                     
                             <div class="returns">
                                 <h4>Returns:</h4>
                     
                                 <div class="returns-description">
                                             <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                        <p>true if the entity has the component associated, false otherwise.</p>
+                                        <p>true if simulator is paused, false otherwise</p>
                     
                                 </div>
                             </div>
                     
                     </div>
-                    <div id="method_setComponent" class="method item">
-                        <h3 class="name"><code>setComponent</code></h3>
+                    <div id="method_isRunning" class="method item">
+                        <h3 class="name"><code>isRunning</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                            <span class="returns-inline">
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                            </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_simulator.js.html#l79"><code>src\simulator.js:79</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Check whether the simulation is running</p>
+                    
+                        </div>
+                    
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                                        <p>true if simulator is running, false otherwise</p>
+                    
+                                </div>
+                            </div>
+                    
+                    </div>
+                    <div id="method_pause" class="method item">
+                        <h3 class="name"><code>pause</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_simulator.js.html#l59"><code>src\simulator.js:59</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Pause simulation</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="method_run" class="method item private">
+                        <h3 class="name"><code>run</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                            <span class="flag private">private</span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_simulator.js.html#l101"><code>src\simulator.js:101</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Simulation loop</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="method_setFps" class="method item">
+                        <h3 class="name"><code>setFps</code></h3>
                     
                             <div class="args">
                                 <span class="paren">(</span><ul class="args-list inline commas">
                                     <li class="arg">
-                                            <code>componentName</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>componentData</code>
+                                            <code>fps</code>
                                     </li>
                                 </ul><span class="paren">)</span>
                             </div>
@@ -430,7 +457,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l34"><code>src\entity.js:34</code></a>
+                            <a href="../files/src_simulator.js.html#l23"><code>src\simulator.js:23</code></a>
                             </p>
                     
                     
@@ -438,8 +465,8 @@ the entity to components and to get/set components data</p>
                         </div>
                     
                         <div class="description">
-                            <p>Associate the entity to a component.
-                    The component can be any type.</p>
+                            <p>Set simulation fps limiter value.<br/>
+                    A value of 0 will disable the fps limiter</p>
                     
                         </div>
                     
@@ -448,29 +475,77 @@ the entity to components and to get/set components data</p>
                     
                                 <ul class="params-list">
                                     <li class="param">
-                                            <code class="param-name">componentName</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                            <code class="param-name">fps</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
                     
                                         <div class="param-description">
-                                            <p>The component name</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">componentData</code>
-                                            <span class="type"></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>The component data</p>
-                    
+                                             
                                         </div>
                     
                                     </li>
                                 </ul>
                             </div>
+                    
+                    
+                    </div>
+                    <div id="method_start" class="method item">
+                        <h3 class="name"><code>start</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_simulator.js.html#l48"><code>src\simulator.js:48</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Start simulation</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="method_stop" class="method item">
+                        <h3 class="name"><code>stop</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_simulator.js.html#l68"><code>src\simulator.js:68</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Stop simulation and reset simulation time</p>
+                    
+                        </div>
+                    
                     
                     
                     </div>

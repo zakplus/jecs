@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\entity.js - ecs-js API</title>
+    <title>src\simulator.js - Jecs API</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -14,8 +14,8 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="ecs-js API" src="../assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
-            ecs-js API
+	    <img alt="Jecs API" src="../assets/css/logo.png" style="max-height: 65%;" title="Jecs API">
+            Jecs API
         </h1>
 	<div class="nav">
             <li class="divider-vertical"></li>
@@ -92,90 +92,136 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>src\entity.js <small>File</small></h1>
+    <h1>src\simulator.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
 /**
- * The entity class expose methods to associate
- * the entity to components and to get/set components data
+ * The Simulator is a utility class, it will setup
+ * a main loop and will call Ecs.tick() for you automatically
+ * limiting the frame per seconds.
  *
- * @class Entity
+ * @class Simulator
  * @constructor
- */
-class Entity {
+*/
+class Simulator {
   /**
-   * Instantiate a new Entity
+   * Instantiate a new simulator
+   *
+   * @method constructor
+   * @param {Ecs} ecs The Ecs instance this simulator will control
+   */
+  constructor(ecs) {
+    this.ecs = ecs;
+    this.time = 0;
+    this.setFps(0);
+    this.stop();
+  }
+
+  /**
+   * Set simulation fps limiter value.&lt;br/&gt;
+   * A value of 0 will disable the fps limiter
+   *
+   * @method setFps
+   * @param {Number} fps
+   */
+  setFps(fps) {
+    this.fps = 0;
+    if (fps &amp;&amp; typeof fps === &#x27;number&#x27; &amp;&amp; fps &gt; 0) {
+      this.fps = parseInt(Math.round(fps), 10);
+    }
+    this.frameDuration = 1000 / this.fps;
+  }
+
+  /**
+   * Return current simulation fps limiter value.
+   *
+   * @method getFps
+   * @see setFps
+   */
+  getFps() {
+    return this.fps;
+  }
+
+  /**
+   * Start simulation
+   *
+   * @method start
+   */
+  start() {
+    this.started = true;
+    this.paused = false;
+    this.run();
+  }
+
+  /**
+   * Pause simulation
+   *
+   * @method pause
+   */
+  pause() {
+    this.paused = true;
+  }
+
+  /**
+   * Stop simulation and reset simulation time
+   *
+   * @method stop
+   */
+  stop() {
+    this.prevFrameTime = null;
+    this.started = false;
+    this.paused = false;
+  }
+
+  /**
+   * Check whether the simulation is running
+   *
+   * @method isRunning
+   * @return {Boolean} true if simulator is running, false otherwise
+   */
+  isRunning() {
+    if (this.started &amp;&amp; !this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Check whether the simulation is paused
+   *
+   * @method isPaused
+   * @return {Boolean} true if simulator is paused, false otherwise
+   */
+  isPaused() {
+    if (this.started &amp;&amp; this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Simulation loop
    *
    * @private
-   * @method constructor
-   * @param {Ecs} ecs Ecs engine object this Entity belongs to
-   * @param {String} name Entity name
+   * @method run
    */
-  constructor(ecs, name) {
-    this.ecs = ecs;
-    this.name = name;
-    this.components = {};
-  }
+  run() {
+    const t1 = Date.now();
+    this.ecs.tick();
+    const t2 = Date.now();
 
-  /**
-   * Check if the entity is associated to a component
-   *
-   * @method hasComponent
-   * @param {String} componentName Name of the component
-   * @return {Boolean} true if the entity has the component associated, false otherwise.
-   */
-  hasComponent(componentName) {
-    return this.components[componentName] !== undefined;
-  }
-
-  /**
-   * Associate the entity to a component.
-   * The component can be any type.
-   *
-   * @method setComponent
-   * @param {String} componentName The component name
-   * @param {*} componentData The component data
-   */
-  setComponent(componentName, componentData) {
-    // If this is a new association update system vs entity associations
-    let newComponent = false;
-    if (this.components[componentName] === undefined) {
-      newComponent = true;
+    // FPS limiter
+    let sleep = 0;
+    if (this.fps &gt; 0) {
+      sleep = Math.max(0, this.frameDuration - (t2 - t1));
     }
 
-    // Set component data
-    this.components[componentName] = componentData;
-    if (newComponent) this.ecs.updateSystemsVsEntities();
-  }
-
-  /**
-   * Remove a component association
-   *
-   * @method deleteComponent
-   * @param {String} componentName
-   */
-  deleteComponent(componentName) {
-    if (this.hasComponent(componentName)) {
-      delete this.components[componentName];
-
-      // update system vs entity associations
-      this.ecs.updateSystemsVsEntities();
-    }
-  }
-
-  /**
-   * Remove this entity from the engine
-   *
-   * @method destroy
-   */
-  destroy() {
-    this.ecs.removeEntity(this.name);
+    // Async loop
+    setTimeout(() =&gt; {
+      if (this.isRunning()) this.run();
+    }, sleep);
   }
 }
 
-module.exports = Entity;
+module.exports = Simulator;
 
     </pre>
 </div>

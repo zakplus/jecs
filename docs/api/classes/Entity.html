@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>System - ecs-js API</title>
+    <title>Entity - Jecs API</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -14,8 +14,8 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="ecs-js API" src="../assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
-            ecs-js API
+	    <img alt="Jecs API" src="../assets/css/logo.png" style="max-height: 65%;" title="Jecs API">
+            Jecs API
         </h1>
 	<div class="nav">
             <li class="divider-vertical"></li>
@@ -92,14 +92,14 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>System <small>Class</small></h1>
+    <h1>Entity <small>Class</small></h1>
 </div>
 
 <div class="well well-small">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_system.js.html#l3"><code>src\system.js:3</code></a>
+            Defined in: <a href="../files/src_entity.js.html#l1"><code>src\entity.js:1</code></a>
         </div>
 
             Module: <a href="../modules/jecs.html">jecs</a>
@@ -108,14 +108,15 @@
 
 
 <div class="well well-small">
-    <p>The system class</p>
+    <p>The entity class expose methods to associate
+the entity to components and to get/set components data</p>
 
 </div>
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_System" class="method item">
-            <h3 class="name"><code>System</code></h3>
+        <div id="method_Entity" class="method item">
+            <h3 class="name"><code>Entity</code></h3>
         
                 <span class="paren">()</span>
         
@@ -129,7 +130,7 @@
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/src_system.js.html#l3"><code>src\system.js:3</code></a>
+                <a href="../files/src_entity.js.html#l1"><code>src\entity.js:1</code></a>
                 </p>
         
         
@@ -165,11 +166,19 @@
 
                             </li>
                             <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_deleteComponent" data-tablink="deleteComponent">deleteComponent</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_isCompatibleEntity" data-tablink="isCompatibleEntity">isCompatibleEntity</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_hasComponent" data-tablink="hasComponent">hasComponent</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_setComponent" data-tablink="setComponent">setComponent</a>
 
                             </li>
                     </ul>
@@ -193,12 +202,6 @@
                                     <li class="arg">
                                             <code>name</code>
                                     </li>
-                                    <li class="arg">
-                                            <code>components</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>handler</code>
-                                    </li>
                                 </ul><span class="paren">)</span>
                             </div>
                     
@@ -213,7 +216,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_system.js.html#l10"><code>src\system.js:10</code></a>
+                            <a href="../files/src_entity.js.html#l9"><code>src\entity.js:9</code></a>
                             </p>
                     
                     
@@ -221,7 +224,7 @@
                         </div>
                     
                         <div class="description">
-                            <p>Instantiate a new System</p>
+                            <p>Instantiate a new Entity</p>
                     
                         </div>
                     
@@ -235,7 +238,7 @@
                     
                     
                                         <div class="param-description">
-                                            <p>Ecs engine object this system belongs to</p>
+                                            <p>Ecs engine object this Entity belongs to</p>
                     
                                         </div>
                     
@@ -246,30 +249,60 @@
                     
                     
                                         <div class="param-description">
-                                            <p>Name of the system</p>
+                                            <p>Entity name</p>
                     
                                         </div>
                     
                                     </li>
-                                    <li class="param">
-                                            <code class="param-name">components</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a></span>
+                                </ul>
+                            </div>
                     
                     
-                                        <div class="param-description">
-                                            <p>Array of component names this system operates on</p>
+                    </div>
+                    <div id="method_deleteComponent" class="method item">
+                        <h3 class="name"><code>deleteComponent</code></h3>
                     
-                                        </div>
-                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>componentName</code>
                                     </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_entity.js.html#l54"><code>src\entity.js:54</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Remove a component association</p>
+                    
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
                                     <li class="param">
-                                            <code class="param-name">handler</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                            <code class="param-name">componentName</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
                     
                                         <div class="param-description">
-                                            <p>System function</p>
-                    
+                                             
                                         </div>
                     
                                     </li>
@@ -293,7 +326,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_system.js.html#l38"><code>src\system.js:38</code></a>
+                            <a href="../files/src_entity.js.html#l69"><code>src\entity.js:69</code></a>
                             </p>
                     
                     
@@ -301,20 +334,20 @@
                         </div>
                     
                         <div class="description">
-                            <p>Remove this system from engine</p>
+                            <p>Remove this entity from the engine</p>
                     
                         </div>
                     
                     
                     
                     </div>
-                    <div id="method_isCompatibleEntity" class="method item">
-                        <h3 class="name"><code>isCompatibleEntity</code></h3>
+                    <div id="method_hasComponent" class="method item">
+                        <h3 class="name"><code>hasComponent</code></h3>
                     
                             <div class="args">
                                 <span class="paren">(</span><ul class="args-list inline commas">
                                     <li class="arg">
-                                            <code>entity</code>
+                                            <code>componentName</code>
                                     </li>
                                 </ul><span class="paren">)</span>
                             </div>
@@ -332,7 +365,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_system.js.html#l27"><code>src\system.js:27</code></a>
+                            <a href="../files/src_entity.js.html#l23"><code>src\entity.js:23</code></a>
                             </p>
                     
                     
@@ -340,7 +373,7 @@
                         </div>
                     
                         <div class="description">
-                            <p>Check if the entity is associated to every component this system require.</p>
+                            <p>Check if the entity is associated to a component</p>
                     
                         </div>
                     
@@ -349,12 +382,12 @@
                     
                                 <ul class="params-list">
                                     <li class="param">
-                                            <code class="param-name">entity</code>
-                                            <span class="type"><a href="../classes/Entity.html" class="crosslink">Entity</a></span>
+                                            <code class="param-name">componentName</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
                     
                                         <div class="param-description">
-                                            <p>Entity object</p>
+                                            <p>Name of the component</p>
                     
                                         </div>
                     
@@ -367,10 +400,78 @@
                     
                                 <div class="returns-description">
                                             <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-                                        <p>true if the entity is compatible, false otherwise.</p>
+                                        <p>true if the entity has the component associated, false otherwise.</p>
                     
                                 </div>
                             </div>
+                    
+                    </div>
+                    <div id="method_setComponent" class="method item">
+                        <h3 class="name"><code>setComponent</code></h3>
+                    
+                            <div class="args">
+                                <span class="paren">(</span><ul class="args-list inline commas">
+                                    <li class="arg">
+                                            <code>componentName</code>
+                                    </li>
+                                    <li class="arg">
+                                            <code>componentData</code>
+                                    </li>
+                                </ul><span class="paren">)</span>
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_entity.js.html#l34"><code>src\entity.js:34</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Associate the entity to a component.
+                    The component can be any type.</p>
+                    
+                        </div>
+                    
+                            <div class="params">
+                                <h4>Parameters:</h4>
+                    
+                                <ul class="params-list">
+                                    <li class="param">
+                                            <code class="param-name">componentName</code>
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+                    
+                                        <div class="param-description">
+                                            <p>The component name</p>
+                    
+                                        </div>
+                    
+                                    </li>
+                                    <li class="param">
+                                            <code class="param-name">componentData</code>
+                                            <span class="type"></span>
+                    
+                    
+                                        <div class="param-description">
+                                            <p>The component data</p>
+                    
+                                        </div>
+                    
+                                    </li>
+                                </ul>
+                            </div>
+                    
                     
                     </div>
             </div>

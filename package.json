@@ -1,6 +1,6 @@
 {
   "name": "jecs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Entity Component System engine for NodeJs and the browser",
   "main": "lib/ecs.js",
   "scripts": {

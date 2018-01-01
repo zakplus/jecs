@@ -1,119 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>ecs-js API</title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="./assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="./assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png">
-</head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="ecs-js API" src="./assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
-            ecs-js API
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>1.0.0</b>
-                </p>
-            </li>
-        </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
-        </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-	        <h3>APIs</h3>
-	        <div id="sidebar">
-	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
-	            </ul>
-	    
-	            <div id="api-tabview-filter">
-	                <input type="search" placeholder="Type to filter APIs">
-	            </div>
-	    
-	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-	                <div class="tab-pane active" id="classes">
-	                    <ul id="api-classes" class="nav nav-list">
-	                            <li><a href="./classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="./classes/Entity.html">Entity</a></li>
-	                            <li><a href="./classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="./classes/System.html">System</a></li>
-	                    </ul>
-	                </div>
-	    
-	                <div class="tab-pane" id="modules">
-	                    <ul id="api-modules" class="nav nav-list">
-	                            <li><a href="./modules/jecs.html">jecs</a></li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-                    Show:
-                    <label for="api-show-inherited" class="checkbox">
-                        <input type="checkbox" id="api-show-inherited" checked>
-                        Inherited
-                    </label>
-            
-                    <label for="api-show-protected" class="checkbox">
-                        <input type="checkbox" id="api-show-protected">
-                        Protected
-                    </label>
-            
-                    <label for="api-show-private" class="checkbox">
-                        <input type="checkbox" id="api-show-private">
-                        Private
-                    </label>
-                    <label for="api-show-deprecated" class="checkbox">
-                        <input type="checkbox" id="api-show-deprecated">
-                        Deprecated
-                    </label>
-            
-                </form>
-            
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-<p>Browse to a module or class using the sidebar to view its API documentation.</p>
+<html>
+    <head>
+        <meta charset="utf-8">
 
-<h2>Keyboard Shortcuts</h2>
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            }
 
-<ul>
-    <li><p>Press <kbd>s</kbd> to focus the API search box.</p></li>
+            body {
+                font-family: sans-serif;
+                background-color: #eee;
+                padding: 2rem;
+                text-align: center;
+            }
 
-    <li><p>Use <kbd>Up</kbd> and <kbd>Down</kbd> to select classes, modules, and search results.</p></li>
+            h1 {
+                font-size: 3rem;
+                font-weight: bold;
+                font-style: italic;
+                text-shadow: 0.1rem 0.1rem 0.3rem rgba(0,0,0,0.8);
+                text-align: center;
+            }
 
-    <li class="mac-only"><p>With the API search box or sidebar focused, use <kbd><span class="cmd">&#x2318;</span>-Left</kbd> or <kbd><span class="cmd">&#x2318;</span>-Right</kbd> to switch sidebar tabs.</p></li>
+            h2 {
+                font-size: 0.9rem;
+                font-style: italic;
+                color: #444;
+                text-align: center;
+            }
 
-    <li class="pc-only"><p>With the API search box or sidebar focused, use <kbd>Ctrl+Left</kbd> and <kbd>Ctrl+Right</kbd> to switch sidebar tabs.</p></li>
-</ul>
-                    </div>
-                </div>
+            a {
+                color: #444;
+                text-decoration: underline;
+            }
+
+            .content {
+                display: inline-block;
+                background-color: #fff;
+                border: 1px solid #888;
+                box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+                text-align: initial;
+            }
+
+            .title {
+                padding: 1rem;
+                padding-top: 0;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid #888;
+
+                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+                background: rgb(226,226,226); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+            }
+
+            .links {
+                text-align: center;
+            }
+
+            .links > ul {
+                display: inline-block;
+                list-style: none;
+                text-align: initial;
+            }
+
+            .links > ul > li {
+                padding: 0.5rem;
+            }
+
+            .links a {
+                color: #444;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+
+            .footer {
+                margin-top: 1rem;
+                color: #fff;
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid #888;
+                
+                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d7e7d+0,0e0e0e+100;Black+3D */
+                background: rgb(125,126,125); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+            }
+
+            .footer a {
+                color: #fff;
+                text-decoration: underline;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="title">
+                <h1>Jecs</h1>
+                <h2>Entity Component System Engine for Node.js and the browser</h2>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li><a target="_blank" href="https://www.npmjs.com/package/jecs">NPM page</a></li>
+                    <li><a target="_blank" href="https://github.com/zakplus/jecs">GitHub repository</a></li>
+                    <li><a target="_blank" href="api/index.html">API documentation</a></li>
+                    <li><a target="_blank" href="example/mini-game/index.html">Mini game demo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer">
+                <a target="_blank" href="https://www.valeriobianchi.com">www.valeriobianchi.com</a>
             </div>
         </div>
-    </div>
-</div>
-<script src="./assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="./assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="./assets/vendor/prettify/prettify-min.js"></script>
-<script src="./assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
-</body>
+    </body>
 </html>

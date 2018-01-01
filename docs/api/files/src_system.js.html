@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\simulator.js - ecs-js API</title>
+    <title>src\system.js - Jecs API</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -14,8 +14,8 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="ecs-js API" src="../assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
-            ecs-js API
+	    <img alt="Jecs API" src="../assets/css/logo.png" style="max-height: 65%;" title="Jecs API">
+            Jecs API
         </h1>
 	<div class="nav">
             <li class="divider-vertical"></li>
@@ -92,136 +92,59 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>src\simulator.js <small>File</small></h1>
+    <h1>src\system.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
+import _ from &#x27;lodash&#x27;;
+
 /**
- * The Simulator is a utility class, it will setup
- * a main loop and will call Ecs.tick() for you automatically
- * limiting the frame per seconds.
+ * The system class
  *
- * @class Simulator
+ * @class System
  * @constructor
-*/
-class Simulator {
+ */
+class System {
   /**
-   * Instantiate a new simulator
-   *
-   * @method constructor
-   * @param {Ecs} ecs The Ecs instance this simulator will control
-   */
-  constructor(ecs) {
-    this.ecs = ecs;
-    this.time = 0;
-    this.setFps(0);
-    this.stop();
-  }
-
-  /**
-   * Set simulation fps limiter value.&lt;br/&gt;
-   * A value of 0 will disable the fps limiter
-   *
-   * @method setFps
-   * @param {Number} fps
-   */
-  setFps(fps) {
-    this.fps = 0;
-    if (fps &amp;&amp; typeof fps === &#x27;number&#x27; &amp;&amp; fps &gt; 0) {
-      this.fps = parseInt(Math.round(fps), 10);
-    }
-    this.frameDuration = 1000 / this.fps;
-  }
-
-  /**
-   * Return current simulation fps limiter value.
-   *
-   * @method getFps
-   * @see setFps
-   */
-  getFps() {
-    return this.fps;
-  }
-
-  /**
-   * Start simulation
-   *
-   * @method start
-   */
-  start() {
-    this.started = true;
-    this.paused = false;
-    this.run();
-  }
-
-  /**
-   * Pause simulation
-   *
-   * @method pause
-   */
-  pause() {
-    this.paused = true;
-  }
-
-  /**
-   * Stop simulation and reset simulation time
-   *
-   * @method stop
-   */
-  stop() {
-    this.prevFrameTime = null;
-    this.started = false;
-    this.paused = false;
-  }
-
-  /**
-   * Check whether the simulation is running
-   *
-   * @method isRunning
-   * @return {Boolean} true if simulator is running, false otherwise
-   */
-  isRunning() {
-    if (this.started &amp;&amp; !this.paused) return true;
-    return false;
-  }
-
-  /**
-   * Check whether the simulation is paused
-   *
-   * @method isPaused
-   * @return {Boolean} true if simulator is paused, false otherwise
-   */
-  isPaused() {
-    if (this.started &amp;&amp; this.paused) return true;
-    return false;
-  }
-
-  /**
-   * Simulation loop
+   * Instantiate a new System
    *
    * @private
-   * @method run
+   * @method constructor
+   * @param {Ecs} ecs Ecs engine object this system belongs to
+   * @param {String} name Name of the system
+   * @param {String[]} components Array of component names this system operates on
+   * @param {Function} handler System function
    */
-  run() {
-    const t1 = Date.now();
-    this.ecs.tick();
-    const t2 = Date.now();
+  constructor(ecs, name, components, handler) {
+    this.ecs = ecs;
+    this.name = name;
+    this.components = components;
+    this.handler = handler;
+  }
 
-    // FPS limiter
-    let sleep = 0;
-    if (this.fps &gt; 0) {
-      sleep = Math.max(0, this.frameDuration - (t2 - t1));
-    }
+  /**
+   * Check if the entity is associated to every component this system require.
+   *
+   * @method isCompatibleEntity
+   * @param {Entity} entity Entity object
+   * @return {Boolean} true if the entity is compatible, false otherwise.
+   */
+  isCompatibleEntity(entity) {
+    return _.every(this.components, component =&gt; entity.hasComponent(component));
+  }
 
-    // Async loop
-    setTimeout(() =&gt; {
-      if (this.isRunning()) this.run();
-    }, sleep);
+  /**
+   * Remove this system from engine
+   *
+   * @method destroy
+   */
+  destroy() {
+    this.ecs.removeSystem(this.name);
   }
 }
 
-module.exports = Simulator;
+module.exports = System;
 
     </pre>
 </div>

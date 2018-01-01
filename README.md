@@ -1,15 +1,15 @@
-# jecs Entity Component System
+# Jecs Entity Component System
 
 ## description
 ECS or [Entity Component System](https://en.wikipedia.org/wiki/Entity%E2%80%93component%E2%80%93system) is an architectural pattern particularly suitable for game development.  
-jecs is a javascript ECS engine for nodejs and the browser.  
+Jecs is a javascript ECS engine for Node.js and the browser.  
 
 ## installation
 node-js:  
 ```npm install --save jecs```
 
 ## documentation
-API documentation is [here](docs/index.html) (docs/index.html).
+You can find the documentation [here](https://zakplus.github.io/jecs/) or under the "docs" directory.
 
 ## in the browser
 You can use jecs in a browser by loading the script in the directory 'browser'.
@@ -18,8 +18,8 @@ The library exports the Ecs class as a global Ecs variable (window.Ecs).
 ```<script type="text/javascript" src="path/to/ecs_<version>_min.js>"></script>```
 
 ## live demo
-Included in this package you can find a simple text-based browser game demo using jecs (actually it's a simulation because there is no user input...).  
-See the demo [here](example/mini-game.html). You can find the source code in the 'example' directory.
+Included in this package you can find a simple text-based browser game demo using Jecs (actually it's a simulation because there is no user input...).  
+See the demo [here](https://zakplus.github.io/jecs/example/mini-game.html). You can find the source code under the "docs/example" directory.
 
 ## example
 In this example we create a "player" entity and assign it the "position" and "speed" components.  
@@ -63,7 +63,7 @@ sim.start();
 ## controlling speed
 The simulator fps limiter can limits the maximum frames per second. The limiter, wich is disabled by default, can be activated by calling ```Simulator.setFps(<value>)``` with value being a integer greater then 0. A value of 0 will disable the limiter.  
 The limiter can be handy in some situation but generally what you really want is to run at the maximum possible speed...  
-In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call. jecs does not take care of this for you, instead you can use a dedicated component and system.  
+In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call. Jecs does not take care of this for you, instead you can use a dedicated component and system.  
 Remember that systems gets called in the same order they are defined so you can define a *time-updater* system which will run before any other systems to calculate all the timing stuff.
 
 ```JavaScript

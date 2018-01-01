@@ -2,7 +2,9 @@
 
 <html>
   <head>
-    <script src="../browser/jecs_1.0.0_min.js"></script>
+    <meta charset="utf-8">
+
+    <script src="jecs_1.0.0_min.js"></script>
 
     <style lang="text/css">
       * {
@@ -14,31 +16,54 @@
       body {
         font-family: sans-serif;
         padding: 2rem;
+        text-align: center;
+        background-color: #eee;
+      }
+
+      #game {
+        display: inline-block;
+        text-align: initial;
+        padding: 2rem;
+        background-color: #fff;
+        border: 1px solid #888;
+        box-shadow: 0 0 1rem rgba(0,0,0,0.2);
       }
 
       h1 {
         font-size: 2rem;
         font-weight: bold;
+        text-align: center;
       }
 
       h2 {
         font-size: 1rem;
         font-weight: bold;
         margin-bottom: 1rem;
+        text-align: center;
       }
 
       #screen {
         font-family: monospace;
         margin-top: 2rem;
         margin-bottom: 2rem;
+        background-color: #000;
+        color: #0f0;
+        border: 2px solid #000;
+        border-radius: 1rem;
+        padding: 2rem;
       }
 
       #log {
+        font-family: monospace;
         padding: 0.5rem;
         overflow-y: auto;
-        max-height: 20rem;
-        width: 30rem;
+        height: 20rem;
         border: 1px solid #ddd;
+        background-color: #eee; 
+      }
+
+      .buttons {
+        text-align: center;
       }
 
       button {
@@ -50,7 +75,7 @@
 
   <body>
     <div id="game">
-      <h1>jecs mini game demo</h1>
+      <h1>Jecs mini game demo</h1>
       <h2>find the source in the "example" directory.</h1>
       
       <div class="buttons">
