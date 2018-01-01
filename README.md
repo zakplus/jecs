@@ -19,7 +19,7 @@ The library exports the Ecs class as a global Ecs variable (window.Ecs).
 
 ## live demo
 Included in this package you can find a simple text-based browser game demo using Jecs (actually it's a simulation because there is no user input...).  
-See the demo [here](https://zakplus.github.io/jecs/example/mini-game.html). You can find the source code under the "docs/example" directory.
+See the demo [here](https://zakplus.github.io/jecs/example/mini-game). You can find the source code under the "docs/example" directory.
 
 ## example
 In this example we create a "player" entity and assign it the "position" and "speed" components.  
