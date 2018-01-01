@@ -1,0 +1,655 @@
+{
+    "project": {
+        "name": "ecs-js API",
+        "description": "ecs-js: Entity Component System engine for JavaScript",
+        "version": "1.0.0",
+        "logo": ""
+    },
+    "files": {
+        "src\\ecs.js": {
+            "name": "src\\ecs.js",
+            "modules": {
+                "jecs": 1
+            },
+            "classes": {
+                "Ecs": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\entity.js": {
+            "name": "src\\entity.js",
+            "modules": {},
+            "classes": {
+                "Entity": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\simulator.js": {
+            "name": "src\\simulator.js",
+            "modules": {},
+            "classes": {
+                "Simulator": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\system.js": {
+            "name": "src\\system.js",
+            "modules": {},
+            "classes": {
+                "System": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "jecs": {
+            "name": "jecs",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "Ecs": 1,
+                "Entity": 1,
+                "Simulator": 1,
+                "System": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src\\system.js",
+            "line": 3,
+            "description": "The jecs module exports the Ecs class"
+        }
+    },
+    "classes": {
+        "Ecs": {
+            "name": "Ecs",
+            "shortname": "Ecs",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "jecs",
+            "namespace": "",
+            "file": "src\\ecs.js",
+            "line": 13,
+            "description": "The Ecs is the main class",
+            "is_constructor": 1,
+            "extends": "EventEmitter"
+        },
+        "Entity": {
+            "name": "Entity",
+            "shortname": "Entity",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "jecs",
+            "namespace": "",
+            "file": "src\\entity.js",
+            "line": 1,
+            "description": "The entity class expose methods to associate\nthe entity to components and to get/set components data",
+            "is_constructor": 1
+        },
+        "Simulator": {
+            "name": "Simulator",
+            "shortname": "Simulator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "jecs",
+            "namespace": "",
+            "file": "src\\simulator.js",
+            "line": 1,
+            "description": "The Simulator is a utility class, it will setup\na main loop and will call Ecs.tick() for you automatically\nlimiting the frame per seconds.",
+            "is_constructor": 1
+        },
+        "System": {
+            "name": "System",
+            "shortname": "System",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "jecs",
+            "namespace": "",
+            "file": "src\\system.js",
+            "line": 3,
+            "description": "The system class",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src\\ecs.js",
+            "line": 21,
+            "description": "Instantiate a new Ecs",
+            "itemtype": "method",
+            "name": "constructor",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 29,
+            "description": "Declared entities",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "attribute",
+            "name": "entities",
+            "type": "Object",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 38,
+            "description": "Declared systems",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "attribute",
+            "name": "systems",
+            "type": "System[]",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 47,
+            "description": "Entities associated to systems",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "attribute",
+            "name": "systemVsEntities",
+            "type": "Object",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 57,
+            "description": "Declare a new entity",
+            "itemtype": "method",
+            "name": "entity",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the new entity",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The newly created entity object",
+                "type": "Entity"
+            },
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 71,
+            "description": "Returns existing entity",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the entity",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The entity object or undefined if not found",
+                "type": "Entity"
+            },
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 81,
+            "description": "Remove a entity from the engine instance",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the entity to be removed",
+                    "type": "String"
+                }
+            ],
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 93,
+            "description": "Declare a new system.<br/>\nThe handler function receives two arguments, the name of the entity and a object\nof components.",
+            "itemtype": "method",
+            "name": "system",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the new system",
+                    "type": "String"
+                },
+                {
+                    "name": "components",
+                    "description": "Names of the components the new system will operate on",
+                    "type": "String[]"
+                },
+                {
+                    "name": "handler",
+                    "description": "System function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The newly created system object",
+                "type": "System"
+            },
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 117,
+            "description": "Returns existing system",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the system",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The system object or undefined if not found",
+                "type": "System"
+            },
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 127,
+            "description": "Remove a system from the engine instance",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the system to be removed",
+                    "type": "String"
+                }
+            ],
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 139,
+            "description": "Scan systems and search for suitable entities\nto be associated.",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "updateSystemsVsEntities",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 160,
+            "description": "Run a single execution step.<br/>\nEmit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.",
+            "itemtype": "method",
+            "name": "tick",
+            "return": {
+                "description": "Current simulation time",
+                "type": "Number"
+            },
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 184,
+            "description": "Expose the Entity class",
+            "itemtype": "property",
+            "name": "Entity",
+            "type": "{Entity}",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 192,
+            "description": "Expose the System class",
+            "itemtype": "property",
+            "name": "System",
+            "type": "{System}",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 200,
+            "description": "Expose the Simulator class",
+            "itemtype": "property",
+            "name": "Simulator",
+            "type": "{Simulator}",
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 208,
+            "description": "Emitted by tick() before running the systems",
+            "itemtype": "event",
+            "name": "TICK_BEFORE",
+            "params": [
+                {
+                    "name": "ecs",
+                    "description": "The Ecs instance that generated the event",
+                    "type": "Ecs"
+                }
+            ],
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\ecs.js",
+            "line": 216,
+            "description": "Emitted by tick() after running the systems",
+            "itemtype": "event",
+            "name": "TICK_AFTER",
+            "params": [
+                {
+                    "name": "ecs",
+                    "description": "The Ecs instance that generated the event",
+                    "type": "Ecs"
+                }
+            ],
+            "class": "Ecs",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\entity.js",
+            "line": 9,
+            "description": "Instantiate a new Entity",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "ecs",
+                    "description": "Ecs engine object this Entity belongs to",
+                    "type": "Ecs"
+                },
+                {
+                    "name": "name",
+                    "description": "Entity name",
+                    "type": "String"
+                }
+            ],
+            "class": "Entity",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\entity.js",
+            "line": 23,
+            "description": "Check if the entity is associated to a component",
+            "itemtype": "method",
+            "name": "hasComponent",
+            "params": [
+                {
+                    "name": "componentName",
+                    "description": "Name of the component",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "true if the entity has the component associated, false otherwise.",
+                "type": "Boolean"
+            },
+            "class": "Entity",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\entity.js",
+            "line": 34,
+            "description": "Associate the entity to a component.\nThe component can be any type.",
+            "itemtype": "method",
+            "name": "setComponent",
+            "params": [
+                {
+                    "name": "componentName",
+                    "description": "The component name",
+                    "type": "String"
+                },
+                {
+                    "name": "componentData",
+                    "description": "The component data",
+                    "type": "*"
+                }
+            ],
+            "class": "Entity",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\entity.js",
+            "line": 54,
+            "description": "Remove a component association",
+            "itemtype": "method",
+            "name": "deleteComponent",
+            "params": [
+                {
+                    "name": "componentName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "Entity",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\entity.js",
+            "line": 69,
+            "description": "Remove this entity from the engine",
+            "itemtype": "method",
+            "name": "destroy",
+            "class": "Entity",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 10,
+            "description": "Instantiate a new simulator",
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "ecs",
+                    "description": "The Ecs instance this simulator will control",
+                    "type": "Ecs"
+                }
+            ],
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 23,
+            "description": "Set simulation fps limiter value.<br/>\nA value of 0 will disable the fps limiter",
+            "itemtype": "method",
+            "name": "setFps",
+            "params": [
+                {
+                    "name": "fps",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 38,
+            "description": "Return current simulation fps limiter value.",
+            "itemtype": "method",
+            "name": "getFps",
+            "see": [
+                "setFps"
+            ],
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 48,
+            "description": "Start simulation",
+            "itemtype": "method",
+            "name": "start",
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 59,
+            "description": "Pause simulation",
+            "itemtype": "method",
+            "name": "pause",
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 68,
+            "description": "Stop simulation and reset simulation time",
+            "itemtype": "method",
+            "name": "stop",
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 79,
+            "description": "Check whether the simulation is running",
+            "itemtype": "method",
+            "name": "isRunning",
+            "return": {
+                "description": "true if simulator is running, false otherwise",
+                "type": "Boolean"
+            },
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 90,
+            "description": "Check whether the simulation is paused",
+            "itemtype": "method",
+            "name": "isPaused",
+            "return": {
+                "description": "true if simulator is paused, false otherwise",
+                "type": "Boolean"
+            },
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\simulator.js",
+            "line": 101,
+            "description": "Simulation loop",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "run",
+            "class": "Simulator",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\system.js",
+            "line": 10,
+            "description": "Instantiate a new System",
+            "access": "private",
+            "tagname": "",
+            "itemtype": "method",
+            "name": "constructor",
+            "params": [
+                {
+                    "name": "ecs",
+                    "description": "Ecs engine object this system belongs to",
+                    "type": "Ecs"
+                },
+                {
+                    "name": "name",
+                    "description": "Name of the system",
+                    "type": "String"
+                },
+                {
+                    "name": "components",
+                    "description": "Array of component names this system operates on",
+                    "type": "String[]"
+                },
+                {
+                    "name": "handler",
+                    "description": "System function",
+                    "type": "Function"
+                }
+            ],
+            "class": "System",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\system.js",
+            "line": 27,
+            "description": "Check if the entity is associated to every component this system require.",
+            "itemtype": "method",
+            "name": "isCompatibleEntity",
+            "params": [
+                {
+                    "name": "entity",
+                    "description": "Entity object",
+                    "type": "Entity"
+                }
+            ],
+            "return": {
+                "description": "true if the entity is compatible, false otherwise.",
+                "type": "Boolean"
+            },
+            "class": "System",
+            "module": "jecs"
+        },
+        {
+            "file": "src\\system.js",
+            "line": 38,
+            "description": "Remove this system from engine",
+            "itemtype": "method",
+            "name": "destroy",
+            "class": "System",
+            "module": "jecs"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nReturns existing entity",
+            "line": " src\\ecs.js:71"
+        },
+        {
+            "message": "Missing item type\nRemove a entity from the engine instance",
+            "line": " src\\ecs.js:81"
+        },
+        {
+            "message": "Missing item type\nReturns existing system",
+            "line": " src\\ecs.js:117"
+        },
+        {
+            "message": "Missing item type\nRemove a system from the engine instance",
+            "line": " src\\ecs.js:127"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ecs-js API",
+  "description": "ecs-js: Entity Component System engine for JavaScript",
+  "version": "1.0.0",
+  "logo": "",
+  "options": {
+    "outdir": "docs",
+    "linkNatives": true,
+    "themedir" : "node_modules/yuidoc-bootstrap-theme",
+    "helpers" : ["node_modules/yuidoc-bootstrap-theme/helpers/helpers.js"]
+  }
+}

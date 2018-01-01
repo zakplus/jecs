@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\simulator.js - ecs-js API</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="ecs-js API" src="../assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
+            ecs-js API
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.0.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
+	                            <li><a href="../classes/Entity.html">Entity</a></li>
+	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
+	                            <li><a href="../classes/System.html">System</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/jecs.html">jecs</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>src\simulator.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * The Simulator is a utility class, it will setup
+ * a main loop and will call Ecs.tick() for you automatically
+ * limiting the frame per seconds.
+ *
+ * @class Simulator
+ * @constructor
+*/
+class Simulator {
+  /**
+   * Instantiate a new simulator
+   *
+   * @method constructor
+   * @param {Ecs} ecs The Ecs instance this simulator will control
+   */
+  constructor(ecs) {
+    this.ecs = ecs;
+    this.time = 0;
+    this.setFps(0);
+    this.stop();
+  }
+
+  /**
+   * Set simulation fps limiter value.&lt;br/&gt;
+   * A value of 0 will disable the fps limiter
+   *
+   * @method setFps
+   * @param {Number} fps
+   */
+  setFps(fps) {
+    this.fps = 0;
+    if (fps &amp;&amp; typeof fps === &#x27;number&#x27; &amp;&amp; fps &gt; 0) {
+      this.fps = parseInt(Math.round(fps), 10);
+    }
+    this.frameDuration = 1000 / this.fps;
+  }
+
+  /**
+   * Return current simulation fps limiter value.
+   *
+   * @method getFps
+   * @see setFps
+   */
+  getFps() {
+    return this.fps;
+  }
+
+  /**
+   * Start simulation
+   *
+   * @method start
+   */
+  start() {
+    this.started = true;
+    this.paused = false;
+    this.run();
+  }
+
+  /**
+   * Pause simulation
+   *
+   * @method pause
+   */
+  pause() {
+    this.paused = true;
+  }
+
+  /**
+   * Stop simulation and reset simulation time
+   *
+   * @method stop
+   */
+  stop() {
+    this.prevFrameTime = null;
+    this.started = false;
+    this.paused = false;
+  }
+
+  /**
+   * Check whether the simulation is running
+   *
+   * @method isRunning
+   * @return {Boolean} true if simulator is running, false otherwise
+   */
+  isRunning() {
+    if (this.started &amp;&amp; !this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Check whether the simulation is paused
+   *
+   * @method isPaused
+   * @return {Boolean} true if simulator is paused, false otherwise
+   */
+  isPaused() {
+    if (this.started &amp;&amp; this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Simulation loop
+   *
+   * @private
+   * @method run
+   */
+  run() {
+    const t1 = Date.now();
+    this.ecs.tick();
+    const t2 = Date.now();
+
+    // FPS limiter
+    let sleep = 0;
+    if (this.fps &gt; 0) {
+      sleep = Math.max(0, this.frameDuration - (t2 - t1));
+    }
+
+    // Async loop
+    setTimeout(() =&gt; {
+      if (this.isRunning()) this.run();
+    }, sleep);
+  }
+}
+
+module.exports = Simulator;
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

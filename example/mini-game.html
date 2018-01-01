@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html>
+  <head>
+    <script src="../browser/jecs_1.0.0_min.js"></script>
+
+    <style lang="text/css">
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      #screen {
+        font-family: monospace;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      #log {
+        padding: 0.5rem;
+        overflow-y: auto;
+        max-height: 20rem;
+        width: 30rem;
+        border: 1px solid #ddd;
+      }
+
+      button {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="game">
+      <h1>jecs mini game demo</h1>
+      <h2>find the source in the "example" directory.</h1>
+      
+      <div class="buttons">
+        <button id="start">start</button>
+        <button id="reset">reset</button>
+        <select id="fps-limit">
+          <option value="1">1 fps</option>
+          <option value="5">5 fps</option>
+          <option value="10" selected="selected">10 fps</option>
+          <option value="60">60 fps</option>
+          <option value="0">No limit</option>
+        </select>
+      </div>
+
+      <div id="screen"></div>
+      <div id="log"></div>
+    </div>
+
+    <script src="mini-game.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var startBut = document.getElementById('start');
+        var resetBut = document.getElementById('reset');
+        var fpsSelect = document.getElementById('fps-limit');
+
+        function updateFps(fps) {
+          game.simulator.setFps(parseInt(fps));
+        }
+        
+        startBut.onclick = function() {
+          if(game.simulator.isRunning()) {
+            game.simulator.pause();
+            startBut.innerHTML = "start";
+          } else {
+            game.simulator.start();
+            startBut.innerHTML = "pause";
+          }
+        };
+
+        resetBut.onclick = function() {
+          game.simulator.stop();
+          game.reset();
+          startBut.innerHTML = "start";
+        };
+
+        fpsSelect.onchange = function() {
+          updateFps(fpsSelect.value);
+        }
+
+        // Init FPS
+        updateFps(fpsSelect.value);
+      }) ();
+    </script>
+  </body>
+</html>

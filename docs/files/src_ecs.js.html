@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\ecs.js - ecs-js API</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+	    <img alt="ecs-js API" src="../assets/css/logo.png" style="max-height: 65%;" title="ecs-js API">
+            ecs-js API
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.0.0</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+	        <h3>APIs</h3>
+	        <div id="sidebar">
+	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
+	            </ul>
+	    
+	            <div id="api-tabview-filter">
+	                <input type="search" placeholder="Type to filter APIs">
+	            </div>
+	    
+	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+	                <div class="tab-pane active" id="classes">
+	                    <ul id="api-classes" class="nav nav-list">
+	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
+	                            <li><a href="../classes/Entity.html">Entity</a></li>
+	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
+	                            <li><a href="../classes/System.html">System</a></li>
+	                    </ul>
+	                </div>
+	    
+	                <div class="tab-pane" id="modules">
+	                    <ul id="api-modules" class="nav nav-list">
+	                            <li><a href="../modules/jecs.html">jecs</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+                    Show:
+                    <label for="api-show-inherited" class="checkbox">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected" class="checkbox">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private" class="checkbox">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated" class="checkbox">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </form>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<div class="page-header">
+    <h1>src\ecs.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * The jecs module exports the Ecs class
+ *
+ * @module jecs
+ */
+
+import _ from &#x27;lodash&#x27;;
+import EventEmitter from &#x27;events&#x27;;
+import Entity from &#x27;./entity&#x27;;
+import System from &#x27;./system&#x27;;
+import Simulator from &#x27;./simulator&#x27;;
+
+/**
+ * The Ecs is the main class
+ *
+ * @class Ecs
+ * @constructor
+ * @extends EventEmitter
+ */
+class Ecs extends EventEmitter {
+  /**
+   * Instantiate a new Ecs
+   *
+   * @method constructor
+   */
+  constructor() {
+    super();
+
+    /**
+     * Declared entities
+     *
+     * @private
+     * @attribute entities
+     * @type Object
+    */
+    this.entities = {};
+
+    /**
+     * Declared systems
+     *
+     * @private
+     * @attribute systems
+     * @type System[]
+     */
+    this.systems = [];
+
+    /**
+     * Entities associated to systems
+     *
+     * @private
+     * @attribute systemVsEntities
+     * @type Object
+     */
+    this.systemVsEntities = {};
+  }
+
+  /**
+   * Declare a new entity
+   *
+   * @method entity
+   * @param {String} name Name of the new entity
+   * @return {Entity} The newly created entity object
+   */
+  entity(name) {
+    if (this.entities[name] !== undefined) throw new Error(&#x60;Entity ${name} already exists&#x60;);
+    const entity = new Entity(this, name);
+    this.entities[name] = entity;
+    return entity;
+  }
+
+  /**
+   * Returns existing entity
+   *
+   * @param {String} name Name of the entity
+   * @return {Entity} The entity object or undefined if not found
+   */
+  getEntity(name) {
+    return this.entities[name];
+  }
+
+  /**
+   * Remove a entity from the engine instance
+   *
+   * @param {String} name The name of the entity to be removed
+   */
+  removeEntity(name) {
+    delete this.entities[name];
+
+    // update system vs entity associations
+    this.updateSystemsVsEntities();
+  }
+
+  /**
+   * Declare a new system.&lt;br/&gt;
+   * The handler function receives two arguments, the name of the entity and a object
+   * of components.
+   *
+   * @method system
+   * @param {String} name Name of the new system
+   * @param {string[]} components Names of the components the new system will operate on
+   * @param {Function} handler System function
+   * @return {System} The newly created system object
+   */
+  system(name, components, handler) {
+    // System is an array instead of a map to guarantee execution order
+    if (_.some(this.systems, system =&gt; system.name === name)) {
+      throw new Error(&#x60;System ${name} already exists&#x60;);
+    }
+    const system = new System(this, name, components, handler);
+    this.systems.push(system);
+
+    // Update system vs entity associations
+    this.updateSystemsVsEntities();
+    return system;
+  }
+
+  /**
+   * Returns existing system
+   *
+   * @param {String} name Name of the system
+   * @return {System} The system object or undefined if not found
+   */
+  getSystem(name) {
+    return _.find(this.systems, system =&gt; system.name === name);
+  }
+
+  /**
+   * Remove a system from the engine instance
+   *
+   * @param {String} name The name of the system to be removed
+   */
+  removeSystem(name) {
+    this.systems = _.filter(this.systems, system =&gt; system.name !== name);
+
+    // update system vs entity associations
+    this.updateSystemsVsEntities();
+  }
+
+  /**
+   * Scan systems and search for suitable entities
+   * to be associated.
+   *
+   * @private
+   * @method updateSystemsVsEntities
+   */
+  updateSystemsVsEntities() {
+    _.forEach(this.systems, (system) =&gt; {
+      const systemName = system.name;
+      const compatibleEntities = [];
+      this.systemVsEntities[systemName] = compatibleEntities;
+
+      _.forEach(this.entities, (entity) =&gt; {
+        if (system.isCompatibleEntity(entity)) {
+          compatibleEntities.push(entity);
+        }
+      });
+    });
+  }
+
+  /**
+   * Run a single execution step.&lt;br/&gt;
+   * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.
+   *
+   * @method tick
+   * @return {Number} Current simulation time
+   */
+  tick() {
+    this.emit(&#x27;tick-before&#x27;, this);
+
+    _.forEach(this.systems, (system) =&gt; {
+      _.forEach(this.systemVsEntities[system.name], (entity) =&gt; {
+        const components = {};
+        _.forEach(system.components, (name) =&gt; {
+          components[name] = entity.components[name];
+        });
+        system.handler(entity, components);
+      });
+    });
+
+    this.emit(&#x27;tick-after&#x27;, this);
+  }
+}
+
+/**
+ * Expose the Entity class
+ *
+ * @property Entity
+ * @type {Entity}
+ */
+Ecs.Entity = Entity;
+
+/**
+ * Expose the System class
+ *
+ * @property System
+ * @type {System}
+ */
+Ecs.System = System;
+
+/**
+ * Expose the Simulator class
+ *
+ * @property Simulator
+ * @type {Simulator}
+ */
+Ecs.Simulator = Simulator;
+
+/**
+ * Emitted by tick() before running the systems
+ *
+ * @event TICK_BEFORE
+ * @param {Ecs} ecs The Ecs instance that generated the event
+ */
+Ecs.TICK_BEFORE = &#x27;tick-before&#x27;;
+
+/**
+ * Emitted by tick() after running the systems
+ *
+ * @event TICK_AFTER
+ * @param {Ecs} ecs The Ecs instance that generated the event
+ */
+Ecs.TICK_AFTER = &#x27;tick-after&#x27;;
+
+module.exports = Ecs;
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
