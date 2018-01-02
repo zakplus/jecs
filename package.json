@@ -1,12 +1,13 @@
 {
   "name": "jecs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Entity Component System engine for NodeJs and the browser",
   "main": "lib/ecs.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/zakplus/jecs.git"
   },
+  "homepage": "https://zakplus.github.io/jecs/",
   "scripts": {
     "linter": "eslint --fix src/**/*.js test/**/*.js",
     "test": "tape test/**/*.js | tap-spec",
@@ -17,7 +18,11 @@
     "build": "npm run build-node && npm run build-browser",
     "postbuild": "npm run test && npm run docs"
   },
-  "keywords": [],
+  "keywords": [
+    "Entity Component System",
+    "Game Engine",
+    "ecs"
+  ],
   "author": {
     "name": "Valerio Bianchi",
     "email": "contacts@valeriobianchi.com",
