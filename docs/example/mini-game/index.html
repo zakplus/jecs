@@ -3,8 +3,10 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 
     <script src="jecs_1.0.3_min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
     <style lang="text/css">
       * {
@@ -13,53 +15,70 @@
         box-sizing: border-box;
       }
 
+      html {
+        height: 100%;
+      }
+
       body {
+        height: 100%;
         font-family: sans-serif;
-        padding: 2rem;
         text-align: center;
-        background-color: #eee;
+        background-color: #fff;
+        font-size: 50%;
       }
 
       #game {
-        display: inline-block;
         text-align: initial;
-        padding: 2rem;
-        background-color: #fff;
-        border: 1px solid #888;
-        box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+        height: 100%;
+      }
+
+      #title {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #888;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+        background: rgb(226,226,226); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
       }
 
       h1 {
-        font-size: 2rem;
+        font-size: 1.2em;
         font-weight: bold;
         text-align: center;
       }
 
       h2 {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
+        font-size: 0.8em;
+        font-weight: normal;
+        text-align: center;
+      }
+
+      #screen-cont {
         text-align: center;
       }
 
       #screen {
+        display: inline-block;
         font-family: monospace;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         background-color: #000;
         color: #0f0;
         border: 2px solid #000;
         border-radius: 1rem;
-        padding: 2rem;
+        padding: 1rem;
       }
 
       #log {
+        border-top: 1px solid #888;
         font-family: monospace;
         padding: 0.5rem;
-        overflow-y: auto;
-        height: 20rem;
-        border: 1px solid #ddd;
-        background-color: #eee; 
+        overflow: auto;
+        background-color: #eee;
       }
 
       .buttons {
@@ -67,16 +86,47 @@
       }
 
       button {
+        font-size: 1em;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
+      }
+
+      select {
+        font-size: 1em;
+      }
+
+      @media screen and (min-width: 320px) {
+        body {
+          font-size: 75%;
+        }
+      }
+
+      @media screen and (min-width: 480px) {
+        body {
+          font-size: 110%;
+        }
+      }
+
+      @media screen and (min-width: 640px) {
+        body {
+          font-size: 150%;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        body {
+          font-size: 200%;
+        }
       }
     </style>
   </head>
 
   <body>
     <div id="game">
-      <h1>Jecs mini game demo</h1>
-      <h2>find the source in the "example" directory.</h1>
+      <div id="title">
+        <h1>Jecs mini game demo</h1>
+        <h2>find the source in the "docs/example/mini-game" directory.</h1>
+      </div>
       
       <div class="buttons">
         <button id="start">start</button>
@@ -90,16 +140,31 @@
         </select>
       </div>
 
-      <div id="screen"></div>
-      <div id="log"></div>
+      <div id="screen-cont">
+        <div id="screen"></div>
+      </div>
+
+      <div id="log-cont">
+        <div id="log"></div>
+      </div>
     </div>
 
     <script src="mini-game.js"></script>
     <script type="text/javascript">
-      (function() {
+      $(document).ready(function() {
+        var $gameBox = $('#game');
+        var $logBox = $('#log');
+
         var startBut = document.getElementById('start');
         var resetBut = document.getElementById('reset');
         var fpsSelect = document.getElementById('fps-limit');
+
+        function updateLogSize() {
+          $logBox.css('height', ($gameBox.innerHeight() - $logBox.offset().top) + 'px');
+        }
+
+        $(window).resize(updateLogSize);
+        updateLogSize();
 
         function updateFps(fps) {
           game.simulator.setFps(parseInt(fps));
@@ -116,6 +181,7 @@
         };
 
         resetBut.onclick = function() {
+          $logBox.text('');
           game.simulator.stop();
           game.reset();
           startBut.innerHTML = "start";
@@ -127,7 +193,7 @@
 
         // Init FPS
         updateFps(fpsSelect.value);
-      }) ();
+      });
     </script>
   </body>
 </html>
