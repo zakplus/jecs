@@ -66,7 +66,7 @@ The limiter can be handy in some situation but generally what you really want is
 In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call. Jecs does not take care of this for you, instead you can use a dedicated component and system.  
 Remember that systems gets called in the same order they are defined so you can define a *time-updater* system which will run before any other systems to calculate all the timing stuff.
 
-```JavaScript
+``` javascript
 // A time component
 const time = {
   start: 0,     // initial time
