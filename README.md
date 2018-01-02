@@ -15,7 +15,7 @@ You can find the documentation [here](https://zakplus.github.io/jecs/) or under 
 You can use jecs in a browser by loading the script in the directory 'browser'.
 The library exports the Ecs class as a global Ecs variable (window.Ecs).
 
-```<script type="text/javascript" src="path/to/ecs_<version>_min.js>"></script>```
+```<script type="text/javascript" src="path/to/jecs_<version>_min.js>"></script>```
 
 ## live demo
 Included in this package you can find a simple text-based browser game demo using Jecs (actually it's a simulation because there is no user input...).  
