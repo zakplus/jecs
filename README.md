@@ -61,10 +61,10 @@ sim.start();
 ```
 
 ## controlling speed
-The simulator fps limiter can limits the maximum frames per second. The limiter, wich is disabled by default, can be activated by calling ```Simulator.setFps(<value>)``` with value being a integer greater then 0. A value of 0 will disable the limiter.  
+The simulator fps limiter can limit the maximum frames per second. The limiter, wich is disabled by default, can be activated by calling ```Simulator.setFps(<value>)``` with value being a integer greater then 0. A value of 0 will disable the limiter.  
 The limiter can be handy in some situation but generally what you really want is to run at the maximum possible speed...  
 In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call. Jecs does not take care of this for you, instead you can use a dedicated component and system.  
-Remember that systems gets called in the same order they are defined so you can define a *time-updater* system which will run before any other systems to calculate all the timing stuff.
+Remember that systems get called in the same order they are defined so you can define a *time-updater* system which will run before any other systems to calculate all the timing stuff.
 
 ``` javascript
 // A time component
