@@ -1,5 +1,5 @@
 const test = require('tape');
-const Ecs = require('../lib');
+const Ecs = require('../lib/ecs');
 
 test('Testing Ecs class...', (t) => {
   t.equal(typeof Ecs, 'function', 'Type of Ecs should be \'function\'');

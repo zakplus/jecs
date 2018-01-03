@@ -1,5 +1,5 @@
 const test = require('tape');
-const Ecs = require('../lib');
+const Ecs = require('../lib/ecs');
 
 test('Testing System class...', (t) => {
   const ecs = new Ecs();
