@@ -21,12 +21,12 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.0.0</b>
+                    API Docs for Version: <b>1.1.0</b>
                 </p>
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "classes/Timer", "modules/jecs"]'>
         </form>
     </div>
 </div>
@@ -49,9 +49,8 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="../classes/Entity.html">Entity</a></li>
 	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="../classes/System.html">System</a></li>
+	                            <li><a href="../classes/Timer.html">Timer</a></li>
 	                    </ul>
 	                </div>
 	    
@@ -99,7 +98,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_system.js.html#l3"><code>src\system.js:3</code></a>
+            Defined in: <a href="../files/src_system.js.html#l4"><code>src\system.js:4</code></a>
         </div>
 
             Module: <a href="../modules/jecs.html">jecs</a>
@@ -114,13 +113,29 @@
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_System" class="method item">
+        <div id="method_System" class="method item private">
             <h3 class="name"><code>System</code></h3>
         
-                <span class="paren">()</span>
+                <div class="args">
+                    <span class="paren">(</span><ul class="args-list inline commas">
+                        <li class="arg">
+                                <code>ecs</code>
+                        </li>
+                        <li class="arg">
+                                <code>name</code>
+                        </li>
+                        <li class="arg">
+                                <code>components</code>
+                        </li>
+                        <li class="arg">
+                                <code>handler</code>
+                        </li>
+                    </ul><span class="paren">)</span>
+                </div>
         
         
         
+                <span class="flag private">private</span>
         
         
         
@@ -129,7 +144,7 @@
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/src_system.js.html#l3"><code>src\system.js:3</code></a>
+                <a href="../files/src_system.js.html#l4"><code>src\system.js:4</code></a>
                 </p>
         
         
@@ -140,6 +155,56 @@
                 
             </div>
         
+                <div class="params">
+                    <h4>Parameters:</h4>
+        
+                    <ul class="params-list">
+                        <li class="param">
+                                <code class="param-name">ecs</code>
+                                <span class="type"><a href="../classes/Ecs.html" class="crosslink">Ecs</a></span>
+        
+        
+                            <div class="param-description">
+                                <p>Ecs engine object this system belongs to</p>
+        
+                            </div>
+        
+                        </li>
+                        <li class="param">
+                                <code class="param-name">name</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        
+        
+                            <div class="param-description">
+                                <p>Name of the system</p>
+        
+                            </div>
+        
+                        </li>
+                        <li class="param">
+                                <code class="param-name">components</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a></span>
+        
+        
+                            <div class="param-description">
+                                <p>Array of component names this system operates on</p>
+        
+                            </div>
+        
+                        </li>
+                        <li class="param">
+                                <code class="param-name">handler</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        
+        
+                            <div class="param-description">
+                                <p>System function</p>
+        
+                            </div>
+        
+                        </li>
+                    </ul>
+                </div>
         
         
         </div>
@@ -160,12 +225,12 @@
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
-                            <li class="index-item method private">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_constructor" data-tablink="constructor">constructor</a>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getName" data-tablink="getName">getName</a>
 
                             </li>
                             <li class="index-item method">
@@ -182,102 +247,6 @@
             <div id="methods" class="tab-pane">
                 <h2 class="off-left">Methods</h2>
 
-                    <div id="method_constructor" class="method item private">
-                        <h3 class="name"><code>constructor</code></h3>
-                    
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>ecs</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>name</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>components</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>handler</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/src_system.js.html#l10"><code>src\system.js:10</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Instantiate a new System</p>
-                    
-                        </div>
-                    
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">ecs</code>
-                                            <span class="type"><a href="../classes/Ecs.html" class="crosslink">Ecs</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Ecs engine object this system belongs to</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">name</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Name of the system</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">components</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[]</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Array of component names this system operates on</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">handler</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>System function</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
-                    
-                    
-                    </div>
                     <div id="method_destroy" class="method item">
                         <h3 class="name"><code>destroy</code></h3>
                     
@@ -293,7 +262,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_system.js.html#l38"><code>src\system.js:38</code></a>
+                            <a href="../files/src_system.js.html#l49"><code>src\system.js:49</code></a>
                             </p>
                     
                     
@@ -306,6 +275,48 @@
                         </div>
                     
                     
+                    
+                    </div>
+                    <div id="method_getName" class="method item">
+                        <h3 class="name"><code>getName</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                            <span class="returns-inline">
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                            </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_system.js.html#l39"><code>src\system.js:39</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Returns this system name</p>
+                    
+                        </div>
+                    
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                                        <p>this system name</p>
+                    
+                                </div>
+                            </div>
                     
                     </div>
                     <div id="method_isCompatibleEntity" class="method item">
@@ -332,7 +343,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_system.js.html#l27"><code>src\system.js:27</code></a>
+                            <a href="../files/src_system.js.html#l28"><code>src\system.js:28</code></a>
                             </p>
                     
                     

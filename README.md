@@ -1,5 +1,9 @@
 # Jecs Entity Component System
 
+## NEWS!
+Version 1.1.0 introduces the Timer utility class.  
+Read about it in the [controlling speed](#controlling_speed) section.
+
 ## description
 ECS or [Entity Component System](https://en.wikipedia.org/wiki/Entity%E2%80%93component%E2%80%93system) is an architectural pattern particularly suitable for game development.  
 Jecs is a javascript ECS engine for Node.js and the browser.  
@@ -15,7 +19,7 @@ You can find the documentation [here](https://zakplus.github.io/jecs/) or under 
 You can use jecs in a browser by loading the script in the directory 'browser'.
 The library exports the Ecs class as a global Ecs variable (window.Ecs).
 
-```<script type="text/javascript" src="path/to/jecs_<version>_min.js>"></script>```
+```<script type="text/javascript" src="path/to/jecs_min.js"></script>```
 
 ## live demo
 Included in this package you can find a simple text-based browser game demo using Jecs (actually it's a simulation because there is no user input...).  
@@ -27,7 +31,9 @@ We define also a "move" system requiring "position" and "speed" components.
 Components can be any type of data, they will be passed to the systems without any modification.
 
 The "move" system simply update position values by adding speed values and will be called once for every entity associated to both components (in this case there is only one, "player").  
-The Simulator utility will update the engine for us taking care of limiting the maximum fps to 60.
+
+The Simulator utility will update the engine for us taking care of limiting the maximum fps to 60.  
+If you prefer, you can avoid using the simulator and directly call ecs.tick() to start next engine iteration.
 
 ``` javascript
 import Ecs from 'jecs';
@@ -51,6 +57,8 @@ ecs.system('move', ['position', 'speed'], (entity, {position, speed}) => {
 });
 
 // Instantiate a simulator
+// If you prefer, you can avoid using simulator and start
+// engine iterations manually by calling ecs.tick() in a loop.
 const sim = new Ecs.Simulator(ecs);
 
 // Limit the fps to 60
@@ -60,10 +68,42 @@ sim.setFps(60);
 sim.start();
 ```
 
-## controlling speed
+## <a id="controlling_speed"></a>controlling speed
 The simulator fps limiter can limit the maximum frames per second. The limiter, wich is disabled by default, can be activated by calling ```Simulator.setFps(<value>)``` with value being a integer greater then 0. A value of 0 will disable the limiter.  
 The limiter can be handy in some situation but generally what you really want is to run at the maximum possible speed...  
-In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call. Jecs does not take care of this for you, instead you can use a dedicated component and system.  
+In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call.
+
+### Jecs version 1.1.0 introduces the Timer helper class
+Get more informations in the [Timer API docs](https://zakplus.github.io/jecs/api/classes/Timer.html).  
+Starting with Jecs vestion 1.1.0 you can use the Timer helper class to solve this problem. You just have to instantiate the class passing your ecs instance object as parameter, then you can call the Timer getTime() method from your systems to get useful timings informations.
+
+```javascript
+const ecs = new Ecs();
+const timer = new Ecs.Timer(ecs);
+
+ecs.system('mySystem', ['myComponent'], (entity, {myComponent}) => {
+  const delta = timer.getTime().delta;
+  // Do your magic with delta time!
+  // ...
+});
+```
+
+timer.getTime() returns a object with these properties:
+
+```javascript
+{
+  ticks,  // Number of ticks (frames)
+  start,  // Initial time (milliseconds since the EPOCH)
+  now,    // Current time (milliseconds since the EPOCH)
+  total,  // Total execution time (milliseconds)
+  delta   // Delta time from prev tick (milliseconds)
+}
+```
+
+You can call timer.reset() method to reset all timing values to zero.
+
+### How to do with Jecs version < 1.1.0
+Jecs version prior 1.1.0 does not calculate time info for you, instead you can use a dedicated component and system.  
 Remember that systems get called in the same order they are defined so you can define a *time-updater* system which will run before any other systems to calculate all the timing stuff.
 
 ``` javascript
@@ -95,7 +135,7 @@ ecs.system('time-updater', ['time'], (entity, {time}) => {
   time.total = now - time.start;
 
   // Update delta
-  if(time.current > 0) {
+  if(time.prev > 0) {
     time.delta = now - time.prev;
   }
 

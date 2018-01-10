@@ -4,7 +4,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "Ecs",
         "Entity",
         "Simulator",
-        "System"
+        "System",
+        "Timer"
     ],
     "modules": [
         "jecs"

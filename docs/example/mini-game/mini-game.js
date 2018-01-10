@@ -5,10 +5,11 @@ var game = (function () {
   // Logging <div>
   var logarea = document.getElementById('log');
 
-  // Instantiating engine and simulator
+  // Instantiating engine, timer and simulator
   var ecs = new Ecs();
+  var timer = new Ecs.Timer(ecs);
   var sim = new Ecs.Simulator(ecs);
-
+  
   // Possible move direction
   var up = { x: 0, y: -1 };
   var down = { x: 0, y: 1 };
@@ -33,16 +34,21 @@ var game = (function () {
   var foodEnergy = Math.floor(Math.sqrt(initialEnergy));
 
   // Entities
-  var clock;
   var knight;
   var ogre;
+  var fps;
   
   // Position components (will be associated to entities)
   var knightPosition = {};
   var ogrePosition = {};
 
-  // Time component
-  var time = {};
+  // FPS component used to calculate
+  var fpsData = {
+    sum: 0,           // Sum of calculated instant fps
+    sumStartTime: 0,  // fps summing start time
+    count: 0,         // Number of fps summed
+    avg: 0            // Frames Per Second calculated over one second
+  };
 
   // Append a line of log
   function log(text) {
@@ -84,21 +90,16 @@ var game = (function () {
 
   // Initializes map and components
   function init() {
-    log();
-
-    // reset clock
-    time.start = 0;     // initial time
-    time.total = 0;     // total execution time
-    time.prev = 0;      // previous frame absolute time (stored just to calculate delta)
-    time.delta = 0;     // delta time from prev tick
-    time.fps = {
-      sum: 0,           // Sum of calculated instant fps
-      sumStartTime: 0,  // fps summing start time
-      count: 0,         // Number of fps summed
-      avg: 0            // Frames Per Second calculated over one second
-    };
-    clock.setComponent('time', time);
-
+    // reset timer
+    timer.reset();
+    
+    // Reset FPS component
+    fpsData.sum = 0;
+    fpsData.sumStartTime = 0;
+    fpsData.count = 0;
+    fpsData.avg = 0
+    fps.setComponent('fps', fpsData);
+    
     // Init knight components
     knightPosition.x = 1 + parseInt(Math.floor(Math.random() * (mapw - 2)), 10);
     knightPosition.y = 1 + parseInt(Math.floor(Math.random() * (maph - 2)), 10);
@@ -128,41 +129,26 @@ var game = (function () {
   }
 
   log('Setup entities...');
-  clock = ecs.entity('clock');
+  fps = ecs.entity('fps');
   knight = ecs.entity('knight');
   ogre = ecs.entity('ogre');
 
-  // A system for updating the time component
-  ecs.system('time-updater', ['time'], function(entity, components) {
-    var time = components.time;
-    var now = Date.now();
-    var fps;
-
-    // Init start if first tick
-    if(time.start === 0) time.start = now;
-
-    // Update total time
-    time.total = now - time.start;
-
-    // Update delta
-    if(time.prev > 0) {
-      time.delta = now - time.prev;
-    }
-
-    // Update prev time
-    time.prev = now;
+  // A system for calculating FPS
+  ecs.system('fps-updater', ['fps'], function(entity, components) {
+    var time = timer.getTime();
+    var fpsData = components.fps;
 
     // Calculate average FPS over one second
     if(time.delta > 0) {
-      fps = 1000 / time.delta;
-      if(time.fps.sumStartTime === 0) time.fps.sumStartTime = now;
-      time.fps.sum += fps;
-      time.fps.count++;
-      if(now - time.fps.sumStartTime > 1000) {
-        time.fps.avg = time.fps.sum / time.fps.count;
-        time.fps.sumStartTime = now;
-        time.fps.sum = fps;
-        time.fps.count = 1;
+      var fps = 1000 / time.delta;
+      if(fpsData.sumStartTime === 0) fpsData.sumStartTime = time.now;
+      fpsData.sum += fps;
+      fpsData.count++;
+      if(time.now - fpsData.sumStartTime > 1000) {
+        fpsData.avg = fpsData.sum / fpsData.count;
+        fpsData.sumStartTime = time.now;
+        fpsData.sum = fps;
+        fpsData.count = 1;
       }
     }
   });
@@ -290,8 +276,9 @@ var game = (function () {
       buffer += row + '<br/>';
     }
 
+    var time = timer.getTime();
     buffer += '<br/>';
-    buffer += 'FPS: ' + time.fps.avg.toFixed(2) + '<br/>';
+    buffer += 'FPS: ' + fpsData.avg.toFixed(2) + '<br/>';
     buffer += time.total + ' milliseconds total.';
     screen.innerHTML = buffer;
   }

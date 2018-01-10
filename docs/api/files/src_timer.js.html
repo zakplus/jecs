@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\simulator.js - Jecs API</title>
+    <title>src\timer.js - Jecs API</title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -91,137 +91,144 @@
                 <div id="docs-main">
                     <div class="content">
 <div class="page-header">
-    <h1>src\simulator.js <small>File</small></h1>
+    <h1>src\timer.js <small>File</small></h1>
 </div>
 
 <div class="file">
     <pre class="prettyprint linenums">
 import Ecs from &#x27;./ecs&#x27;;
 
+function randomId(prefix) {
+  return &#x60;${prefix}-${Math.floor(Math.random() * 1000)}&#x60;;
+}
+
 /**
- * The Simulator is a utility class, it will setup
- * a main loop and will call Ecs.tick() for you automatically
- * limiting the frame per seconds.
+ * The Timer class is a utility class.
+ * By creating a new instance of this class, you will be able to retrieve timings
+ * informations in your systems.
  *
- * @class Simulator
+ * @class Timer
  * @constructor
- * @param {Ecs} ecs The Ecs instance this simulator will control
-*/
-class Simulator {
+ * @param {Ecs} ecs Ecs instance this Timer will belong to
+ *
+ * @example
+ * &#x60;&#x60;&#x60;javascript
+ *
+ * const ecs = new Ecs();
+ * const timer = new Ecs.Timer(ecs);
+ *
+ * ecs.system(&#x27;mySystem&#x27;, [&#x27;myComponent&#x27;], (entity, {myComponent}) =&gt; {
+ *   const delta = timer.getTime().delta;
+ *   // Do your magic with delta time!
+ *   // ...
+ * });
+ * &#x60;&#x60;&#x60;
+ *
+ * Object returned by getTime() has this structure:
+ * &#x60;&#x60;&#x60;javascript
+ *
+ * {
+ *   ticks,  // Number of ticks (frames)
+ *   start,  // Initial time (milliseconds since the EPOCH)
+ *   now,    // Current time (milliseconds since the EPOCH)
+ *   total,  // Total execution time (milliseconds)
+ *   delta   // Delta time from prev tick (milliseconds)
+ * }
+ * &#x60;&#x60;&#x60;
+ */
+export default class Timer {
   constructor(ecs) {
     if (!(ecs instanceof Ecs)) throw new Error(&#x27;ecs must be a Ecs instance&#x27;);
 
-    this.ecs = ecs;
-    this.time = 0;
-    this.setFps(0);
-    this.stop();
+    const entityName = randomId(&#x27;clock&#x27;);
+    const componentName = randomId(&#x27;time&#x27;);
+    const systemName = randomId(&#x27;timer&#x27;);
+
+    // time component
+    this.time = {};
+    this.reset();
+
+    // clock entity
+    this.entity = ecs.entity(entityName);
+
+    // Associate the time component to the clock entity.
+    this.entity.setComponent(componentName, this.time);
+
+    // A system for updating the time component
+    this.system = ecs.system(systemName, [componentName], (entity, components) =&gt; {
+      const time = components[componentName];
+      const now = Date.now();
+
+      // Update ticks counter
+      time.ticks += 1;
+
+      // Init start time
+      if (time.start === 0) time.start = now;
+
+      // Update total time
+      time.total = now - time.start;
+
+      // Update delta
+      if (time.now &gt; 0) {
+        time.delta = now - time.now;
+      }
+
+      // Update now time
+      time.now = now;
+    });
   }
 
   /**
-   * Set simulation fps limiter value.&lt;br/&gt;
-   * A value of 0 will disable the fps limiter
+   * Reset all timing values to 0
    *
-   * @method setFps
-   * @param {Number} fps
+   * @method reset
    */
-  setFps(fps) {
-    if (typeof fps !== &#x27;number&#x27;) throw new Error(&#x27;fps must be a number&#x27;);
-
-    this.fps = 0;
-    if (fps &amp;&amp; typeof fps === &#x27;number&#x27; &amp;&amp; fps &gt; 0) {
-      this.fps = parseInt(Math.round(fps), 10);
-    }
-    this.frameDuration = 1000 / this.fps;
+  reset() {
+    this.time.ticks = 0; // Number of ticks (frames)
+    this.time.start = 0; // initial time
+    this.time.now = 0; // Current absolute time
+    this.time.total = 0; // total execution time
+    this.time.delta = 0; // delta time from prev tick
   }
 
   /**
-   * Return current simulation fps limiter value.
+   * Returns the time component
    *
-   * @method getFps
-   * @see setFps
+   * @method getTime
+   * @return {Object} A time component object
+   * @example
+   * The time object contains these properties:&lt;br/&gt;
+   * &lt;table&gt;
+   * &lt;tr&gt;&lt;th&gt;start&lt;/td&gt;&lt;td&gt;initial time&lt;/td&gt;
+   * &lt;tr&gt;&lt;th&gt;total&lt;/td&gt;&lt;td&gt;total execution time&lt;/td&gt;
+   * &lt;tr&gt;&lt;th&gt;prev&lt;/td&gt;&lt;td&gt;previous frame absolute time&lt;/td&gt;
+   * &lt;tr&gt;&lt;th&gt;delta&lt;/td&gt;&lt;td&gt;delta time from prev tick&lt;/td&gt;
+   * &lt;/table&gt;
    */
-  getFps() {
-    return this.fps;
+  getTime() {
+    return this.time;
   }
 
   /**
-   * Start simulation
+   * Returns the entity used by this timer
    *
-   * @method start
+   * @method getEntity
+   * @return {Entity} The timer entity
    */
-  start() {
-    this.started = true;
-    this.paused = false;
-    this.run();
+  getEntity() {
+    return this.entity;
   }
 
   /**
-   * Pause simulation
+   * Returns the system used by this timer
    *
-   * @method pause
+   * @method getSystem
+   * @return {System} The timer system
    */
-  pause() {
-    this.paused = true;
-  }
-
-  /**
-   * Stop simulation and reset simulation time
-   *
-   * @method stop
-   */
-  stop() {
-    this.prevFrameTime = null;
-    this.started = false;
-    this.paused = false;
-  }
-
-  /**
-   * Check whether the simulation is running
-   *
-   * @method isRunning
-   * @return {Boolean} true if simulator is running, false otherwise
-   */
-  isRunning() {
-    if (this.started &amp;&amp; !this.paused) return true;
-    return false;
-  }
-
-  /**
-   * Check whether the simulation is paused
-   *
-   * @method isPaused
-   * @return {Boolean} true if simulator is paused, false otherwise
-   */
-  isPaused() {
-    if (this.started &amp;&amp; this.paused) return true;
-    return false;
-  }
-
-  /**
-   * Simulation loop
-   *
-   * @private
-   * @method run
-   */
-  run() {
-    const t1 = Date.now();
-    this.ecs.tick();
-    const t2 = Date.now();
-
-    // FPS limiter
-    let sleep = 0;
-    if (this.fps &gt; 0) {
-      sleep = Math.max(0, this.frameDuration - (t2 - t1));
-    }
-
-    // Async loop
-    setTimeout(() =&gt; {
-      if (this.isRunning()) this.run();
-    }, sleep);
+  getSystem() {
+    return this.system;
   }
 }
-
-export default Simulator;
 
     </pre>
 </div>

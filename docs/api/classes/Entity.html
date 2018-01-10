@@ -21,12 +21,12 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.0.0</b>
+                    API Docs for Version: <b>1.1.0</b>
                 </p>
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "classes/Timer", "modules/jecs"]'>
         </form>
     </div>
 </div>
@@ -49,9 +49,8 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="../classes/Entity.html">Entity</a></li>
 	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="../classes/System.html">System</a></li>
+	                            <li><a href="../classes/Timer.html">Timer</a></li>
 	                    </ul>
 	                </div>
 	    
@@ -99,7 +98,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/src_entity.js.html#l1"><code>src\entity.js:1</code></a>
+            Defined in: <a href="../files/src_entity.js.html#l4"><code>src\entity.js:4</code></a>
         </div>
 
             Module: <a href="../modules/jecs.html">jecs</a>
@@ -115,13 +114,23 @@ the entity to components and to get/set components data</p>
 
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_Entity" class="method item">
+        <div id="method_Entity" class="method item private">
             <h3 class="name"><code>Entity</code></h3>
         
-                <span class="paren">()</span>
+                <div class="args">
+                    <span class="paren">(</span><ul class="args-list inline commas">
+                        <li class="arg">
+                                <code>ecs</code>
+                        </li>
+                        <li class="arg">
+                                <code>name</code>
+                        </li>
+                    </ul><span class="paren">)</span>
+                </div>
         
         
         
+                <span class="flag private">private</span>
         
         
         
@@ -130,7 +139,7 @@ the entity to components and to get/set components data</p>
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/src_entity.js.html#l1"><code>src\entity.js:1</code></a>
+                <a href="../files/src_entity.js.html#l4"><code>src\entity.js:4</code></a>
                 </p>
         
         
@@ -141,6 +150,34 @@ the entity to components and to get/set components data</p>
                 
             </div>
         
+                <div class="params">
+                    <h4>Parameters:</h4>
+        
+                    <ul class="params-list">
+                        <li class="param">
+                                <code class="param-name">ecs</code>
+                                <span class="type"><a href="../classes/Ecs.html" class="crosslink">Ecs</a></span>
+        
+        
+                            <div class="param-description">
+                                <p>Ecs engine object this Entity belongs to</p>
+        
+                            </div>
+        
+                        </li>
+                        <li class="param">
+                                <code class="param-name">name</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        
+        
+                            <div class="param-description">
+                                <p>Entity name</p>
+        
+                            </div>
+        
+                        </li>
+                    </ul>
+                </div>
         
         
         </div>
@@ -161,16 +198,16 @@ the entity to components and to get/set components data</p>
                     <h3>Methods</h3>
 
                     <ul class="index-list methods">
-                            <li class="index-item method private">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_constructor" data-tablink="constructor">constructor</a>
-
-                            </li>
                             <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_deleteComponent" data-tablink="deleteComponent">deleteComponent</a>
 
                             </li>
                             <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_destroy" data-tablink="destroy">destroy</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#" data-tabid="#methods" data-anchor="#method_getName" data-tablink="getName">getName</a>
 
                             </li>
                             <li class="index-item method">
@@ -191,74 +228,6 @@ the entity to components and to get/set components data</p>
             <div id="methods" class="tab-pane">
                 <h2 class="off-left">Methods</h2>
 
-                    <div id="method_constructor" class="method item private">
-                        <h3 class="name"><code>constructor</code></h3>
-                    
-                            <div class="args">
-                                <span class="paren">(</span><ul class="args-list inline commas">
-                                    <li class="arg">
-                                            <code>ecs</code>
-                                    </li>
-                                    <li class="arg">
-                                            <code>name</code>
-                                    </li>
-                                </ul><span class="paren">)</span>
-                            </div>
-                    
-                    
-                    
-                            <span class="flag private">private</span>
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/src_entity.js.html#l9"><code>src\entity.js:9</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Instantiate a new Entity</p>
-                    
-                        </div>
-                    
-                            <div class="params">
-                                <h4>Parameters:</h4>
-                    
-                                <ul class="params-list">
-                                    <li class="param">
-                                            <code class="param-name">ecs</code>
-                                            <span class="type"><a href="../classes/Ecs.html" class="crosslink">Ecs</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Ecs engine object this Entity belongs to</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                    <li class="param">
-                                            <code class="param-name">name</code>
-                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-                    
-                                        <div class="param-description">
-                                            <p>Entity name</p>
-                    
-                                        </div>
-                    
-                                    </li>
-                                </ul>
-                            </div>
-                    
-                    
-                    </div>
                     <div id="method_deleteComponent" class="method item">
                         <h3 class="name"><code>deleteComponent</code></h3>
                     
@@ -280,7 +249,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l54"><code>src\entity.js:54</code></a>
+                            <a href="../files/src_entity.js.html#l69"><code>src\entity.js:69</code></a>
                             </p>
                     
                     
@@ -326,7 +295,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l69"><code>src\entity.js:69</code></a>
+                            <a href="../files/src_entity.js.html#l86"><code>src\entity.js:86</code></a>
                             </p>
                     
                     
@@ -339,6 +308,48 @@ the entity to components and to get/set components data</p>
                         </div>
                     
                     
+                    
+                    </div>
+                    <div id="method_getName" class="method item">
+                        <h3 class="name"><code>getName</code></h3>
+                    
+                            <span class="paren">()</span>
+                    
+                            <span class="returns-inline">
+                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                            </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_entity.js.html#l25"><code>src\entity.js:25</code></a>
+                            </p>
+                    
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Returns this entity name</p>
+                    
+                        </div>
+                    
+                    
+                            <div class="returns">
+                                <h4>Returns:</h4>
+                    
+                                <div class="returns-description">
+                                            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                                        <p>this entity name</p>
+                    
+                                </div>
+                            </div>
                     
                     </div>
                     <div id="method_hasComponent" class="method item">
@@ -365,7 +376,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l23"><code>src\entity.js:23</code></a>
+                            <a href="../files/src_entity.js.html#l35"><code>src\entity.js:35</code></a>
                             </p>
                     
                     
@@ -430,7 +441,7 @@ the entity to components and to get/set components data</p>
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_entity.js.html#l34"><code>src\entity.js:34</code></a>
+                            <a href="../files/src_entity.js.html#l47"><code>src\entity.js:47</code></a>
                             </p>
                     
                     

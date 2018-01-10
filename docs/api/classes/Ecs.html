@@ -21,12 +21,12 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.0.0</b>
+                    API Docs for Version: <b>1.1.0</b>
                 </p>
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "classes/Timer", "modules/jecs"]'>
         </form>
     </div>
 </div>
@@ -49,9 +49,8 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="../classes/Entity.html">Entity</a></li>
 	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="../classes/System.html">System</a></li>
+	                            <li><a href="../classes/Timer.html">Timer</a></li>
 	                    </ul>
 	                </div>
 	    
@@ -102,7 +101,7 @@
         </div>
 
         <div class="foundat">
-            Defined in: <a href="../files/src_ecs.js.html#l13"><code>src\ecs.js:13</code></a>
+            Defined in: <a href="../files/src_ecs.js.html#l14"><code>src\ecs.js:14</code></a>
         </div>
 
             Module: <a href="../modules/jecs.html">jecs</a>
@@ -132,7 +131,7 @@
             <div class="meta">
                         <p>
                         Defined in
-                <a href="../files/src_ecs.js.html#l13"><code>src\ecs.js:13</code></a>
+                <a href="../files/src_ecs.js.html#l14"><code>src\ecs.js:14</code></a>
                 </p>
         
         
@@ -167,10 +166,6 @@
 
                     <ul class="index-list methods extends">
                             <li class="index-item method">
-                                <a href="#" data-tabid="#methods" data-anchor="#method_constructor" data-tablink="constructor">constructor</a>
-
-                            </li>
-                            <li class="index-item method">
                                 <a href="#" data-tabid="#methods" data-anchor="#method_entity" data-tablink="entity">entity</a>
 
                             </li>
@@ -203,6 +198,10 @@
                             </li>
                             <li class="index-item property">
                                 <a href="#" data-tabid="#properties" data-anchor="#property_System" data-tablink="System">System</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#" data-tabid="#properties" data-anchor="#property_Timer" data-tablink="Timer">Timer</a>
 
                             </li>
                     </ul>
@@ -243,36 +242,6 @@
             <div id="methods" class="tab-pane">
                 <h2 class="off-left">Methods</h2>
 
-                    <div id="method_constructor" class="method item">
-                        <h3 class="name"><code>constructor</code></h3>
-                    
-                            <span class="paren">()</span>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        <div class="meta">
-                                    <p>
-                                    Defined in
-                            <a href="../files/src_ecs.js.html#l21"><code>src\ecs.js:21</code></a>
-                            </p>
-                    
-                    
-                    
-                        </div>
-                    
-                        <div class="description">
-                            <p>Instantiate a new Ecs</p>
-                    
-                        </div>
-                    
-                    
-                    
-                    </div>
                     <div id="method_entity" class="method item">
                         <h3 class="name"><code>entity</code></h3>
                     
@@ -297,7 +266,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l57"><code>src\ecs.js:57</code></a>
+                            <a href="../files/src_ecs.js.html#l53"><code>src\ecs.js:53</code></a>
                             </p>
                     
                     
@@ -368,7 +337,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l93"><code>src\ecs.js:93</code></a>
+                            <a href="../files/src_ecs.js.html#l91"><code>src\ecs.js:91</code></a>
                             </p>
                     
                     
@@ -451,7 +420,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l160"><code>src\ecs.js:160</code></a>
+                            <a href="../files/src_ecs.js.html#l164"><code>src\ecs.js:164</code></a>
                             </p>
                     
                     
@@ -492,7 +461,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l139"><code>src\ecs.js:139</code></a>
+                            <a href="../files/src_ecs.js.html#l143"><code>src\ecs.js:143</code></a>
                             </p>
                     
                     
@@ -524,7 +493,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l184"><code>src\ecs.js:184</code></a>
+                            <a href="../files/src_ecs.js.html#l188"><code>src\ecs.js:188</code></a>
                             </p>
                     
                     
@@ -549,7 +518,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l200"><code>src\ecs.js:200</code></a>
+                            <a href="../files/src_ecs.js.html#l212"><code>src\ecs.js:212</code></a>
                             </p>
                     
                     
@@ -574,7 +543,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l192"><code>src\ecs.js:192</code></a>
+                            <a href="../files/src_ecs.js.html#l196"><code>src\ecs.js:196</code></a>
                             </p>
                     
                     
@@ -582,6 +551,31 @@
                     
                         <div class="description">
                             <p>Expose the System class</p>
+                    
+                        </div>
+                    
+                    
+                    
+                    </div>
+                    <div id="property_Timer" class="property item">
+                        <h3 class="name"><code>Timer</code></h3>
+                        <span class="type"><a href="../classes/Timer.html" class="crosslink">Timer</a></span>
+                    
+                    
+                    
+                    
+                    
+                        <div class="meta">
+                                    <p>
+                                    Defined in
+                            <a href="../files/src_ecs.js.html#l204"><code>src\ecs.js:204</code></a>
+                            </p>
+                    
+                    
+                        </div>
+                    
+                        <div class="description">
+                            <p>Expose the Timer class</p>
                     
                         </div>
                     
@@ -609,7 +603,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l29"><code>src\ecs.js:29</code></a>
+                            <a href="../files/src_ecs.js.html#l25"><code>src\ecs.js:25</code></a>
                             </p>
                     
                     
@@ -639,7 +633,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l38"><code>src\ecs.js:38</code></a>
+                            <a href="../files/src_ecs.js.html#l34"><code>src\ecs.js:34</code></a>
                             </p>
                     
                     
@@ -669,7 +663,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l47"><code>src\ecs.js:47</code></a>
+                            <a href="../files/src_ecs.js.html#l43"><code>src\ecs.js:43</code></a>
                             </p>
                     
                     
@@ -699,7 +693,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l216"><code>src\ecs.js:216</code></a>
+                            <a href="../files/src_ecs.js.html#l228"><code>src\ecs.js:228</code></a>
                             </p>
                     
                     
@@ -741,7 +735,7 @@
                         <div class="meta">
                                     <p>
                                     Defined in
-                            <a href="../files/src_ecs.js.html#l208"><code>src\ecs.js:208</code></a>
+                            <a href="../files/src_ecs.js.html#l220"><code>src\ecs.js:220</code></a>
                             </p>
                     
                     

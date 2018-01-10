@@ -21,12 +21,12 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.0.0</b>
+                    API Docs for Version: <b>1.1.0</b>
                 </p>
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "classes/Timer", "modules/jecs"]'>
         </form>
     </div>
 </div>
@@ -49,9 +49,8 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="../classes/Entity.html">Entity</a></li>
 	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="../classes/System.html">System</a></li>
+	                            <li><a href="../classes/Timer.html">Timer</a></li>
 	                    </ul>
 	                </div>
 	    
@@ -97,26 +96,38 @@
 
 <div class="file">
     <pre class="prettyprint linenums">
+import _ from &#x27;lodash&#x27;;
+import Ecs from &#x27;./ecs&#x27;;
+
 /**
  * The entity class expose methods to associate
  * the entity to components and to get/set components data
  *
  * @class Entity
  * @constructor
+ * @private
+ * @method constructor
+ * @param {Ecs} ecs Ecs engine object this Entity belongs to
+ * @param {String} name Entity name
  */
 class Entity {
-  /**
-   * Instantiate a new Entity
-   *
-   * @private
-   * @method constructor
-   * @param {Ecs} ecs Ecs engine object this Entity belongs to
-   * @param {String} name Entity name
-   */
   constructor(ecs, name) {
+    if (!(ecs instanceof Ecs)) throw new Error(&#x27;ecs must be a Ecs instance&#x27;);
+    if (typeof name !== &#x27;string&#x27;) throw new Error(&#x27;name must be a string&#x27;);
+
     this.ecs = ecs;
     this.name = name;
     this.components = {};
+  }
+
+  /**
+   * Returns this entity name
+   *
+   * @method getName
+   * @return {String} this entity name
+   */
+  getName() {
+    return _.clone(this.name);
   }
 
   /**
@@ -127,6 +138,7 @@ class Entity {
    * @return {Boolean} true if the entity has the component associated, false otherwise.
    */
   hasComponent(componentName) {
+    if (typeof componentName !== &#x27;string&#x27;) throw new Error(&#x27;componentName must be a string&#x27;);
     return this.components[componentName] !== undefined;
   }
 
@@ -139,6 +151,8 @@ class Entity {
    * @param {*} componentData The component data
    */
   setComponent(componentName, componentData) {
+    if (typeof componentName !== &#x27;string&#x27;) throw new Error(&#x27;componentName must be a string&#x27;);
+
     // If this is a new association update system vs entity associations
     let newComponent = false;
     if (this.components[componentName] === undefined) {
@@ -157,6 +171,8 @@ class Entity {
    * @param {String} componentName
    */
   deleteComponent(componentName) {
+    if (typeof componentName !== &#x27;string&#x27;) throw new Error(&#x27;componentName must be a string&#x27;);
+
     if (this.hasComponent(componentName)) {
       delete this.components[componentName];
 
@@ -175,7 +191,7 @@ class Entity {
   }
 }
 
-module.exports = Entity;
+export default Entity;
 
     </pre>
 </div>

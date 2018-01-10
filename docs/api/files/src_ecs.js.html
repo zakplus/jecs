@@ -21,12 +21,12 @@
             <li class="divider-vertical"></li>
             <li>
                 <p class="navbar-text">
-                    API Docs for Version: <b>1.0.0</b>
+                    API Docs for Version: <b>1.1.0</b>
                 </p>
             </li>
         </div>
         <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "modules/jecs"]'>
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "classes/Timer", "modules/jecs"]'>
         </form>
     </div>
 </div>
@@ -49,9 +49,8 @@
 	                <div class="tab-pane active" id="classes">
 	                    <ul id="api-classes" class="nav nav-list">
 	                            <li><a href="../classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="../classes/Entity.html">Entity</a></li>
 	                            <li><a href="../classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="../classes/System.html">System</a></li>
+	                            <li><a href="../classes/Timer.html">Timer</a></li>
 	                    </ul>
 	                </div>
 	    
@@ -107,6 +106,7 @@ import _ from &#x27;lodash&#x27;;
 import EventEmitter from &#x27;events&#x27;;
 import Entity from &#x27;./entity&#x27;;
 import System from &#x27;./system&#x27;;
+import Timer from &#x27;./timer&#x27;;
 import Simulator from &#x27;./simulator&#x27;;
 
 /**
@@ -117,11 +117,6 @@ import Simulator from &#x27;./simulator&#x27;;
  * @extends EventEmitter
  */
 class Ecs extends EventEmitter {
-  /**
-   * Instantiate a new Ecs
-   *
-   * @method constructor
-   */
   constructor() {
     super();
 
@@ -161,6 +156,7 @@ class Ecs extends EventEmitter {
    * @return {Entity} The newly created entity object
    */
   entity(name) {
+    if (typeof name !== &#x27;string&#x27;) throw new Error(&#x27;name must be a string&#x27;);
     if (this.entities[name] !== undefined) throw new Error(&#x60;Entity ${name} already exists&#x60;);
     const entity = new Entity(this, name);
     this.entities[name] = entity;
@@ -174,6 +170,7 @@ class Ecs extends EventEmitter {
    * @return {Entity} The entity object or undefined if not found
    */
   getEntity(name) {
+    if (typeof name !== &#x27;string&#x27;) throw new Error(&#x27;name must be a string&#x27;);
     return this.entities[name];
   }
 
@@ -201,7 +198,11 @@ class Ecs extends EventEmitter {
    * @return {System} The newly created system object
    */
   system(name, components, handler) {
-    // System is an array instead of a map to guarantee execution order
+    if (typeof name !== &#x27;string&#x27;) throw new Error(&#x27;name must be a string&#x27;);
+    if (!(_.isArrayLike(components) &amp;&amp; _.every(components, _.isString))) throw new Error(&#x27;components must be a string array&#x27;);
+    if (typeof handler !== &#x27;function&#x27;) throw new Error(&#x27;handler must be a function&#x27;);
+
+    // Systems is an array instead of a map to guarantee execution order
     if (_.some(this.systems, system =&gt; system.name === name)) {
       throw new Error(&#x60;System ${name} already exists&#x60;);
     }
@@ -220,6 +221,7 @@ class Ecs extends EventEmitter {
    * @return {System} The system object or undefined if not found
    */
   getSystem(name) {
+    if (typeof name !== &#x27;string&#x27;) throw new Error(&#x27;name must be a string&#x27;);
     return _.find(this.systems, system =&gt; system.name === name);
   }
 
@@ -229,6 +231,7 @@ class Ecs extends EventEmitter {
    * @param {String} name The name of the system to be removed
    */
   removeSystem(name) {
+    if (typeof name !== &#x27;string&#x27;) throw new Error(&#x27;name must be a string&#x27;);
     this.systems = _.filter(this.systems, system =&gt; system.name !== name);
 
     // update system vs entity associations
@@ -297,6 +300,14 @@ Ecs.Entity = Entity;
 Ecs.System = System;
 
 /**
+ * Expose the Timer class
+ *
+ * @property Timer
+ * @type {Timer}
+ */
+Ecs.Timer = Timer;
+
+/**
  * Expose the Simulator class
  *
  * @property Simulator
@@ -320,7 +331,7 @@ Ecs.TICK_BEFORE = &#x27;tick-before&#x27;;
  */
 Ecs.TICK_AFTER = &#x27;tick-after&#x27;;
 
-module.exports = Ecs;
+export default Ecs;
 
     </pre>
 </div>
