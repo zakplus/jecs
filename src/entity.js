@@ -1,23 +1,35 @@
+import _ from 'lodash';
+import Ecs from './ecs';
+
 /**
  * The entity class expose methods to associate
  * the entity to components and to get/set components data
  *
  * @class Entity
  * @constructor
+ * @private
+ * @method constructor
+ * @param {Ecs} ecs Ecs engine object this Entity belongs to
+ * @param {String} name Entity name
  */
 class Entity {
-  /**
-   * Instantiate a new Entity
-   *
-   * @private
-   * @method constructor
-   * @param {Ecs} ecs Ecs engine object this Entity belongs to
-   * @param {String} name Entity name
-   */
   constructor(ecs, name) {
+    if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');
+    if (typeof name !== 'string') throw new Error('name must be a string');
+
     this.ecs = ecs;
     this.name = name;
     this.components = {};
+  }
+
+  /**
+   * Returns this entity name
+   *
+   * @method getName
+   * @return {String} this entity name
+   */
+  getName() {
+    return _.clone(this.name);
   }
 
   /**
@@ -28,6 +40,7 @@ class Entity {
    * @return {Boolean} true if the entity has the component associated, false otherwise.
    */
   hasComponent(componentName) {
+    if (typeof componentName !== 'string') throw new Error('componentName must be a string');
     return this.components[componentName] !== undefined;
   }
 
@@ -40,6 +53,8 @@ class Entity {
    * @param {*} componentData The component data
    */
   setComponent(componentName, componentData) {
+    if (typeof componentName !== 'string') throw new Error('componentName must be a string');
+
     // If this is a new association update system vs entity associations
     let newComponent = false;
     if (this.components[componentName] === undefined) {
@@ -58,6 +73,8 @@ class Entity {
    * @param {String} componentName
    */
   deleteComponent(componentName) {
+    if (typeof componentName !== 'string') throw new Error('componentName must be a string');
+
     if (this.hasComponent(componentName)) {
       delete this.components[componentName];
 
@@ -76,4 +93,4 @@ class Entity {
   }
 }
 
-module.exports = Entity;
+export default Entity;

@@ -3,7 +3,7 @@ const Ecs = require('../lib/ecs');
 
 test('Testing System class...', (t) => {
   const ecs = new Ecs();
-  const system = ecs.system('test', ['foo', 'bar']);
+  const system = ecs.system('test', ['foo', 'bar'], () => {});
 
   t.equal(typeof system.isCompatibleEntity, 'function', 'system.isCompatibleEntity should be a function');
   t.equal(typeof system.destroy, 'function', 'system.destroy should be a function');

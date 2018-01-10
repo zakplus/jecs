@@ -8,6 +8,7 @@ import _ from 'lodash';
 import EventEmitter from 'events';
 import Entity from './entity';
 import System from './system';
+import Timer from './timer';
 import Simulator from './simulator';
 
 /**
@@ -18,11 +19,6 @@ import Simulator from './simulator';
  * @extends EventEmitter
  */
 class Ecs extends EventEmitter {
-  /**
-   * Instantiate a new Ecs
-   *
-   * @method constructor
-   */
   constructor() {
     super();
 
@@ -62,6 +58,7 @@ class Ecs extends EventEmitter {
    * @return {Entity} The newly created entity object
    */
   entity(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
     if (this.entities[name] !== undefined) throw new Error(`Entity ${name} already exists`);
     const entity = new Entity(this, name);
     this.entities[name] = entity;
@@ -75,6 +72,7 @@ class Ecs extends EventEmitter {
    * @return {Entity} The entity object or undefined if not found
    */
   getEntity(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
     return this.entities[name];
   }
 
@@ -102,7 +100,11 @@ class Ecs extends EventEmitter {
    * @return {System} The newly created system object
    */
   system(name, components, handler) {
-    // System is an array instead of a map to guarantee execution order
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    if (!(_.isArrayLike(components) && _.every(components, _.isString))) throw new Error('components must be a string array');
+    if (typeof handler !== 'function') throw new Error('handler must be a function');
+
+    // Systems is an array instead of a map to guarantee execution order
     if (_.some(this.systems, system => system.name === name)) {
       throw new Error(`System ${name} already exists`);
     }
@@ -121,6 +123,7 @@ class Ecs extends EventEmitter {
    * @return {System} The system object or undefined if not found
    */
   getSystem(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
     return _.find(this.systems, system => system.name === name);
   }
 
@@ -130,6 +133,7 @@ class Ecs extends EventEmitter {
    * @param {String} name The name of the system to be removed
    */
   removeSystem(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
     this.systems = _.filter(this.systems, system => system.name !== name);
 
     // update system vs entity associations
@@ -198,6 +202,14 @@ Ecs.Entity = Entity;
 Ecs.System = System;
 
 /**
+ * Expose the Timer class
+ *
+ * @property Timer
+ * @type {Timer}
+ */
+Ecs.Timer = Timer;
+
+/**
  * Expose the Simulator class
  *
  * @property Simulator
@@ -221,4 +233,4 @@ Ecs.TICK_BEFORE = 'tick-before';
  */
 Ecs.TICK_AFTER = 'tick-after';
 
-module.exports = Ecs;
+export default Ecs;

@@ -18,7 +18,7 @@ test('Testing Ecs class...', (t) => {
   t.true(entity instanceof Ecs.Entity, 'ecs.entity() should return an instance of Entity');
   t.equal(ecs.getEntity('test'), entity, 'ecs.getEntity("test") should return the entity object');
 
-  const system = ecs.system('test');
+  const system = ecs.system('test', ['dummy'], () => {});
   t.true(system instanceof Ecs.System, 'ecs.system() should return an instance of System');
   t.equal(ecs.getSystem('test'), system, 'ecs.getSystem("test") should return the system object');
 

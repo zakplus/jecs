@@ -1,3 +1,5 @@
+import Ecs from './ecs';
+
 /**
  * The Simulator is a utility class, it will setup
  * a main loop and will call Ecs.tick() for you automatically
@@ -5,15 +7,12 @@
  *
  * @class Simulator
  * @constructor
+ * @param {Ecs} ecs The Ecs instance this simulator will control
 */
 class Simulator {
-  /**
-   * Instantiate a new simulator
-   *
-   * @method constructor
-   * @param {Ecs} ecs The Ecs instance this simulator will control
-   */
   constructor(ecs) {
+    if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');
+
     this.ecs = ecs;
     this.time = 0;
     this.setFps(0);
@@ -28,6 +27,8 @@ class Simulator {
    * @param {Number} fps
    */
   setFps(fps) {
+    if (typeof fps !== 'number') throw new Error('fps must be a number');
+
     this.fps = 0;
     if (fps && typeof fps === 'number' && fps > 0) {
       this.fps = parseInt(Math.round(fps), 10);
@@ -122,4 +123,4 @@ class Simulator {
   }
 }
 
-module.exports = Simulator;
+export default Simulator;
