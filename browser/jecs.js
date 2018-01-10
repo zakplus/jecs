@@ -70,11 +70,330 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _lodash = __webpack_require__(1);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _events = __webpack_require__(4);
+
+var _events2 = _interopRequireDefault(_events);
+
+var _entity = __webpack_require__(5);
+
+var _entity2 = _interopRequireDefault(_entity);
+
+var _system = __webpack_require__(6);
+
+var _system2 = _interopRequireDefault(_system);
+
+var _timer = __webpack_require__(7);
+
+var _timer2 = _interopRequireDefault(_timer);
+
+var _simulator = __webpack_require__(8);
+
+var _simulator2 = _interopRequireDefault(_simulator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * The jecs module exports the Ecs class
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @module jecs
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+ * The Ecs is the main class
+ *
+ * @class Ecs
+ * @constructor
+ * @extends EventEmitter
+ */
+var Ecs = function (_EventEmitter) {
+  _inherits(Ecs, _EventEmitter);
+
+  function Ecs() {
+    _classCallCheck(this, Ecs);
+
+    /**
+     * Declared entities
+     *
+     * @private
+     * @attribute entities
+     * @type Object
+    */
+    var _this = _possibleConstructorReturn(this, (Ecs.__proto__ || Object.getPrototypeOf(Ecs)).call(this));
+
+    _this.entities = {};
+
+    /**
+     * Declared systems
+     *
+     * @private
+     * @attribute systems
+     * @type System[]
+     */
+    _this.systems = [];
+
+    /**
+     * Entities associated to systems
+     *
+     * @private
+     * @attribute systemVsEntities
+     * @type Object
+     */
+    _this.systemVsEntities = {};
+    return _this;
+  }
+
+  /**
+   * Declare a new entity
+   *
+   * @method entity
+   * @param {String} name Name of the new entity
+   * @return {Entity} The newly created entity object
+   */
+
+
+  _createClass(Ecs, [{
+    key: 'entity',
+    value: function entity(name) {
+      if (typeof name !== 'string') throw new Error('name must be a string');
+      if (this.entities[name] !== undefined) throw new Error('Entity ' + name + ' already exists');
+      var entity = new _entity2.default(this, name);
+      this.entities[name] = entity;
+      return entity;
+    }
+
+    /**
+     * Returns existing entity
+     *
+     * @param {String} name Name of the entity
+     * @return {Entity} The entity object or undefined if not found
+     */
+
+  }, {
+    key: 'getEntity',
+    value: function getEntity(name) {
+      if (typeof name !== 'string') throw new Error('name must be a string');
+      return this.entities[name];
+    }
+
+    /**
+     * Remove a entity from the engine instance
+     *
+     * @param {String} name The name of the entity to be removed
+     */
+
+  }, {
+    key: 'removeEntity',
+    value: function removeEntity(name) {
+      delete this.entities[name];
+
+      // update system vs entity associations
+      this.updateSystemsVsEntities();
+    }
+
+    /**
+     * Declare a new system.<br/>
+     * The handler function receives two arguments, the name of the entity and a object
+     * of components.
+     *
+     * @method system
+     * @param {String} name Name of the new system
+     * @param {string[]} components Names of the components the new system will operate on
+     * @param {Function} handler System function
+     * @return {System} The newly created system object
+     */
+
+  }, {
+    key: 'system',
+    value: function system(name, components, handler) {
+      if (typeof name !== 'string') throw new Error('name must be a string');
+      if (!(_lodash2.default.isArrayLike(components) && _lodash2.default.every(components, _lodash2.default.isString))) throw new Error('components must be a string array');
+      if (typeof handler !== 'function') throw new Error('handler must be a function');
+
+      // Systems is an array instead of a map to guarantee execution order
+      if (_lodash2.default.some(this.systems, function (system) {
+        return system.name === name;
+      })) {
+        throw new Error('System ' + name + ' already exists');
+      }
+      var system = new _system2.default(this, name, components, handler);
+      this.systems.push(system);
+
+      // Update system vs entity associations
+      this.updateSystemsVsEntities();
+      return system;
+    }
+
+    /**
+     * Returns existing system
+     *
+     * @param {String} name Name of the system
+     * @return {System} The system object or undefined if not found
+     */
+
+  }, {
+    key: 'getSystem',
+    value: function getSystem(name) {
+      if (typeof name !== 'string') throw new Error('name must be a string');
+      return _lodash2.default.find(this.systems, function (system) {
+        return system.name === name;
+      });
+    }
+
+    /**
+     * Remove a system from the engine instance
+     *
+     * @param {String} name The name of the system to be removed
+     */
+
+  }, {
+    key: 'removeSystem',
+    value: function removeSystem(name) {
+      if (typeof name !== 'string') throw new Error('name must be a string');
+      this.systems = _lodash2.default.filter(this.systems, function (system) {
+        return system.name !== name;
+      });
+
+      // update system vs entity associations
+      this.updateSystemsVsEntities();
+    }
+
+    /**
+     * Scan systems and search for suitable entities
+     * to be associated.
+     *
+     * @private
+     * @method updateSystemsVsEntities
+     */
+
+  }, {
+    key: 'updateSystemsVsEntities',
+    value: function updateSystemsVsEntities() {
+      var _this2 = this;
+
+      _lodash2.default.forEach(this.systems, function (system) {
+        var systemName = system.name;
+        var compatibleEntities = [];
+        _this2.systemVsEntities[systemName] = compatibleEntities;
+
+        _lodash2.default.forEach(_this2.entities, function (entity) {
+          if (system.isCompatibleEntity(entity)) {
+            compatibleEntities.push(entity);
+          }
+        });
+      });
+    }
+
+    /**
+     * Run a single execution step.<br/>
+     * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.
+     *
+     * @method tick
+     * @return {Number} Current simulation time
+     */
+
+  }, {
+    key: 'tick',
+    value: function tick() {
+      var _this3 = this;
+
+      this.emit('tick-before', this);
+
+      _lodash2.default.forEach(this.systems, function (system) {
+        _lodash2.default.forEach(_this3.systemVsEntities[system.name], function (entity) {
+          var components = {};
+          _lodash2.default.forEach(system.components, function (name) {
+            components[name] = entity.components[name];
+          });
+          system.handler(entity, components);
+        });
+      });
+
+      this.emit('tick-after', this);
+    }
+  }]);
+
+  return Ecs;
+}(_events2.default);
+
+/**
+ * Expose the Entity class
+ *
+ * @property Entity
+ * @type {Entity}
+ */
+
+
+Ecs.Entity = _entity2.default;
+
+/**
+ * Expose the System class
+ *
+ * @property System
+ * @type {System}
+ */
+Ecs.System = _system2.default;
+
+/**
+ * Expose the Timer class
+ *
+ * @property Timer
+ * @type {Timer}
+ */
+Ecs.Timer = _timer2.default;
+
+/**
+ * Expose the Simulator class
+ *
+ * @property Simulator
+ * @type {Simulator}
+ */
+Ecs.Simulator = _simulator2.default;
+
+/**
+ * Emitted by tick() before running the systems
+ *
+ * @event TICK_BEFORE
+ * @param {Ecs} ecs The Ecs instance that generated the event
+ */
+Ecs.TICK_BEFORE = 'tick-before';
+
+/**
+ * Emitted by tick() after running the systems
+ *
+ * @event TICK_AFTER
+ * @param {Ecs} ecs The Ecs instance that generated the event
+ */
+Ecs.TICK_AFTER = 'tick-after';
+
+exports.default = Ecs;
+module.exports = exports['default'];
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -17166,305 +17485,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)(module)))
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _lodash = __webpack_require__(0);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _events = __webpack_require__(4);
-
-var _events2 = _interopRequireDefault(_events);
-
-var _entity = __webpack_require__(5);
-
-var _entity2 = _interopRequireDefault(_entity);
-
-var _system = __webpack_require__(6);
-
-var _system2 = _interopRequireDefault(_system);
-
-var _simulator = __webpack_require__(7);
-
-var _simulator2 = _interopRequireDefault(_simulator);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * The jecs module exports the Ecs class
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @module jecs
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-/**
- * The Ecs is the main class
- *
- * @class Ecs
- * @constructor
- * @extends EventEmitter
- */
-var Ecs = function (_EventEmitter) {
-  _inherits(Ecs, _EventEmitter);
-
-  /**
-   * Instantiate a new Ecs
-   *
-   * @method constructor
-   */
-  function Ecs() {
-    _classCallCheck(this, Ecs);
-
-    /**
-     * Declared entities
-     *
-     * @private
-     * @attribute entities
-     * @type Object
-    */
-    var _this = _possibleConstructorReturn(this, (Ecs.__proto__ || Object.getPrototypeOf(Ecs)).call(this));
-
-    _this.entities = {};
-
-    /**
-     * Declared systems
-     *
-     * @private
-     * @attribute systems
-     * @type System[]
-     */
-    _this.systems = [];
-
-    /**
-     * Entities associated to systems
-     *
-     * @private
-     * @attribute systemVsEntities
-     * @type Object
-     */
-    _this.systemVsEntities = {};
-    return _this;
-  }
-
-  /**
-   * Declare a new entity
-   *
-   * @method entity
-   * @param {String} name Name of the new entity
-   * @return {Entity} The newly created entity object
-   */
-
-
-  _createClass(Ecs, [{
-    key: 'entity',
-    value: function entity(name) {
-      if (this.entities[name] !== undefined) throw new Error('Entity ' + name + ' already exists');
-      var entity = new _entity2.default(this, name);
-      this.entities[name] = entity;
-      return entity;
-    }
-
-    /**
-     * Returns existing entity
-     *
-     * @param {String} name Name of the entity
-     * @return {Entity} The entity object or undefined if not found
-     */
-
-  }, {
-    key: 'getEntity',
-    value: function getEntity(name) {
-      return this.entities[name];
-    }
-
-    /**
-     * Remove a entity from the engine instance
-     *
-     * @param {String} name The name of the entity to be removed
-     */
-
-  }, {
-    key: 'removeEntity',
-    value: function removeEntity(name) {
-      delete this.entities[name];
-
-      // update system vs entity associations
-      this.updateSystemsVsEntities();
-    }
-
-    /**
-     * Declare a new system.<br/>
-     * The handler function receives two arguments, the name of the entity and a object
-     * of components.
-     *
-     * @method system
-     * @param {String} name Name of the new system
-     * @param {string[]} components Names of the components the new system will operate on
-     * @param {Function} handler System function
-     * @return {System} The newly created system object
-     */
-
-  }, {
-    key: 'system',
-    value: function system(name, components, handler) {
-      // System is an array instead of a map to guarantee execution order
-      if (_lodash2.default.some(this.systems, function (system) {
-        return system.name === name;
-      })) {
-        throw new Error('System ' + name + ' already exists');
-      }
-      var system = new _system2.default(this, name, components, handler);
-      this.systems.push(system);
-
-      // Update system vs entity associations
-      this.updateSystemsVsEntities();
-      return system;
-    }
-
-    /**
-     * Returns existing system
-     *
-     * @param {String} name Name of the system
-     * @return {System} The system object or undefined if not found
-     */
-
-  }, {
-    key: 'getSystem',
-    value: function getSystem(name) {
-      return _lodash2.default.find(this.systems, function (system) {
-        return system.name === name;
-      });
-    }
-
-    /**
-     * Remove a system from the engine instance
-     *
-     * @param {String} name The name of the system to be removed
-     */
-
-  }, {
-    key: 'removeSystem',
-    value: function removeSystem(name) {
-      this.systems = _lodash2.default.filter(this.systems, function (system) {
-        return system.name !== name;
-      });
-
-      // update system vs entity associations
-      this.updateSystemsVsEntities();
-    }
-
-    /**
-     * Scan systems and search for suitable entities
-     * to be associated.
-     *
-     * @private
-     * @method updateSystemsVsEntities
-     */
-
-  }, {
-    key: 'updateSystemsVsEntities',
-    value: function updateSystemsVsEntities() {
-      var _this2 = this;
-
-      _lodash2.default.forEach(this.systems, function (system) {
-        var systemName = system.name;
-        var compatibleEntities = [];
-        _this2.systemVsEntities[systemName] = compatibleEntities;
-
-        _lodash2.default.forEach(_this2.entities, function (entity) {
-          if (system.isCompatibleEntity(entity)) {
-            compatibleEntities.push(entity);
-          }
-        });
-      });
-    }
-
-    /**
-     * Run a single execution step.<br/>
-     * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.
-     *
-     * @method tick
-     * @return {Number} Current simulation time
-     */
-
-  }, {
-    key: 'tick',
-    value: function tick() {
-      var _this3 = this;
-
-      this.emit('tick-before', this);
-
-      _lodash2.default.forEach(this.systems, function (system) {
-        _lodash2.default.forEach(_this3.systemVsEntities[system.name], function (entity) {
-          var components = {};
-          _lodash2.default.forEach(system.components, function (name) {
-            components[name] = entity.components[name];
-          });
-          system.handler(entity, components);
-        });
-      });
-
-      this.emit('tick-after', this);
-    }
-  }]);
-
-  return Ecs;
-}(_events2.default);
-
-/**
- * Expose the Entity class
- *
- * @property Entity
- * @type {Entity}
- */
-
-
-Ecs.Entity = _entity2.default;
-
-/**
- * Expose the System class
- *
- * @property System
- * @type {System}
- */
-Ecs.System = _system2.default;
-
-/**
- * Expose the Simulator class
- *
- * @property Simulator
- * @type {Simulator}
- */
-Ecs.Simulator = _simulator2.default;
-
-/**
- * Emitted by tick() before running the systems
- *
- * @event TICK_BEFORE
- * @param {Ecs} ecs The Ecs instance that generated the event
- */
-Ecs.TICK_BEFORE = 'tick-before';
-
-/**
- * Emitted by tick() after running the systems
- *
- * @event TICK_AFTER
- * @param {Ecs} ecs The Ecs instance that generated the event
- */
-Ecs.TICK_AFTER = 'tick-after';
-
-module.exports = Ecs;
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
@@ -17834,7 +17854,21 @@ function isUndefined(arg) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _lodash = __webpack_require__(1);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _ecs = __webpack_require__(0);
+
+var _ecs2 = _interopRequireDefault(_ecs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17844,18 +17878,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  * @class Entity
  * @constructor
+ * @private
+ * @method constructor
+ * @param {Ecs} ecs Ecs engine object this Entity belongs to
+ * @param {String} name Entity name
  */
 var Entity = function () {
-  /**
-   * Instantiate a new Entity
-   *
-   * @private
-   * @method constructor
-   * @param {Ecs} ecs Ecs engine object this Entity belongs to
-   * @param {String} name Entity name
-   */
   function Entity(ecs, name) {
     _classCallCheck(this, Entity);
+
+    if (!(ecs instanceof _ecs2.default)) throw new Error('ecs must be a Ecs instance');
+    if (typeof name !== 'string') throw new Error('name must be a string');
 
     this.ecs = ecs;
     this.name = name;
@@ -17863,17 +17896,31 @@ var Entity = function () {
   }
 
   /**
-   * Check if the entity is associated to a component
+   * Returns this entity name
    *
-   * @method hasComponent
-   * @param {String} componentName Name of the component
-   * @return {Boolean} true if the entity has the component associated, false otherwise.
+   * @method getName
+   * @return {String} this entity name
    */
 
 
   _createClass(Entity, [{
-    key: "hasComponent",
+    key: 'getName',
+    value: function getName() {
+      return _lodash2.default.clone(this.name);
+    }
+
+    /**
+     * Check if the entity is associated to a component
+     *
+     * @method hasComponent
+     * @param {String} componentName Name of the component
+     * @return {Boolean} true if the entity has the component associated, false otherwise.
+     */
+
+  }, {
+    key: 'hasComponent',
     value: function hasComponent(componentName) {
+      if (typeof componentName !== 'string') throw new Error('componentName must be a string');
       return this.components[componentName] !== undefined;
     }
 
@@ -17887,8 +17934,10 @@ var Entity = function () {
      */
 
   }, {
-    key: "setComponent",
+    key: 'setComponent',
     value: function setComponent(componentName, componentData) {
+      if (typeof componentName !== 'string') throw new Error('componentName must be a string');
+
       // If this is a new association update system vs entity associations
       var newComponent = false;
       if (this.components[componentName] === undefined) {
@@ -17908,8 +17957,10 @@ var Entity = function () {
      */
 
   }, {
-    key: "deleteComponent",
+    key: 'deleteComponent',
     value: function deleteComponent(componentName) {
+      if (typeof componentName !== 'string') throw new Error('componentName must be a string');
+
       if (this.hasComponent(componentName)) {
         delete this.components[componentName];
 
@@ -17925,7 +17976,7 @@ var Entity = function () {
      */
 
   }, {
-    key: "destroy",
+    key: 'destroy',
     value: function destroy() {
       this.ecs.removeEntity(this.name);
     }
@@ -17934,7 +17985,8 @@ var Entity = function () {
   return Entity;
 }();
 
-module.exports = Entity;
+exports.default = Entity;
+module.exports = exports['default'];
 
 /***/ }),
 /* 6 */
@@ -17943,11 +17995,19 @@ module.exports = Entity;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(0);
+var _lodash = __webpack_require__(1);
 
 var _lodash2 = _interopRequireDefault(_lodash);
+
+var _ecs = __webpack_require__(0);
+
+var _ecs2 = _interopRequireDefault(_ecs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17958,20 +18018,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  * @class System
  * @constructor
+ * @private
+ * @param {Ecs} ecs Ecs engine object this system belongs to
+ * @param {String} name Name of the system
+ * @param {String[]} components Array of component names this system operates on
+ * @param {Function} handler System function
  */
 var System = function () {
-  /**
-   * Instantiate a new System
-   *
-   * @private
-   * @method constructor
-   * @param {Ecs} ecs Ecs engine object this system belongs to
-   * @param {String} name Name of the system
-   * @param {String[]} components Array of component names this system operates on
-   * @param {Function} handler System function
-   */
   function System(ecs, name, components, handler) {
     _classCallCheck(this, System);
+
+    if (!(ecs instanceof _ecs2.default)) throw new Error('ecs must be a Ecs instance');
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    if (!(_lodash2.default.isArrayLike(components) && _lodash2.default.every(components, _lodash2.default.isString))) throw new Error('components must be a string array');
+    if (typeof handler !== 'function') throw new Error('handler must be a function');
 
     this.ecs = ecs;
     this.name = name;
@@ -17997,6 +18057,19 @@ var System = function () {
     }
 
     /**
+     * Returns this system name
+     *
+     * @method getName
+     * @return {String} this system name
+     */
+
+  }, {
+    key: 'getName',
+    value: function getName() {
+      return _lodash2.default.clone(this.name);
+    }
+
+    /**
      * Remove this system from engine
      *
      * @method destroy
@@ -18012,7 +18085,8 @@ var System = function () {
   return System;
 }();
 
-module.exports = System;
+exports.default = System;
+module.exports = exports['default'];
 
 /***/ }),
 /* 7 */
@@ -18021,7 +18095,192 @@ module.exports = System;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ecs = __webpack_require__(0);
+
+var _ecs2 = _interopRequireDefault(_ecs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function randomId(prefix) {
+  return prefix + '-' + Math.floor(Math.random() * 1000);
+}
+
+/**
+ * The Timer class is a utility class.
+ * By creating a new instance of this class, you will be able to retrieve timings
+ * informations in your systems.
+ *
+ * @class Timer
+ * @constructor
+ * @param {Ecs} ecs Ecs instance this Timer will belong to
+ *
+ * @example
+ * ```javascript
+ *
+ * const ecs = new Ecs();
+ * const timer = new Ecs.Timer(ecs);
+ *
+ * ecs.system('mySystem', ['myComponent'], (entity, {myComponent}) => {
+ *   const delta = timer.getTime().delta;
+ *   // Do your magic with delta time!
+ *   // ...
+ * });
+ * ```
+ *
+ * Object returned by getTime() has this structure:
+ * ```javascript
+ *
+ * {
+ *   ticks,  // Number of ticks (frames)
+ *   start,  // Initial time (milliseconds since the EPOCH)
+ *   now,    // Current time (milliseconds since the EPOCH)
+ *   total,  // Total execution time (milliseconds)
+ *   delta   // Delta time from prev tick (milliseconds)
+ * }
+ * ```
+ */
+
+var Timer = function () {
+  function Timer(ecs) {
+    _classCallCheck(this, Timer);
+
+    if (!(ecs instanceof _ecs2.default)) throw new Error('ecs must be a Ecs instance');
+
+    var entityName = randomId('clock');
+    var componentName = randomId('time');
+    var systemName = randomId('timer');
+
+    // time component
+    this.time = {};
+    this.reset();
+
+    // clock entity
+    this.entity = ecs.entity(entityName);
+
+    // Associate the time component to the clock entity.
+    this.entity.setComponent(componentName, this.time);
+
+    // A system for updating the time component
+    this.system = ecs.system(systemName, [componentName], function (entity, components) {
+      var time = components[componentName];
+      var now = Date.now();
+
+      // Update ticks counter
+      time.ticks += 1;
+
+      // Init start time
+      if (time.start === 0) time.start = now;
+
+      // Update total time
+      time.total = now - time.start;
+
+      // Update delta
+      if (time.now > 0) {
+        time.delta = now - time.now;
+      }
+
+      // Update now time
+      time.now = now;
+    });
+  }
+
+  /**
+   * Reset all timing values to 0
+   *
+   * @method reset
+   */
+
+
+  _createClass(Timer, [{
+    key: 'reset',
+    value: function reset() {
+      this.time.ticks = 0; // Number of ticks (frames)
+      this.time.start = 0; // initial time
+      this.time.now = 0; // Current absolute time
+      this.time.total = 0; // total execution time
+      this.time.delta = 0; // delta time from prev tick
+    }
+
+    /**
+     * Returns the time component
+     *
+     * @method getTime
+     * @return {Object} A time component object
+     * @example
+     * The time object contains these properties:<br/>
+     * <table>
+     * <tr><th>start</td><td>initial time</td>
+     * <tr><th>total</td><td>total execution time</td>
+     * <tr><th>prev</td><td>previous frame absolute time</td>
+     * <tr><th>delta</td><td>delta time from prev tick</td>
+     * </table>
+     */
+
+  }, {
+    key: 'getTime',
+    value: function getTime() {
+      return this.time;
+    }
+
+    /**
+     * Returns the entity used by this timer
+     *
+     * @method getEntity
+     * @return {Entity} The timer entity
+     */
+
+  }, {
+    key: 'getEntity',
+    value: function getEntity() {
+      return this.entity;
+    }
+
+    /**
+     * Returns the system used by this timer
+     *
+     * @method getSystem
+     * @return {System} The timer system
+     */
+
+  }, {
+    key: 'getSystem',
+    value: function getSystem() {
+      return this.system;
+    }
+  }]);
+
+  return Timer;
+}();
+
+exports.default = Timer;
+module.exports = exports['default'];
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ecs = __webpack_require__(0);
+
+var _ecs2 = _interopRequireDefault(_ecs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18032,16 +18291,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  * @class Simulator
  * @constructor
+ * @param {Ecs} ecs The Ecs instance this simulator will control
 */
 var Simulator = function () {
-  /**
-   * Instantiate a new simulator
-   *
-   * @method constructor
-   * @param {Ecs} ecs The Ecs instance this simulator will control
-   */
   function Simulator(ecs) {
     _classCallCheck(this, Simulator);
+
+    if (!(ecs instanceof _ecs2.default)) throw new Error('ecs must be a Ecs instance');
 
     this.ecs = ecs;
     this.time = 0;
@@ -18061,6 +18317,8 @@ var Simulator = function () {
   _createClass(Simulator, [{
     key: 'setFps',
     value: function setFps(fps) {
+      if (typeof fps !== 'number') throw new Error('fps must be a number');
+
       this.fps = 0;
       if (fps && typeof fps === 'number' && fps > 0) {
         this.fps = parseInt(Math.round(fps), 10);
@@ -18181,7 +18439,8 @@ var Simulator = function () {
   return Simulator;
 }();
 
-module.exports = Simulator;
+exports.default = Simulator;
+module.exports = exports['default'];
 
 /***/ })
 /******/ ]);

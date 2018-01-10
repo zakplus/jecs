@@ -1,14 +1,14 @@
 const path = require('path');
+const _ = require('lodash');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const version = require('./package.json').version;
 
-const filename = `jecs_${version}.js`
-
-var config = {
+// Basic configuration
+const basicConfig = {
   entry: './src/ecs.js',
   
   output: {
     path: path.resolve(__dirname, "browser"),
-    filename,
     library: "Ecs",
     libraryTarget: "umd",
   },
@@ -20,4 +20,32 @@ var config = {
   }
 };
 
-module.exports = config;
+// Development configuration (filename with version code)
+const devConfig = _.cloneDeep(basicConfig);
+devConfig.output.filename = `jecs_${version}.js`;
+
+// Development configuration (filename without version code)
+const devConfigNoVersion = _.cloneDeep(basicConfig);
+devConfigNoVersion.output.filename = `jecs.js`;
+
+// Production configuration (filename with version code)
+const prodConfig = _.cloneDeep(basicConfig);
+prodConfig.output.filename = `jecs_${version}_min.js`;
+prodConfig.plugins = [
+  new UglifyJsPlugin({
+    uglifyOptions: {
+      max_line_len: 80
+    }
+  })
+];
+
+// Production configuration (filename without version code)
+const prodConfigNoVersion = _.cloneDeep(prodConfig);
+prodConfigNoVersion.output.filename = `jecs_min.js`;
+
+module.exports = [
+  devConfig,
+  devConfigNoVersion,
+  prodConfig,
+  prodConfigNoVersion
+];

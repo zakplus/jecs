@@ -1,6 +1,6 @@
 {
   "name": "jecs",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Entity Component System engine for NodeJs and the browser",
   "main": "lib/ecs.js",
   "repository": {
@@ -13,7 +13,7 @@
     "test": "tape test/**/*.js | tap-spec",
     "docs": "yuidoc src",
     "build-node": "rimraf lib && babel src -d lib",
-    "build-browser": "rimraf browser && webpack --config webpack.config.js && webpack -p --config webpack.config.prod.js",
+    "build-browser": "rimraf browser && webpack --config webpack.config.js",
     "prebuild": "npm run linter",
     "build": "npm run build-node && npm run build-browser",
     "postbuild": "npm run test && npm run docs"
@@ -33,6 +33,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -40,6 +41,7 @@
     "rimraf": "^2.6.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^3.10.0",
     "yuidoc-bootstrap-theme": "^1.0.6",
     "yuidocjs": "^0.10.2"
