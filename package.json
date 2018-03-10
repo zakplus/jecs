@@ -18,6 +18,9 @@
     "build": "npm run build-node && npm run build-browser",
     "postbuild": "npm run test && npm run docs"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "Entity Component System",
     "Game Engine",
