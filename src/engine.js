@@ -1,24 +1,20 @@
 /**
- * The jecs module exports the Ecs class
+ * The engine module exports the Engine class
  *
- * @module jecs
+ * @module engine
  */
 
 import _ from 'lodash';
 import EventEmitter from 'events';
 import Entity from './entity';
 import System from './system';
-import Timer from './timer';
-import Simulator from './simulator';
 
 /**
- * The Ecs is the main class
+ * The Engine class
  *
- * @class Ecs
- * @constructor
  * @extends EventEmitter
  */
-class Ecs extends EventEmitter {
+class Engine extends EventEmitter {
   constructor() {
     super();
 
@@ -26,7 +22,6 @@ class Ecs extends EventEmitter {
      * Declared entities
      *
      * @private
-     * @attribute entities
      * @type Object
     */
     this.entities = {};
@@ -35,7 +30,6 @@ class Ecs extends EventEmitter {
      * Declared systems
      *
      * @private
-     * @attribute systems
      * @type System[]
      */
     this.systems = [];
@@ -44,7 +38,6 @@ class Ecs extends EventEmitter {
      * Entities associated to systems
      *
      * @private
-     * @attribute systemVsEntities
      * @type Object
      */
     this.systemVsEntities = {};
@@ -53,14 +46,16 @@ class Ecs extends EventEmitter {
   /**
    * Declare a new entity
    *
-   * @method entity
    * @param {String} name Name of the new entity
    * @return {Entity} The newly created entity object
    */
   entity(name) {
     if (typeof name !== 'string') throw new Error('name must be a string');
     if (this.entities[name] !== undefined) throw new Error(`Entity ${name} already exists`);
-    const entity = new Entity(this, name);
+    const entity = new Entity(/* this, */ name);
+    entity.on('component:add', () => this.updateSystemsVsEntities());
+    entity.on('component:delete', () => this.updateSystemsVsEntities());
+    entity.on('entity:remove', (entityName) => this.removeEntity(entityName));
     this.entities[name] = entity;
     return entity;
   }
@@ -93,7 +88,6 @@ class Ecs extends EventEmitter {
    * The handler function receives two arguments, the name of the entity and a object
    * of components.
    *
-   * @method system
    * @param {String} name Name of the new system
    * @param {string[]} components Names of the components the new system will operate on
    * @param {Function} handler System function
@@ -105,10 +99,11 @@ class Ecs extends EventEmitter {
     if (typeof handler !== 'function') throw new Error('handler must be a function');
 
     // Systems is an array instead of a map to guarantee execution order
-    if (_.some(this.systems, system => system.name === name)) {
+    if (_.some(this.systems, (system) => system.name === name)) {
       throw new Error(`System ${name} already exists`);
     }
-    const system = new System(this, name, components, handler);
+    const system = new System(/* this, */ name, components, handler);
+    system.on('system:remove', (systemName) => this.removeSystem(systemName));
     this.systems.push(system);
 
     // Update system vs entity associations
@@ -124,7 +119,7 @@ class Ecs extends EventEmitter {
    */
   getSystem(name) {
     if (typeof name !== 'string') throw new Error('name must be a string');
-    return _.find(this.systems, system => system.name === name);
+    return _.find(this.systems, (system) => system.name === name);
   }
 
   /**
@@ -134,7 +129,7 @@ class Ecs extends EventEmitter {
    */
   removeSystem(name) {
     if (typeof name !== 'string') throw new Error('name must be a string');
-    this.systems = _.filter(this.systems, system => system.name !== name);
+    this.systems = _.filter(this.systems, (system) => system.name !== name);
 
     // update system vs entity associations
     this.updateSystemsVsEntities();
@@ -145,7 +140,6 @@ class Ecs extends EventEmitter {
    * to be associated.
    *
    * @private
-   * @method updateSystemsVsEntities
    */
   updateSystemsVsEntities() {
     _.forEach(this.systems, (system) => {
@@ -165,11 +159,16 @@ class Ecs extends EventEmitter {
    * Run a single execution step.<br/>
    * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.
    *
-   * @method tick
    * @return {Number} Current simulation time
    */
   tick() {
-    this.emit('tick-before', this);
+    /**
+     * Emitted by the engine just before running the systems.<br/>
+     * The payload is the Engine instance that originated the event.
+     * @event tick:before
+     * @type {Engine}
+     */
+    this.emit('tick:before', this);
 
     _.forEach(this.systems, (system) => {
       _.forEach(this.systemVsEntities[system.name], (entity) => {
@@ -181,56 +180,14 @@ class Ecs extends EventEmitter {
       });
     });
 
-    this.emit('tick-after', this);
+    /**
+     * Emitted by then engine after running all the systems.<br/>
+     * The payload is the Engine instance that originated the event.
+     * @event tick:after
+     * @type {Engine}
+     */
+    this.emit('tick:after', this);
   }
 }
 
-/**
- * Expose the Entity class
- *
- * @property Entity
- * @type {Entity}
- */
-Ecs.Entity = Entity;
-
-/**
- * Expose the System class
- *
- * @property System
- * @type {System}
- */
-Ecs.System = System;
-
-/**
- * Expose the Timer class
- *
- * @property Timer
- * @type {Timer}
- */
-Ecs.Timer = Timer;
-
-/**
- * Expose the Simulator class
- *
- * @property Simulator
- * @type {Simulator}
- */
-Ecs.Simulator = Simulator;
-
-/**
- * Emitted by tick() before running the systems
- *
- * @event TICK_BEFORE
- * @param {Ecs} ecs The Ecs instance that generated the event
- */
-Ecs.TICK_BEFORE = 'tick-before';
-
-/**
- * Emitted by tick() after running the systems
- *
- * @event TICK_AFTER
- * @param {Ecs} ecs The Ecs instance that generated the event
- */
-Ecs.TICK_AFTER = 'tick-after';
-
-export default Ecs;
+export default Engine;

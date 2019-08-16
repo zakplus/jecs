@@ -1,23 +1,30 @@
+/**
+ * The entity module exports the Entity class
+ *
+ * @module entity
+ */
+
 import _ from 'lodash';
-import Ecs from './ecs';
+import EventEmitter from 'events';
 
 /**
  * The entity class expose methods to associate
- * the entity to components and to get/set components data
+ * the entity to components and to get/set components data.<br/>
+ * To create a new entity, use the Engine.entity() method.
  *
- * @class Entity
- * @constructor
- * @private
- * @method constructor
- * @param {Ecs} ecs Ecs engine object this Entity belongs to
- * @param {String} name Entity name
+ * @extends EventEmitter
  */
-class Entity {
-  constructor(ecs, name) {
-    if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');
+class Entity extends EventEmitter {
+  /**
+    * Do not instantiate this class directly, use the Engine.entity() method.
+    *
+    * @private
+    * @param {String} name Entity name
+    */
+  constructor(name) {
+    super();
     if (typeof name !== 'string') throw new Error('name must be a string');
 
-    this.ecs = ecs;
     this.name = name;
     this.components = {};
   }
@@ -25,7 +32,6 @@ class Entity {
   /**
    * Returns this entity name
    *
-   * @method getName
    * @return {String} this entity name
    */
   getName() {
@@ -35,7 +41,6 @@ class Entity {
   /**
    * Check if the entity is associated to a component
    *
-   * @method hasComponent
    * @param {String} componentName Name of the component
    * @return {Boolean} true if the entity has the component associated, false otherwise.
    */
@@ -48,7 +53,6 @@ class Entity {
    * Associate the entity to a component.
    * The component can be any type.
    *
-   * @method setComponent
    * @param {String} componentName The component name
    * @param {*} componentData The component data
    */
@@ -63,13 +67,25 @@ class Entity {
 
     // Set component data
     this.components[componentName] = componentData;
-    if (newComponent) this.ecs.updateSystemsVsEntities();
+    if (newComponent) {
+      this.emit('component:add', newComponent);
+    }
+  }
+
+  /**
+   * Retrieve a component by name
+   *
+   * @param {String} componentName The component name
+   */
+  getComponent(componentName) {
+    if (typeof componentName !== 'string') throw new Error('componentName must be a string');
+
+    return this.components[componentName];
   }
 
   /**
    * Remove a component association
    *
-   * @method deleteComponent
    * @param {String} componentName
    */
   deleteComponent(componentName) {
@@ -79,17 +95,15 @@ class Entity {
       delete this.components[componentName];
 
       // update system vs entity associations
-      this.ecs.updateSystemsVsEntities();
+      this.emit('component:remove', componentName);
     }
   }
 
   /**
    * Remove this entity from the engine
-   *
-   * @method destroy
    */
   destroy() {
-    this.ecs.removeEntity(this.name);
+    this.emit('entity:remove', this.name);
   }
 }
 
