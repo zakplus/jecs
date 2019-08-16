@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/engine.js | jecs</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Entity Component System engine for NodeJs and the browser"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="jecs"><meta property="twitter:description" content="Entity Component System engine for NodeJs and the browser"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/zakplus/jecs.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/engine.js~Engine.html">Engine</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/simulator.js~Simulator.html">Simulator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/system.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/timer.js~Timer.html">Timer</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/engine.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * The jecs module exports the Ecs class
+ *
+ * @module engine
+ */
+
+import _ from &apos;lodash&apos;;
+import EventEmitter from &apos;events&apos;;
+import Entity from &apos;./entity&apos;;
+import System from &apos;./system&apos;;
+// import Timer from &apos;./timer&apos;;
+// import Simulator from &apos;./simulator&apos;;
+
+/**
+ * The Ecs is the main class
+ *
+ * @class Engine
+ * @constructor
+ * @extends EventEmitter
+ */
+class Engine extends EventEmitter {
+  constructor() {
+    super();
+
+    /**
+     * Declared entities
+     *
+     * @private
+     * @attribute entities
+     * @type Object
+    */
+    this.entities = {};
+
+    /**
+     * Declared systems
+     *
+     * @private
+     * @attribute systems
+     * @type System[]
+     */
+    this.systems = [];
+
+    /**
+     * Entities associated to systems
+     *
+     * @private
+     * @attribute systemVsEntities
+     * @type Object
+     */
+    this.systemVsEntities = {};
+  }
+
+  /**
+   * Declare a new entity
+   *
+   * @method entity
+   * @param {String} name Name of the new entity
+   * @return {Entity} The newly created entity object
+   */
+  entity(name) {
+    if (typeof name !== &apos;string&apos;) throw new Error(&apos;name must be a string&apos;);
+    if (this.entities[name] !== undefined) throw new Error(`Entity ${name} already exists`);
+    const entity = new Entity(/* this, */ name);
+    entity.on(&apos;component:add&apos;, () =&gt; this.updateSystemsVsEntities());
+    entity.on(&apos;component:delete&apos;, () =&gt; this.updateSystemsVsEntities());
+    entity.on(&apos;entity:remove&apos;, (entityName) =&gt; this.removeEntity(entityName));
+    this.entities[name] = entity;
+    return entity;
+  }
+
+  /**
+   * Returns existing entity
+   *
+   * @param {String} name Name of the entity
+   * @return {Entity} The entity object or undefined if not found
+   */
+  getEntity(name) {
+    if (typeof name !== &apos;string&apos;) throw new Error(&apos;name must be a string&apos;);
+    return this.entities[name];
+  }
+
+  /**
+   * Remove a entity from the engine instance
+   *
+   * @param {String} name The name of the entity to be removed
+   */
+  removeEntity(name) {
+    delete this.entities[name];
+
+    // update system vs entity associations
+    this.updateSystemsVsEntities();
+  }
+
+  /**
+   * Declare a new system.&lt;br/&gt;
+   * The handler function receives two arguments, the name of the entity and a object
+   * of components.
+   *
+   * @method system
+   * @param {String} name Name of the new system
+   * @param {string[]} components Names of the components the new system will operate on
+   * @param {Function} handler System function
+   * @return {System} The newly created system object
+   */
+  system(name, components, handler) {
+    if (typeof name !== &apos;string&apos;) throw new Error(&apos;name must be a string&apos;);
+    if (!(_.isArrayLike(components) &amp;&amp; _.every(components, _.isString))) throw new Error(&apos;components must be a string array&apos;);
+    if (typeof handler !== &apos;function&apos;) throw new Error(&apos;handler must be a function&apos;);
+
+    // Systems is an array instead of a map to guarantee execution order
+    if (_.some(this.systems, (system) =&gt; system.name === name)) {
+      throw new Error(`System ${name} already exists`);
+    }
+    const system = new System(/* this, */ name, components, handler);
+    system.on(&apos;system:remove&apos;, (systemName) =&gt; this.removeSystem(systemName));
+    this.systems.push(system);
+
+    // Update system vs entity associations
+    this.updateSystemsVsEntities();
+    return system;
+  }
+
+  /**
+   * Returns existing system
+   *
+   * @param {String} name Name of the system
+   * @return {System} The system object or undefined if not found
+   */
+  getSystem(name) {
+    if (typeof name !== &apos;string&apos;) throw new Error(&apos;name must be a string&apos;);
+    return _.find(this.systems, (system) =&gt; system.name === name);
+  }
+
+  /**
+   * Remove a system from the engine instance
+   *
+   * @param {String} name The name of the system to be removed
+   */
+  removeSystem(name) {
+    if (typeof name !== &apos;string&apos;) throw new Error(&apos;name must be a string&apos;);
+    this.systems = _.filter(this.systems, (system) =&gt; system.name !== name);
+
+    // update system vs entity associations
+    this.updateSystemsVsEntities();
+  }
+
+  /**
+   * Scan systems and search for suitable entities
+   * to be associated.
+   *
+   * @private
+   * @method updateSystemsVsEntities
+   */
+  updateSystemsVsEntities() {
+    _.forEach(this.systems, (system) =&gt; {
+      const systemName = system.name;
+      const compatibleEntities = [];
+      this.systemVsEntities[systemName] = compatibleEntities;
+
+      _.forEach(this.entities, (entity) =&gt; {
+        if (system.isCompatibleEntity(entity)) {
+          compatibleEntities.push(entity);
+        }
+      });
+    });
+  }
+
+  /**
+   * Run a single execution step.&lt;br/&gt;
+   * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.
+   *
+   * @method tick
+   * @return {Number} Current simulation time
+   */
+  tick() {
+    this.emit(&apos;tick-before&apos;, this);
+
+    _.forEach(this.systems, (system) =&gt; {
+      _.forEach(this.systemVsEntities[system.name], (entity) =&gt; {
+        const components = {};
+        _.forEach(system.components, (name) =&gt; {
+          components[name] = entity.components[name];
+        });
+        system.handler(entity, components);
+      });
+    });
+
+    this.emit(&apos;tick-after&apos;, this);
+  }
+}
+
+// /**
+//  * Expose the Entity class
+//  *
+//  * @property Entity
+//  * @type {Entity}
+//  */
+// Engine.Entity = Entity;
+//
+// /**
+//  * Expose the System class
+//  *
+//  * @property System
+//  * @type {System}
+//  */
+// Engine.System = System;
+//
+// /**
+//  * Expose the Timer class
+//  *
+//  * @property Timer
+//  * @type {Timer}
+//  */
+// Engine.Timer = Timer;
+//
+// /**
+//  * Expose the Simulator class
+//  *
+//  * @property Simulator
+//  * @type {Simulator}
+//  */
+// Engine.Simulator = Simulator;
+
+/**
+ * Emitted by tick() before running the systems
+ *
+ * @event TICK_BEFORE
+ * @param {Ecs} ecs The Ecs instance that generated the event
+ */
+Engine.TICK_BEFORE = &apos;tick-before&apos;;
+
+/**
+ * Emitted by tick() after running the systems
+ *
+ * @event TICK_AFTER
+ * @param {Ecs} ecs The Ecs instance that generated the event
+ */
+Engine.TICK_AFTER = &apos;tick-after&apos;;
+
+export default Engine;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

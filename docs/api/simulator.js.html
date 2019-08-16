@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>simulator.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-engine-Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="module-engine-Engine.html#entity">entity</a></li><li data-type='method'><a href="module-engine-Engine.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#removeEntity">removeEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#removeSystem">removeSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#system">system</a></li><li data-type='method'><a href="module-engine-Engine.html#tick">tick</a></li><li data-type='method'><a href="module-engine-Engine.html#updateSystemsVsEntities">updateSystemsVsEntities</a></li></ul></li><li><a href="module-entity-Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="module-entity-Entity.html#deleteComponent">deleteComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#destroy">destroy</a></li><li data-type='method'><a href="module-entity-Entity.html#getComponent">getComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#getName">getName</a></li><li data-type='method'><a href="module-entity-Entity.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#setComponent">setComponent</a></li></ul></li><li><a href="module-simulator-Simulator.html">Simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator-Simulator.html#getFps">getFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isPaused">isPaused</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isRunning">isRunning</a></li><li data-type='method'><a href="module-simulator-Simulator.html#pause">pause</a></li><li data-type='method'><a href="module-simulator-Simulator.html#run">run</a></li><li data-type='method'><a href="module-simulator-Simulator.html#setFps">setFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#start">start</a></li><li data-type='method'><a href="module-simulator-Simulator.html#stop">stop</a></li></ul></li><li><a href="module-system-System.html">System</a><ul class='methods'><li data-type='method'><a href="module-system-System.html#destroy">destroy</a></li><li data-type='method'><a href="module-system-System.html#getName">getName</a></li><li data-type='method'><a href="module-system-System.html#isCompatibleEntity">isCompatibleEntity</a></li></ul></li><li><a href="module-timer-Timer.html">Timer</a><ul class='methods'><li data-type='method'><a href="module-timer-Timer.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-timer-Timer.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-timer-Timer.html#getTime">getTime</a></li><li data-type='method'><a href="module-timer-Timer.html#reset">reset</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-engine.html">engine</a></li><li><a href="module-entity.html">entity</a></li><li><a href="module-jecs.html">jecs</a></li><li><a href="module-simulator.html">simulator</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timer.html">timer</a></li></ul><h3>Events</h3><ul><li><a href="module-engine.html#~event:tick:after">tick:after</a></li><li><a href="module-engine.html#~event:tick:before">tick:before</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">simulator.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The simulator module exports the Simulator class.
+ *
+ * @module simulator
+ */
+
+import Engine from './engine';
+
+/**
+ * The Simulator is a utility class, it will setup
+ * a loop and call Engine.tick() for you automatically, optionally
+ * limiting the frames per second.
+ */
+class Simulator {
+  /**
+   * @param {Engine} engine The Engine instance this simulator will control
+   */
+  constructor(engine) {
+    if (!(engine instanceof Engine)) throw new Error('engine must be a Engine instance');
+
+    this.engine = engine;
+    this.time = 0;
+    this.setFps(0);
+    this.stop();
+  }
+
+  /**
+   * Set simulation fps limiter value.&lt;br/>
+   * A value of 0 will disable the fps limiter
+   *
+   * @param {Number} fps
+   */
+  setFps(fps) {
+    if (typeof fps !== 'number') throw new Error('fps must be a number');
+
+    this.fps = 0;
+    if (fps &amp;&amp; typeof fps === 'number' &amp;&amp; fps > 0) {
+      this.fps = parseInt(Math.round(fps), 10);
+    }
+    this.frameDuration = 1000 / this.fps;
+  }
+
+  /**
+   * Return current simulation fps limiter value.
+   *
+   * @see setFps
+   */
+  getFps() {
+    return this.fps;
+  }
+
+  /**
+   * Start simulation
+   */
+  start() {
+    this.started = true;
+    this.paused = false;
+    this.run();
+  }
+
+  /**
+   * Pause simulation
+   */
+  pause() {
+    this.paused = true;
+  }
+
+  /**
+   * Stop simulation and reset simulation time
+   */
+  stop() {
+    this.prevFrameTime = null;
+    this.started = false;
+    this.paused = false;
+  }
+
+  /**
+   * Check whether the simulation is running
+   *
+   * @return {Boolean} true if simulator is running, false otherwise
+   */
+  isRunning() {
+    if (this.started &amp;&amp; !this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Check whether the simulation is paused
+   *
+   * @return {Boolean} true if simulator is paused, false otherwise
+   */
+  isPaused() {
+    if (this.started &amp;&amp; this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Simulation loop
+   *
+   * @private
+   */
+  run() {
+    const t1 = Date.now();
+    this.engine.tick();
+    const t2 = Date.now();
+
+    // FPS limiter
+    let sleep = 0;
+    if (this.fps > 0) {
+      sleep = Math.max(0, this.frameDuration - (t2 - t1));
+    }
+
+    // Async loop
+    setTimeout(() => {
+      if (this.isRunning()) this.run();
+    }, sleep);
+  }
+}
+
+export default Simulator;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Aug 16 2019 22:20:07 GMT+0200 (GMT+02:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

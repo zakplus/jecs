@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/timer.js | jecs</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Entity Component System engine for NodeJs and the browser"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="jecs"><meta property="twitter:description" content="Entity Component System engine for NodeJs and the browser"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/zakplus/jecs.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/engine.js~Engine.html">Engine</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/simulator.js~Simulator.html">Simulator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/system.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/timer.js~Timer.html">Timer</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/timer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Engine from &apos;./engine&apos;;
+
+function randomId(prefix) {
+  return `${prefix}-${Math.floor(Math.random() * 1000)}`;
+}
+
+/**
+ * The Timer class is a utility class.
+ * By creating a new instance of this class, you will be able to retrieve timings
+ * informations in your systems.
+ *
+ * @class Timer
+ * @constructor
+ * @param {Engine} engine Engine instance this Timer will belong to
+ *
+ * @example
+ * ```javascript
+ *
+ * const engine = new Engine();
+ * const timer = new Timer(engine);
+ *
+ * engine.system(&apos;mySystem&apos;, [&apos;myComponent&apos;], (entity, {myComponent}) =&gt; {
+ *   const delta = timer.getTime().delta;
+ *   // Do your magic with delta time!
+ *   // ...
+ * });
+ * ```
+ *
+ * Object returned by getTime() has this structure:
+ * ```javascript
+ *
+ * {
+ *   ticks,  // Number of ticks (frames)
+ *   start,  // Initial time (milliseconds since the EPOCH)
+ *   now,    // Current time (milliseconds since the EPOCH)
+ *   total,  // Total execution time (milliseconds)
+ *   delta   // Delta time from prev tick (milliseconds)
+ * }
+ * ```
+ */
+export default class Timer {
+  constructor(engine) {
+    if (!(engine instanceof Engine)) throw new Error(&apos;engine must be a Engine instance&apos;);
+
+    const entityName = randomId(&apos;clock&apos;);
+    const componentName = randomId(&apos;time&apos;);
+    const systemName = randomId(&apos;timer&apos;);
+
+    // time component
+    this.time = {};
+    this.reset();
+
+    // clock entity
+    this.entity = engine.entity(entityName);
+
+    // Associate the time component to the clock entity.
+    this.entity.setComponent(componentName, this.time);
+
+    // A system for updating the time component
+    this.system = engine.system(systemName, [componentName], (entity, components) =&gt; {
+      const time = components[componentName];
+      const now = Date.now();
+
+      // Update ticks counter
+      time.ticks += 1;
+
+      // Init start time
+      if (time.start === 0) time.start = now;
+
+      // Update total time
+      time.total = now - time.start;
+
+      // Update delta
+      if (time.now &gt; 0) {
+        time.delta = now - time.now;
+      }
+
+      // Update now time
+      time.now = now;
+    });
+  }
+
+  /**
+   * Reset all timing values to 0
+   *
+   * @method reset
+   */
+  reset() {
+    this.time.ticks = 0; // Number of ticks (frames)
+    this.time.start = 0; // initial time
+    this.time.now = 0; // Current absolute time
+    this.time.total = 0; // total execution time
+    this.time.delta = 0; // delta time from prev tick
+  }
+
+  /**
+   * Returns the time component
+   *
+   * @method getTime
+   * @return {Object} A time component object
+   * @example
+   * The time object contains these properties:&lt;br/&gt;
+   * &lt;table&gt;
+   * &lt;tr&gt;&lt;th&gt;start&lt;/td&gt;&lt;td&gt;initial time&lt;/td&gt;
+   * &lt;tr&gt;&lt;th&gt;total&lt;/td&gt;&lt;td&gt;total execution time&lt;/td&gt;
+   * &lt;tr&gt;&lt;th&gt;prev&lt;/td&gt;&lt;td&gt;previous frame absolute time&lt;/td&gt;
+   * &lt;tr&gt;&lt;th&gt;delta&lt;/td&gt;&lt;td&gt;delta time from prev tick&lt;/td&gt;
+   * &lt;/table&gt;
+   */
+  getTime() {
+    return this.time;
+  }
+
+  /**
+   * Returns the entity used by this timer
+   *
+   * @method getEntity
+   * @return {Entity} The timer entity
+   */
+  getEntity() {
+    return this.entity;
+  }
+
+  /**
+   * Returns the system used by this timer
+   *
+   * @method getSystem
+   * @return {System} The timer system
+   */
+  getSystem() {
+    return this.system;
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

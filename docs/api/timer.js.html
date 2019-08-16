@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>timer.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-engine-Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="module-engine-Engine.html#entity">entity</a></li><li data-type='method'><a href="module-engine-Engine.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#removeEntity">removeEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#removeSystem">removeSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#system">system</a></li><li data-type='method'><a href="module-engine-Engine.html#tick">tick</a></li><li data-type='method'><a href="module-engine-Engine.html#updateSystemsVsEntities">updateSystemsVsEntities</a></li></ul></li><li><a href="module-entity-Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="module-entity-Entity.html#deleteComponent">deleteComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#destroy">destroy</a></li><li data-type='method'><a href="module-entity-Entity.html#getComponent">getComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#getName">getName</a></li><li data-type='method'><a href="module-entity-Entity.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#setComponent">setComponent</a></li></ul></li><li><a href="module-simulator-Simulator.html">Simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator-Simulator.html#getFps">getFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isPaused">isPaused</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isRunning">isRunning</a></li><li data-type='method'><a href="module-simulator-Simulator.html#pause">pause</a></li><li data-type='method'><a href="module-simulator-Simulator.html#run">run</a></li><li data-type='method'><a href="module-simulator-Simulator.html#setFps">setFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#start">start</a></li><li data-type='method'><a href="module-simulator-Simulator.html#stop">stop</a></li></ul></li><li><a href="module-system-System.html">System</a><ul class='methods'><li data-type='method'><a href="module-system-System.html#destroy">destroy</a></li><li data-type='method'><a href="module-system-System.html#getName">getName</a></li><li data-type='method'><a href="module-system-System.html#isCompatibleEntity">isCompatibleEntity</a></li></ul></li><li><a href="module-timer-Timer.html">Timer</a><ul class='methods'><li data-type='method'><a href="module-timer-Timer.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-timer-Timer.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-timer-Timer.html#getTime">getTime</a></li><li data-type='method'><a href="module-timer-Timer.html#reset">reset</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-engine.html">engine</a></li><li><a href="module-entity.html">entity</a></li><li><a href="module-jecs.html">jecs</a></li><li><a href="module-simulator.html">simulator</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timer.html">timer</a></li></ul><h3>Events</h3><ul><li><a href="module-engine.html#~event:tick:after">tick:after</a></li><li><a href="module-engine.html#~event:tick:before">tick:before</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">timer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The timer module exports the Timer class
+ *
+ * @module timer
+ */
+
+import Engine from './engine';
+
+function randomId(prefix) {
+  return `${prefix}-${Math.floor(Math.random() * 1000)}`;
+}
+
+/**
+ * The Timer class is a utility class.
+ * By creating a new instance of this class, you will be able to retrieve timings
+ * informations in your systems.
+ *
+ * @example
+ * import { Engine, Timer } from 'jecs';
+ *
+ * const engine = new Engine();
+ * const timer = new Timer(engine);
+ *
+ * engine.system('mySystem', ['myComponent'], (entity, { myComponent }) => {
+ *   const delta = timer.getTime().delta;
+ *   // Do your magic with delta time!
+ *   // ...
+ * });
+ *
+ * @example
+ * // Object returned by getTime() has this structure:
+ * {
+ *   ticks,  // Number of ticks (frames)
+ *   start,  // Initial time (milliseconds since the EPOCH)
+ *   now,    // Current time (milliseconds since the EPOCH)
+ *   total,  // Total execution time (milliseconds)
+ *   delta   // Delta time from prev tick (milliseconds)
+ * }
+ */
+class Timer {
+  /**
+   * @param {Engine} engine Engine instance this Timer will belong to
+   */
+  constructor(engine) {
+    if (!(engine instanceof Engine)) throw new Error('engine must be a Engine instance');
+
+    const entityName = randomId('clock');
+    const componentName = randomId('time');
+    const systemName = randomId('timer');
+
+    // time component
+    this.time = {};
+    this.reset();
+
+    // clock entity
+    this.entity = engine.entity(entityName);
+
+    // Associate the time component to the clock entity.
+    this.entity.setComponent(componentName, this.time);
+
+    // A system for updating the time component
+    this.system = engine.system(systemName, [componentName], (entity, components) => {
+      const time = components[componentName];
+      const now = Date.now();
+
+      // Update ticks counter
+      time.ticks += 1;
+
+      // Init start time
+      if (time.start === 0) time.start = now;
+
+      // Update total time
+      time.total = now - time.start;
+
+      // Update delta
+      if (time.now > 0) {
+        time.delta = now - time.now;
+      }
+
+      // Update now time
+      time.now = now;
+    });
+  }
+
+  /**
+   * Reset all timing values to 0
+   */
+  reset() {
+    this.time.ticks = 0; // Number of ticks (frames)
+    this.time.start = 0; // initial time
+    this.time.now = 0; // Current absolute time
+    this.time.total = 0; // total execution time
+    this.time.delta = 0; // delta time from prev tick
+  }
+
+  /**
+   * Returns the time component
+   *
+   * @return {Object} A time component object
+   * @example
+   * The time object contains these properties:&lt;br/>
+   * &lt;table>
+   * &lt;tr>&lt;th>start&lt;/td>&lt;td>initial time&lt;/td>
+   * &lt;tr>&lt;th>total&lt;/td>&lt;td>total execution time&lt;/td>
+   * &lt;tr>&lt;th>prev&lt;/td>&lt;td>previous frame absolute time&lt;/td>
+   * &lt;tr>&lt;th>delta&lt;/td>&lt;td>delta time from prev tick&lt;/td>
+   * &lt;/table>
+   */
+  getTime() {
+    return this.time;
+  }
+
+  /**
+   * Returns the entity used by this timer
+   *
+   * @return {Entity} The timer entity
+   */
+  getEntity() {
+    return this.entity;
+  }
+
+  /**
+   * Returns the system used by this timer
+   *
+   * @return {System} The timer system
+   */
+  getSystem() {
+    return this.system;
+  }
+}
+
+export default Timer;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Aug 16 2019 22:20:07 GMT+0200 (GMT+02:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

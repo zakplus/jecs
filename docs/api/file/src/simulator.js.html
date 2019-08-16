@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/simulator.js | jecs</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Entity Component System engine for NodeJs and the browser"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="jecs"><meta property="twitter:description" content="Entity Component System engine for NodeJs and the browser"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/zakplus/jecs.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/engine.js~Engine.html">Engine</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/entity.js~Entity.html">Entity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/simulator.js~Simulator.html">Simulator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/system.js~System.html">System</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/timer.js~Timer.html">Timer</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/simulator.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Engine from &apos;./engine&apos;;
+
+/**
+ * The Simulator is a utility class, it will setup
+ * a main loop and will call Engine.tick() for you automatically
+ * limiting the frame per seconds.
+ *
+ * @class Simulator
+ * @constructor
+ * @param {Engine} engine The Engine instance this simulator will control
+*/
+class Simulator {
+  constructor(engine) {
+    if (!(engine instanceof Engine)) throw new Error(&apos;engine must be a Engine instance&apos;);
+
+    this.engine = engine;
+    this.time = 0;
+    this.setFps(0);
+    this.stop();
+  }
+
+  /**
+   * Set simulation fps limiter value.&lt;br/&gt;
+   * A value of 0 will disable the fps limiter
+   *
+   * @method setFps
+   * @param {Number} fps
+   */
+  setFps(fps) {
+    if (typeof fps !== &apos;number&apos;) throw new Error(&apos;fps must be a number&apos;);
+
+    this.fps = 0;
+    if (fps &amp;&amp; typeof fps === &apos;number&apos; &amp;&amp; fps &gt; 0) {
+      this.fps = parseInt(Math.round(fps), 10);
+    }
+    this.frameDuration = 1000 / this.fps;
+  }
+
+  /**
+   * Return current simulation fps limiter value.
+   *
+   * @method getFps
+   * @see setFps
+   */
+  getFps() {
+    return this.fps;
+  }
+
+  /**
+   * Start simulation
+   *
+   * @method start
+   */
+  start() {
+    this.started = true;
+    this.paused = false;
+    this.run();
+  }
+
+  /**
+   * Pause simulation
+   *
+   * @method pause
+   */
+  pause() {
+    this.paused = true;
+  }
+
+  /**
+   * Stop simulation and reset simulation time
+   *
+   * @method stop
+   */
+  stop() {
+    this.prevFrameTime = null;
+    this.started = false;
+    this.paused = false;
+  }
+
+  /**
+   * Check whether the simulation is running
+   *
+   * @method isRunning
+   * @return {Boolean} true if simulator is running, false otherwise
+   */
+  isRunning() {
+    if (this.started &amp;&amp; !this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Check whether the simulation is paused
+   *
+   * @method isPaused
+   * @return {Boolean} true if simulator is paused, false otherwise
+   */
+  isPaused() {
+    if (this.started &amp;&amp; this.paused) return true;
+    return false;
+  }
+
+  /**
+   * Simulation loop
+   *
+   * @private
+   * @method run
+   */
+  run() {
+    const t1 = Date.now();
+    this.engine.tick();
+    const t2 = Date.now();
+
+    // FPS limiter
+    let sleep = 0;
+    if (this.fps &gt; 0) {
+      sleep = Math.max(0, this.frameDuration - (t2 - t1));
+    }
+
+    // Async loop
+    setTimeout(() =&gt; {
+      if (this.isRunning()) this.run();
+    }, sleep);
+  }
+}
+
+export default Simulator;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
