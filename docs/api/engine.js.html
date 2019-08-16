@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>engine.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-engine-Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="module-engine-Engine.html#entity">entity</a></li><li data-type='method'><a href="module-engine-Engine.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#removeEntity">removeEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#removeSystem">removeSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#system">system</a></li><li data-type='method'><a href="module-engine-Engine.html#tick">tick</a></li><li data-type='method'><a href="module-engine-Engine.html#updateSystemsVsEntities">updateSystemsVsEntities</a></li></ul></li><li><a href="module-entity-Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="module-entity-Entity.html#deleteComponent">deleteComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#destroy">destroy</a></li><li data-type='method'><a href="module-entity-Entity.html#getComponent">getComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#getName">getName</a></li><li data-type='method'><a href="module-entity-Entity.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#setComponent">setComponent</a></li></ul></li><li><a href="module-simulator-Simulator.html">Simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator-Simulator.html#getFps">getFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isPaused">isPaused</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isRunning">isRunning</a></li><li data-type='method'><a href="module-simulator-Simulator.html#pause">pause</a></li><li data-type='method'><a href="module-simulator-Simulator.html#run">run</a></li><li data-type='method'><a href="module-simulator-Simulator.html#setFps">setFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#start">start</a></li><li data-type='method'><a href="module-simulator-Simulator.html#stop">stop</a></li></ul></li><li><a href="module-system-System.html">System</a><ul class='methods'><li data-type='method'><a href="module-system-System.html#destroy">destroy</a></li><li data-type='method'><a href="module-system-System.html#getName">getName</a></li><li data-type='method'><a href="module-system-System.html#isCompatibleEntity">isCompatibleEntity</a></li></ul></li><li><a href="module-timer-Timer.html">Timer</a><ul class='methods'><li data-type='method'><a href="module-timer-Timer.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-timer-Timer.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-timer-Timer.html#getTime">getTime</a></li><li data-type='method'><a href="module-timer-Timer.html#reset">reset</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-engine.html">engine</a></li><li><a href="module-entity.html">entity</a></li><li><a href="module-jecs.html">jecs</a></li><li><a href="module-simulator.html">simulator</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timer.html">timer</a></li></ul><h3>Events</h3><ul><li><a href="module-engine.html#~event:tick:after">tick:after</a></li><li><a href="module-engine.html#~event:tick:before">tick:before</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">engine.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * The engine module exports the Engine class
+ *
+ * @module engine
+ */
+
+import _ from 'lodash';
+import EventEmitter from 'events';
+import Entity from './entity';
+import System from './system';
+
+/**
+ * The Engine class
+ *
+ * @extends EventEmitter
+ */
+class Engine extends EventEmitter {
+  constructor() {
+    super();
+
+    /**
+     * Declared entities
+     *
+     * @private
+     * @type Object
+    */
+    this.entities = {};
+
+    /**
+     * Declared systems
+     *
+     * @private
+     * @type System[]
+     */
+    this.systems = [];
+
+    /**
+     * Entities associated to systems
+     *
+     * @private
+     * @type Object
+     */
+    this.systemVsEntities = {};
+  }
+
+  /**
+   * Declare a new entity
+   *
+   * @param {String} name Name of the new entity
+   * @return {Entity} The newly created entity object
+   */
+  entity(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    if (this.entities[name] !== undefined) throw new Error(`Entity ${name} already exists`);
+    const entity = new Entity(/* this, */ name);
+    entity.on('component:add', () => this.updateSystemsVsEntities());
+    entity.on('component:delete', () => this.updateSystemsVsEntities());
+    entity.on('entity:remove', (entityName) => this.removeEntity(entityName));
+    this.entities[name] = entity;
+    return entity;
+  }
+
+  /**
+   * Returns existing entity
+   *
+   * @param {String} name Name of the entity
+   * @return {Entity} The entity object or undefined if not found
+   */
+  getEntity(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    return this.entities[name];
+  }
+
+  /**
+   * Remove a entity from the engine instance
+   *
+   * @param {String} name The name of the entity to be removed
+   */
+  removeEntity(name) {
+    delete this.entities[name];
+
+    // update system vs entity associations
+    this.updateSystemsVsEntities();
+  }
+
+  /**
+   * Declare a new system.&lt;br/>
+   * The handler function receives two arguments, the name of the entity and a object
+   * of components.
+   *
+   * @param {String} name Name of the new system
+   * @param {string[]} components Names of the components the new system will operate on
+   * @param {Function} handler System function
+   * @return {System} The newly created system object
+   */
+  system(name, components, handler) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    if (!(_.isArrayLike(components) &amp;&amp; _.every(components, _.isString))) throw new Error('components must be a string array');
+    if (typeof handler !== 'function') throw new Error('handler must be a function');
+
+    // Systems is an array instead of a map to guarantee execution order
+    if (_.some(this.systems, (system) => system.name === name)) {
+      throw new Error(`System ${name} already exists`);
+    }
+    const system = new System(/* this, */ name, components, handler);
+    system.on('system:remove', (systemName) => this.removeSystem(systemName));
+    this.systems.push(system);
+
+    // Update system vs entity associations
+    this.updateSystemsVsEntities();
+    return system;
+  }
+
+  /**
+   * Returns existing system
+   *
+   * @param {String} name Name of the system
+   * @return {System} The system object or undefined if not found
+   */
+  getSystem(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    return _.find(this.systems, (system) => system.name === name);
+  }
+
+  /**
+   * Remove a system from the engine instance
+   *
+   * @param {String} name The name of the system to be removed
+   */
+  removeSystem(name) {
+    if (typeof name !== 'string') throw new Error('name must be a string');
+    this.systems = _.filter(this.systems, (system) => system.name !== name);
+
+    // update system vs entity associations
+    this.updateSystemsVsEntities();
+  }
+
+  /**
+   * Scan systems and search for suitable entities
+   * to be associated.
+   *
+   * @private
+   */
+  updateSystemsVsEntities() {
+    _.forEach(this.systems, (system) => {
+      const systemName = system.name;
+      const compatibleEntities = [];
+      this.systemVsEntities[systemName] = compatibleEntities;
+
+      _.forEach(this.entities, (entity) => {
+        if (system.isCompatibleEntity(entity)) {
+          compatibleEntities.push(entity);
+        }
+      });
+    });
+  }
+
+  /**
+   * Run a single execution step.&lt;br/>
+   * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.
+   *
+   * @return {Number} Current simulation time
+   */
+  tick() {
+    /**
+     * Emitted by the engine just before running the systems.&lt;br/>
+     * The payload is the Engine instance that originated the event.
+     * @event tick:before
+     * @type {Engine}
+     */
+    this.emit('tick:before', this);
+
+    _.forEach(this.systems, (system) => {
+      _.forEach(this.systemVsEntities[system.name], (entity) => {
+        const components = {};
+        _.forEach(system.components, (name) => {
+          components[name] = entity.components[name];
+        });
+        system.handler(entity, components);
+      });
+    });
+
+    /**
+     * Emitted by then engine after running all the systems.&lt;br/>
+     * The payload is the Engine instance that originated the event.
+     * @event tick:after
+     * @type {Engine}
+     */
+    this.emit('tick:after', this);
+  }
+}
+
+export default Engine;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Aug 16 2019 22:20:07 GMT+0200 (GMT+02:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

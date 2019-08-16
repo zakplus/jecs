@@ -1,19 +1,24 @@
-import Ecs from './ecs';
+/**
+ * The simulator module exports the Simulator class.
+ *
+ * @module simulator
+ */
+
+import Engine from './engine';
 
 /**
  * The Simulator is a utility class, it will setup
- * a main loop and will call Ecs.tick() for you automatically
- * limiting the frame per seconds.
- *
- * @class Simulator
- * @constructor
- * @param {Ecs} ecs The Ecs instance this simulator will control
-*/
+ * a loop and call Engine.tick() for you automatically, optionally
+ * limiting the frames per second.
+ */
 class Simulator {
-  constructor(ecs) {
-    if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');
+  /**
+   * @param {Engine} engine The Engine instance this simulator will control
+   */
+  constructor(engine) {
+    if (!(engine instanceof Engine)) throw new Error('engine must be a Engine instance');
 
-    this.ecs = ecs;
+    this.engine = engine;
     this.time = 0;
     this.setFps(0);
     this.stop();
@@ -23,7 +28,6 @@ class Simulator {
    * Set simulation fps limiter value.<br/>
    * A value of 0 will disable the fps limiter
    *
-   * @method setFps
    * @param {Number} fps
    */
   setFps(fps) {
@@ -39,7 +43,6 @@ class Simulator {
   /**
    * Return current simulation fps limiter value.
    *
-   * @method getFps
    * @see setFps
    */
   getFps() {
@@ -48,8 +51,6 @@ class Simulator {
 
   /**
    * Start simulation
-   *
-   * @method start
    */
   start() {
     this.started = true;
@@ -59,8 +60,6 @@ class Simulator {
 
   /**
    * Pause simulation
-   *
-   * @method pause
    */
   pause() {
     this.paused = true;
@@ -68,8 +67,6 @@ class Simulator {
 
   /**
    * Stop simulation and reset simulation time
-   *
-   * @method stop
    */
   stop() {
     this.prevFrameTime = null;
@@ -80,7 +77,6 @@ class Simulator {
   /**
    * Check whether the simulation is running
    *
-   * @method isRunning
    * @return {Boolean} true if simulator is running, false otherwise
    */
   isRunning() {
@@ -91,7 +87,6 @@ class Simulator {
   /**
    * Check whether the simulation is paused
    *
-   * @method isPaused
    * @return {Boolean} true if simulator is paused, false otherwise
    */
   isPaused() {
@@ -103,11 +98,10 @@ class Simulator {
    * Simulation loop
    *
    * @private
-   * @method run
    */
   run() {
     const t1 = Date.now();
-    this.ecs.tick();
+    this.engine.tick();
     const t2 = Date.now();
 
     // FPS limiter

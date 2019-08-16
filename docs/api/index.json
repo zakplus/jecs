@@ -1,0 +1,2111 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/engine.js",
+    "content": "/**\n * The jecs module exports the Ecs class\n *\n * @module engine\n */\n\nimport _ from 'lodash';\nimport EventEmitter from 'events';\nimport Entity from './entity';\nimport System from './system';\n// import Timer from './timer';\n// import Simulator from './simulator';\n\n/**\n * The Ecs is the main class\n *\n * @class Engine\n * @constructor\n * @extends EventEmitter\n */\nclass Engine extends EventEmitter {\n  constructor() {\n    super();\n\n    /**\n     * Declared entities\n     *\n     * @private\n     * @attribute entities\n     * @type Object\n    */\n    this.entities = {};\n\n    /**\n     * Declared systems\n     *\n     * @private\n     * @attribute systems\n     * @type System[]\n     */\n    this.systems = [];\n\n    /**\n     * Entities associated to systems\n     *\n     * @private\n     * @attribute systemVsEntities\n     * @type Object\n     */\n    this.systemVsEntities = {};\n  }\n\n  /**\n   * Declare a new entity\n   *\n   * @method entity\n   * @param {String} name Name of the new entity\n   * @return {Entity} The newly created entity object\n   */\n  entity(name) {\n    if (typeof name !== 'string') throw new Error('name must be a string');\n    if (this.entities[name] !== undefined) throw new Error(`Entity ${name} already exists`);\n    const entity = new Entity(/* this, */ name);\n    entity.on('component:add', () => this.updateSystemsVsEntities());\n    entity.on('component:delete', () => this.updateSystemsVsEntities());\n    entity.on('entity:remove', (entityName) => this.removeEntity(entityName));\n    this.entities[name] = entity;\n    return entity;\n  }\n\n  /**\n   * Returns existing entity\n   *\n   * @param {String} name Name of the entity\n   * @return {Entity} The entity object or undefined if not found\n   */\n  getEntity(name) {\n    if (typeof name !== 'string') throw new Error('name must be a string');\n    return this.entities[name];\n  }\n\n  /**\n   * Remove a entity from the engine instance\n   *\n   * @param {String} name The name of the entity to be removed\n   */\n  removeEntity(name) {\n    delete this.entities[name];\n\n    // update system vs entity associations\n    this.updateSystemsVsEntities();\n  }\n\n  /**\n   * Declare a new system.<br/>\n   * The handler function receives two arguments, the name of the entity and a object\n   * of components.\n   *\n   * @method system\n   * @param {String} name Name of the new system\n   * @param {string[]} components Names of the components the new system will operate on\n   * @param {Function} handler System function\n   * @return {System} The newly created system object\n   */\n  system(name, components, handler) {\n    if (typeof name !== 'string') throw new Error('name must be a string');\n    if (!(_.isArrayLike(components) && _.every(components, _.isString))) throw new Error('components must be a string array');\n    if (typeof handler !== 'function') throw new Error('handler must be a function');\n\n    // Systems is an array instead of a map to guarantee execution order\n    if (_.some(this.systems, (system) => system.name === name)) {\n      throw new Error(`System ${name} already exists`);\n    }\n    const system = new System(/* this, */ name, components, handler);\n    system.on('system:remove', (systemName) => this.removeSystem(systemName));\n    this.systems.push(system);\n\n    // Update system vs entity associations\n    this.updateSystemsVsEntities();\n    return system;\n  }\n\n  /**\n   * Returns existing system\n   *\n   * @param {String} name Name of the system\n   * @return {System} The system object or undefined if not found\n   */\n  getSystem(name) {\n    if (typeof name !== 'string') throw new Error('name must be a string');\n    return _.find(this.systems, (system) => system.name === name);\n  }\n\n  /**\n   * Remove a system from the engine instance\n   *\n   * @param {String} name The name of the system to be removed\n   */\n  removeSystem(name) {\n    if (typeof name !== 'string') throw new Error('name must be a string');\n    this.systems = _.filter(this.systems, (system) => system.name !== name);\n\n    // update system vs entity associations\n    this.updateSystemsVsEntities();\n  }\n\n  /**\n   * Scan systems and search for suitable entities\n   * to be associated.\n   *\n   * @private\n   * @method updateSystemsVsEntities\n   */\n  updateSystemsVsEntities() {\n    _.forEach(this.systems, (system) => {\n      const systemName = system.name;\n      const compatibleEntities = [];\n      this.systemVsEntities[systemName] = compatibleEntities;\n\n      _.forEach(this.entities, (entity) => {\n        if (system.isCompatibleEntity(entity)) {\n          compatibleEntities.push(entity);\n        }\n      });\n    });\n  }\n\n  /**\n   * Run a single execution step.<br/>\n   * Emit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.\n   *\n   * @method tick\n   * @return {Number} Current simulation time\n   */\n  tick() {\n    this.emit('tick-before', this);\n\n    _.forEach(this.systems, (system) => {\n      _.forEach(this.systemVsEntities[system.name], (entity) => {\n        const components = {};\n        _.forEach(system.components, (name) => {\n          components[name] = entity.components[name];\n        });\n        system.handler(entity, components);\n      });\n    });\n\n    this.emit('tick-after', this);\n  }\n}\n\n// /**\n//  * Expose the Entity class\n//  *\n//  * @property Entity\n//  * @type {Entity}\n//  */\n// Engine.Entity = Entity;\n//\n// /**\n//  * Expose the System class\n//  *\n//  * @property System\n//  * @type {System}\n//  */\n// Engine.System = System;\n//\n// /**\n//  * Expose the Timer class\n//  *\n//  * @property Timer\n//  * @type {Timer}\n//  */\n// Engine.Timer = Timer;\n//\n// /**\n//  * Expose the Simulator class\n//  *\n//  * @property Simulator\n//  * @type {Simulator}\n//  */\n// Engine.Simulator = Simulator;\n\n/**\n * Emitted by tick() before running the systems\n *\n * @event TICK_BEFORE\n * @param {Ecs} ecs The Ecs instance that generated the event\n */\nEngine.TICK_BEFORE = 'tick-before';\n\n/**\n * Emitted by tick() after running the systems\n *\n * @event TICK_AFTER\n * @param {Ecs} ecs The Ecs instance that generated the event\n */\nEngine.TICK_AFTER = 'tick-after';\n\nexport default Engine;\n",
+    "static": true,
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/src/engine.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Engine",
+    "memberof": "src/engine.js",
+    "static": true,
+    "longname": "src/engine.js~Engine",
+    "access": "public",
+    "export": true,
+    "importPath": "jecs/src/engine.js",
+    "importStyle": "Engine",
+    "description": "The Ecs is the main class",
+    "lineNumber": 21,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Engine"
+      },
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "*"
+    ]
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "entities",
+    "memberof": "src/engine.js~Engine",
+    "static": false,
+    "longname": "src/engine.js~Engine#entities",
+    "access": "private",
+    "description": "Declared entities",
+    "lineNumber": 32,
+    "unknown": [
+      {
+        "tagName": "@attribute",
+        "tagValue": "entities"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "systems",
+    "memberof": "src/engine.js~Engine",
+    "static": false,
+    "longname": "src/engine.js~Engine#systems",
+    "access": "private",
+    "description": "Declared systems",
+    "lineNumber": 41,
+    "unknown": [
+      {
+        "tagName": "@attribute",
+        "tagValue": "systems"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "systemVsEntities",
+    "memberof": "src/engine.js~Engine",
+    "static": false,
+    "longname": "src/engine.js~Engine#systemVsEntities",
+    "access": "private",
+    "description": "Entities associated to systems",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@attribute",
+        "tagValue": "systemVsEntities"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "entity",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#entity",
+    "access": "public",
+    "description": "Declare a new entity",
+    "lineNumber": 60,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "entity"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the new entity"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Entity"
+      ],
+      "spread": false,
+      "description": "The newly created entity object"
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "getEntity",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#getEntity",
+    "access": "public",
+    "description": "Returns existing entity",
+    "lineNumber": 77,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the entity"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Entity"
+      ],
+      "spread": false,
+      "description": "The entity object or undefined if not found"
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "removeEntity",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#removeEntity",
+    "access": "public",
+    "description": "Remove a entity from the engine instance",
+    "lineNumber": 87,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "The name of the entity to be removed"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "system",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#system",
+    "access": "public",
+    "description": "Declare a new system.<br/>\nThe handler function receives two arguments, the name of the entity and a object\nof components.",
+    "lineNumber": 105,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "system"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the new system"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "components",
+        "description": "Names of the components the new system will operate on"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "handler",
+        "description": "System function"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "System"
+      ],
+      "spread": false,
+      "description": "The newly created system object"
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "getSystem",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#getSystem",
+    "access": "public",
+    "description": "Returns existing system",
+    "lineNumber": 129,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the system"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "System"
+      ],
+      "spread": false,
+      "description": "The system object or undefined if not found"
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "removeSystem",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#removeSystem",
+    "access": "public",
+    "description": "Remove a system from the engine instance",
+    "lineNumber": 139,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "The name of the system to be removed"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "name": "updateSystemsVsEntities",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#updateSystemsVsEntities",
+    "access": "private",
+    "description": "Scan systems and search for suitable entities\nto be associated.",
+    "lineNumber": 154,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "updateSystemsVsEntities"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "tick",
+    "memberof": "src/engine.js~Engine",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/engine.js~Engine#tick",
+    "access": "public",
+    "description": "Run a single execution step.<br/>\nEmit a TICK_BEFORE event before running the systems and a TICK_AFTER event after running them.",
+    "lineNumber": 175,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "tick"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "Current simulation time"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 63,
+    "kind": "file",
+    "name": "src/entity.js",
+    "content": "import _ from 'lodash';\n// import Ecs from './ecs';\nimport EventEmitter from 'events';\n\n/**\n * The entity class expose methods to associate\n * the entity to components and to get/set components data\n *\n * @class Entity\n * @constructor\n * @private\n * @method constructor\n * // @param {Ecs} ecs Ecs engine object this Entity belongs to\n * @param {String} name Entity name\n */\nclass Entity extends EventEmitter {\n  constructor(/* ecs, */ name) {\n    super();\n    // if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');\n    if (typeof name !== 'string') throw new Error('name must be a string');\n\n    // this.ecs = ecs;\n    this.name = name;\n    this.components = {};\n  }\n\n  /**\n   * Returns this entity name\n   *\n   * @method getName\n   * @return {String} this entity name\n   */\n  getName() {\n    return _.clone(this.name);\n  }\n\n  /**\n   * Check if the entity is associated to a component\n   *\n   * @method hasComponent\n   * @param {String} componentName Name of the component\n   * @return {Boolean} true if the entity has the component associated, false otherwise.\n   */\n  hasComponent(componentName) {\n    if (typeof componentName !== 'string') throw new Error('componentName must be a string');\n    return this.components[componentName] !== undefined;\n  }\n\n  /**\n   * Associate the entity to a component.\n   * The component can be any type.\n   *\n   * @method setComponent\n   * @param {String} componentName The component name\n   * @param {*} componentData The component data\n   */\n  setComponent(componentName, componentData) {\n    if (typeof componentName !== 'string') throw new Error('componentName must be a string');\n\n    // If this is a new association update system vs entity associations\n    let newComponent = false;\n    if (this.components[componentName] === undefined) {\n      newComponent = true;\n    }\n\n    // Set component data\n    this.components[componentName] = componentData;\n    if (newComponent) {\n      // this.ecs.updateSystemsVsEntities();\n      this.emit('component:add', newComponent);\n    }\n  }\n\n  /**\n   * Remove a component association\n   *\n   * @method deleteComponent\n   * @param {String} componentName\n   */\n  deleteComponent(componentName) {\n    if (typeof componentName !== 'string') throw new Error('componentName must be a string');\n\n    if (this.hasComponent(componentName)) {\n      delete this.components[componentName];\n\n      // update system vs entity associations\n      // this.ecs.updateSystemsVsEntities();\n      this.emit('component:remove', componentName);\n    }\n  }\n\n  /**\n   * Remove this entity from the engine\n   *\n   * @method destroy\n   */\n  destroy() {\n    // this.ecs.removeEntity(this.name);\n    this.emit('entity:remove', this.name);\n  }\n}\n\nexport default Entity;\n",
+    "static": true,
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/src/entity.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 64,
+    "kind": "class",
+    "name": "Entity",
+    "memberof": "src/entity.js",
+    "static": true,
+    "longname": "src/entity.js~Entity",
+    "access": "private",
+    "export": true,
+    "importPath": "jecs/src/entity.js",
+    "importStyle": "Entity",
+    "description": "The entity class expose methods to associate\nthe entity to components and to get/set components data",
+    "lineNumber": 16,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Entity"
+      },
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@method",
+        "tagValue": "constructor\n// @param {Ecs} ecs Ecs engine object this Entity belongs to"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Entity name"
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "events~EventEmitter"
+    ]
+  },
+  {
+    "__docId__": 65,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/entity.js~Entity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/entity.js~Entity#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "member",
+    "name": "name",
+    "memberof": "src/entity.js~Entity",
+    "static": false,
+    "longname": "src/entity.js~Entity#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "member",
+    "name": "components",
+    "memberof": "src/entity.js~Entity",
+    "static": false,
+    "longname": "src/entity.js~Entity#components",
+    "access": "public",
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{}"
+      ]
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "name": "getName",
+    "memberof": "src/entity.js~Entity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/entity.js~Entity#getName",
+    "access": "public",
+    "description": "Returns this entity name",
+    "lineNumber": 33,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "getName"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "this entity name"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "name": "hasComponent",
+    "memberof": "src/entity.js~Entity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/entity.js~Entity#hasComponent",
+    "access": "public",
+    "description": "Check if the entity is associated to a component",
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "hasComponent"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "componentName",
+        "description": "Name of the component"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "true if the entity has the component associated, false otherwise."
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "method",
+    "name": "setComponent",
+    "memberof": "src/entity.js~Entity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/entity.js~Entity#setComponent",
+    "access": "public",
+    "description": "Associate the entity to a component.\nThe component can be any type.",
+    "lineNumber": 57,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "setComponent"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "componentName",
+        "description": "The component name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "componentData",
+        "description": "The component data"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 71,
+    "kind": "method",
+    "name": "deleteComponent",
+    "memberof": "src/entity.js~Entity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/entity.js~Entity#deleteComponent",
+    "access": "public",
+    "description": "Remove a component association",
+    "lineNumber": 80,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "deleteComponent"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "componentName",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/entity.js~Entity",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/entity.js~Entity#destroy",
+    "access": "public",
+    "description": "Remove this entity from the engine",
+    "lineNumber": 97,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "destroy"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/jecs.js",
+    "content": "import Engine from './engine';\nimport Timer from './timer';\nimport Simulator from './simulator';\n\nexport {\n  Engine,\n  Simulator,\n  Timer,\n};\n",
+    "static": true,
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/src/jecs.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "file",
+    "name": "src/simulator.js",
+    "content": "import Engine from './engine';\n\n/**\n * The Simulator is a utility class, it will setup\n * a main loop and will call Engine.tick() for you automatically\n * limiting the frame per seconds.\n *\n * @class Simulator\n * @constructor\n * @param {Engine} engine The Engine instance this simulator will control\n*/\nclass Simulator {\n  constructor(engine) {\n    if (!(engine instanceof Engine)) throw new Error('engine must be a Engine instance');\n\n    this.engine = engine;\n    this.time = 0;\n    this.setFps(0);\n    this.stop();\n  }\n\n  /**\n   * Set simulation fps limiter value.<br/>\n   * A value of 0 will disable the fps limiter\n   *\n   * @method setFps\n   * @param {Number} fps\n   */\n  setFps(fps) {\n    if (typeof fps !== 'number') throw new Error('fps must be a number');\n\n    this.fps = 0;\n    if (fps && typeof fps === 'number' && fps > 0) {\n      this.fps = parseInt(Math.round(fps), 10);\n    }\n    this.frameDuration = 1000 / this.fps;\n  }\n\n  /**\n   * Return current simulation fps limiter value.\n   *\n   * @method getFps\n   * @see setFps\n   */\n  getFps() {\n    return this.fps;\n  }\n\n  /**\n   * Start simulation\n   *\n   * @method start\n   */\n  start() {\n    this.started = true;\n    this.paused = false;\n    this.run();\n  }\n\n  /**\n   * Pause simulation\n   *\n   * @method pause\n   */\n  pause() {\n    this.paused = true;\n  }\n\n  /**\n   * Stop simulation and reset simulation time\n   *\n   * @method stop\n   */\n  stop() {\n    this.prevFrameTime = null;\n    this.started = false;\n    this.paused = false;\n  }\n\n  /**\n   * Check whether the simulation is running\n   *\n   * @method isRunning\n   * @return {Boolean} true if simulator is running, false otherwise\n   */\n  isRunning() {\n    if (this.started && !this.paused) return true;\n    return false;\n  }\n\n  /**\n   * Check whether the simulation is paused\n   *\n   * @method isPaused\n   * @return {Boolean} true if simulator is paused, false otherwise\n   */\n  isPaused() {\n    if (this.started && this.paused) return true;\n    return false;\n  }\n\n  /**\n   * Simulation loop\n   *\n   * @private\n   * @method run\n   */\n  run() {\n    const t1 = Date.now();\n    this.engine.tick();\n    const t2 = Date.now();\n\n    // FPS limiter\n    let sleep = 0;\n    if (this.fps > 0) {\n      sleep = Math.max(0, this.frameDuration - (t2 - t1));\n    }\n\n    // Async loop\n    setTimeout(() => {\n      if (this.isRunning()) this.run();\n    }, sleep);\n  }\n}\n\nexport default Simulator;\n",
+    "static": true,
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/src/simulator.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 75,
+    "kind": "class",
+    "name": "Simulator",
+    "memberof": "src/simulator.js",
+    "static": true,
+    "longname": "src/simulator.js~Simulator",
+    "access": "public",
+    "export": true,
+    "importPath": "jecs/src/simulator.js",
+    "importStyle": "Simulator",
+    "description": "The Simulator is a utility class, it will setup\na main loop and will call Engine.tick() for you automatically\nlimiting the frame per seconds.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Simulator"
+      },
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Engine"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "engine",
+        "description": "The Engine instance this simulator will control"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 76,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "member",
+    "name": "engine",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#engine",
+    "access": "public",
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "member",
+    "name": "time",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#time",
+    "access": "public",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "method",
+    "name": "setFps",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#setFps",
+    "access": "public",
+    "description": "Set simulation fps limiter value.<br/>\nA value of 0 will disable the fps limiter",
+    "lineNumber": 29,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "setFps"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fps",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 80,
+    "kind": "member",
+    "name": "fps",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#fps",
+    "access": "public",
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "frameDuration",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#frameDuration",
+    "access": "public",
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "method",
+    "name": "getFps",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#getFps",
+    "access": "public",
+    "description": "Return current simulation fps limiter value.",
+    "see": [
+      "setFps"
+    ],
+    "lineNumber": 45,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "getFps"
+      }
+    ],
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "name": "start",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#start",
+    "access": "public",
+    "description": "Start simulation",
+    "lineNumber": 54,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "start"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 85,
+    "kind": "member",
+    "name": "started",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#started",
+    "access": "public",
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "member",
+    "name": "paused",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#paused",
+    "access": "public",
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "method",
+    "name": "pause",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#pause",
+    "access": "public",
+    "description": "Pause simulation",
+    "lineNumber": 65,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "pause"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 89,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#stop",
+    "access": "public",
+    "description": "Stop simulation and reset simulation time",
+    "lineNumber": 74,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "stop"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 90,
+    "kind": "member",
+    "name": "prevFrameTime",
+    "memberof": "src/simulator.js~Simulator",
+    "static": false,
+    "longname": "src/simulator.js~Simulator#prevFrameTime",
+    "access": "public",
+    "description": null,
+    "lineNumber": 75,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "method",
+    "name": "isRunning",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#isRunning",
+    "access": "public",
+    "description": "Check whether the simulation is running",
+    "lineNumber": 86,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "isRunning"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "true if simulator is running, false otherwise"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 94,
+    "kind": "method",
+    "name": "isPaused",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#isPaused",
+    "access": "public",
+    "description": "Check whether the simulation is paused",
+    "lineNumber": 97,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "isPaused"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "true if simulator is paused, false otherwise"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 95,
+    "kind": "method",
+    "name": "run",
+    "memberof": "src/simulator.js~Simulator",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/simulator.js~Simulator#run",
+    "access": "private",
+    "description": "Simulation loop",
+    "lineNumber": 108,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "run"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 96,
+    "kind": "file",
+    "name": "src/system.js",
+    "content": "import _ from 'lodash';\n// import Ecs from './ecs';\nimport EventEmitter from 'events';\n\n/**\n * The system class\n *\n * @class System\n * @constructor\n * @private\n * // @param {Ecs} ecs Ecs engine object this system belongs to\n * @param {String} name Name of the system\n * @param {String[]} components Array of component names this system operates on\n * @param {Function} handler System function\n */\nclass System extends EventEmitter {\n  constructor(/* ecs, */ name, components, handler) {\n    super();\n    // if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');\n    if (typeof name !== 'string') throw new Error('name must be a string');\n    if (!(_.isArrayLike(components) && _.every(components, _.isString))) throw new Error('components must be a string array');\n    if (typeof handler !== 'function') throw new Error('handler must be a function');\n\n    // this.ecs = ecs;\n    this.name = name;\n    this.components = components;\n    this.handler = handler;\n  }\n\n  /**\n   * Check if the entity is associated to every component this system require.\n   *\n   * @method isCompatibleEntity\n   * @param {Entity} entity Entity object\n   * @return {Boolean} true if the entity is compatible, false otherwise.\n   */\n  isCompatibleEntity(entity) {\n    return _.every(this.components, (component) => entity.hasComponent(component));\n  }\n\n  /**\n   * Returns this system name\n   *\n   * @method getName\n   * @return {String} this system name\n   */\n  getName() {\n    return _.clone(this.name);\n  }\n\n  /**\n   * Remove this system from engine\n   *\n   * @method destroy\n   */\n  destroy() {\n    // this.ecs.removeSystem(this.name);\n    this.emit('system:remove', this.name);\n  }\n}\n\nexport default System;\n",
+    "static": true,
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/src/system.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 97,
+    "kind": "class",
+    "name": "System",
+    "memberof": "src/system.js",
+    "static": true,
+    "longname": "src/system.js~System",
+    "access": "private",
+    "export": true,
+    "importPath": "jecs/src/system.js",
+    "importStyle": "System",
+    "description": "The system class",
+    "lineNumber": 16,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "System"
+      },
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Name of the system"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "components",
+        "description": "Array of component names this system operates on"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "handler",
+        "description": "System function"
+      }
+    ],
+    "interface": false,
+    "extends": [
+      "events~EventEmitter"
+    ]
+  },
+  {
+    "__docId__": 98,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/system.js~System",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/system.js~System#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "member",
+    "name": "name",
+    "memberof": "src/system.js~System",
+    "static": false,
+    "longname": "src/system.js~System#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "member",
+    "name": "components",
+    "memberof": "src/system.js~System",
+    "static": false,
+    "longname": "src/system.js~System#components",
+    "access": "public",
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "member",
+    "name": "handler",
+    "memberof": "src/system.js~System",
+    "static": false,
+    "longname": "src/system.js~System#handler",
+    "access": "public",
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 102,
+    "kind": "method",
+    "name": "isCompatibleEntity",
+    "memberof": "src/system.js~System",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/system.js~System#isCompatibleEntity",
+    "access": "public",
+    "description": "Check if the entity is associated to every component this system require.",
+    "lineNumber": 37,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "isCompatibleEntity"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Entity"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "entity",
+        "description": "Entity object"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "true if the entity is compatible, false otherwise."
+    }
+  },
+  {
+    "__docId__": 103,
+    "kind": "method",
+    "name": "getName",
+    "memberof": "src/system.js~System",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/system.js~System#getName",
+    "access": "public",
+    "description": "Returns this system name",
+    "lineNumber": 47,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "getName"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": "this system name"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 104,
+    "kind": "method",
+    "name": "destroy",
+    "memberof": "src/system.js~System",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/system.js~System#destroy",
+    "access": "public",
+    "description": "Remove this system from engine",
+    "lineNumber": 56,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "destroy"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 105,
+    "kind": "file",
+    "name": "src/timer.js",
+    "content": "import Engine from './engine';\n\nfunction randomId(prefix) {\n  return `${prefix}-${Math.floor(Math.random() * 1000)}`;\n}\n\n/**\n * The Timer class is a utility class.\n * By creating a new instance of this class, you will be able to retrieve timings\n * informations in your systems.\n *\n * @class Timer\n * @constructor\n * @param {Engine} engine Engine instance this Timer will belong to\n *\n * @example\n * ```javascript\n *\n * const engine = new Engine();\n * const timer = new Timer(engine);\n *\n * engine.system('mySystem', ['myComponent'], (entity, {myComponent}) => {\n *   const delta = timer.getTime().delta;\n *   // Do your magic with delta time!\n *   // ...\n * });\n * ```\n *\n * Object returned by getTime() has this structure:\n * ```javascript\n *\n * {\n *   ticks,  // Number of ticks (frames)\n *   start,  // Initial time (milliseconds since the EPOCH)\n *   now,    // Current time (milliseconds since the EPOCH)\n *   total,  // Total execution time (milliseconds)\n *   delta   // Delta time from prev tick (milliseconds)\n * }\n * ```\n */\nexport default class Timer {\n  constructor(engine) {\n    if (!(engine instanceof Engine)) throw new Error('engine must be a Engine instance');\n\n    const entityName = randomId('clock');\n    const componentName = randomId('time');\n    const systemName = randomId('timer');\n\n    // time component\n    this.time = {};\n    this.reset();\n\n    // clock entity\n    this.entity = engine.entity(entityName);\n\n    // Associate the time component to the clock entity.\n    this.entity.setComponent(componentName, this.time);\n\n    // A system for updating the time component\n    this.system = engine.system(systemName, [componentName], (entity, components) => {\n      const time = components[componentName];\n      const now = Date.now();\n\n      // Update ticks counter\n      time.ticks += 1;\n\n      // Init start time\n      if (time.start === 0) time.start = now;\n\n      // Update total time\n      time.total = now - time.start;\n\n      // Update delta\n      if (time.now > 0) {\n        time.delta = now - time.now;\n      }\n\n      // Update now time\n      time.now = now;\n    });\n  }\n\n  /**\n   * Reset all timing values to 0\n   *\n   * @method reset\n   */\n  reset() {\n    this.time.ticks = 0; // Number of ticks (frames)\n    this.time.start = 0; // initial time\n    this.time.now = 0; // Current absolute time\n    this.time.total = 0; // total execution time\n    this.time.delta = 0; // delta time from prev tick\n  }\n\n  /**\n   * Returns the time component\n   *\n   * @method getTime\n   * @return {Object} A time component object\n   * @example\n   * The time object contains these properties:<br/>\n   * <table>\n   * <tr><th>start</td><td>initial time</td>\n   * <tr><th>total</td><td>total execution time</td>\n   * <tr><th>prev</td><td>previous frame absolute time</td>\n   * <tr><th>delta</td><td>delta time from prev tick</td>\n   * </table>\n   */\n  getTime() {\n    return this.time;\n  }\n\n  /**\n   * Returns the entity used by this timer\n   *\n   * @method getEntity\n   * @return {Entity} The timer entity\n   */\n  getEntity() {\n    return this.entity;\n  }\n\n  /**\n   * Returns the system used by this timer\n   *\n   * @method getSystem\n   * @return {System} The timer system\n   */\n  getSystem() {\n    return this.system;\n  }\n}\n",
+    "static": true,
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/src/timer.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 106,
+    "kind": "function",
+    "name": "randomId",
+    "memberof": "src/timer.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/timer.js~randomId",
+    "access": "public",
+    "export": false,
+    "importPath": "jecs/src/timer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "prefix",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "string"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "class",
+    "name": "Timer",
+    "memberof": "src/timer.js",
+    "static": true,
+    "longname": "src/timer.js~Timer",
+    "access": "public",
+    "export": true,
+    "importPath": "jecs/src/timer.js",
+    "importStyle": "Timer",
+    "description": "The Timer class is a utility class.\nBy creating a new instance of this class, you will be able to retrieve timings\ninformations in your systems.",
+    "examples": [
+      "```javascript\n\nconst engine = new Engine();\nconst timer = new Timer(engine);\n\nengine.system('mySystem', ['myComponent'], (entity, {myComponent}) => {\n  const delta = timer.getTime().delta;\n  // Do your magic with delta time!\n  // ...\n});\n```\n\nObject returned by getTime() has this structure:\n```javascript\n\n{\n  ticks,  // Number of ticks (frames)\n  start,  // Initial time (milliseconds since the EPOCH)\n  now,    // Current time (milliseconds since the EPOCH)\n  total,  // Total execution time (milliseconds)\n  delta   // Delta time from prev tick (milliseconds)\n}\n```"
+    ],
+    "lineNumber": 41,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "Timer"
+      },
+      {
+        "tagName": "@constructor",
+        "tagValue": ""
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Engine"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "engine",
+        "description": "Engine instance this Timer will belong to"
+      }
+    ],
+    "interface": false
+  },
+  {
+    "__docId__": 108,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/timer.js~Timer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timer.js~Timer#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "member",
+    "name": "time",
+    "memberof": "src/timer.js~Timer",
+    "static": false,
+    "longname": "src/timer.js~Timer#time",
+    "access": "public",
+    "description": null,
+    "lineNumber": 50,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{}"
+      ]
+    }
+  },
+  {
+    "__docId__": 110,
+    "kind": "member",
+    "name": "entity",
+    "memberof": "src/timer.js~Timer",
+    "static": false,
+    "longname": "src/timer.js~Timer#entity",
+    "access": "public",
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 111,
+    "kind": "member",
+    "name": "system",
+    "memberof": "src/timer.js~Timer",
+    "static": false,
+    "longname": "src/timer.js~Timer#system",
+    "access": "public",
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 112,
+    "kind": "method",
+    "name": "reset",
+    "memberof": "src/timer.js~Timer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timer.js~Timer#reset",
+    "access": "public",
+    "description": "Reset all timing values to 0",
+    "lineNumber": 88,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "reset"
+      }
+    ],
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 113,
+    "kind": "method",
+    "name": "getTime",
+    "memberof": "src/timer.js~Timer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timer.js~Timer#getTime",
+    "access": "public",
+    "description": "Returns the time component",
+    "examples": [
+      "The time object contains these properties:<br/>\n<table>\n<tr><th>start</td><td>initial time</td>\n<tr><th>total</td><td>total execution time</td>\n<tr><th>prev</td><td>previous frame absolute time</td>\n<tr><th>delta</td><td>delta time from prev tick</td>\n</table>"
+    ],
+    "lineNumber": 110,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "getTime"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "A time component object"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 114,
+    "kind": "method",
+    "name": "getEntity",
+    "memberof": "src/timer.js~Timer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timer.js~Timer#getEntity",
+    "access": "public",
+    "description": "Returns the entity used by this timer",
+    "lineNumber": 120,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "getEntity"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Entity"
+      ],
+      "spread": false,
+      "description": "The timer entity"
+    },
+    "params": []
+  },
+  {
+    "__docId__": 115,
+    "kind": "method",
+    "name": "getSystem",
+    "memberof": "src/timer.js~Timer",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/timer.js~Timer#getSystem",
+    "access": "public",
+    "description": "Returns the system used by this timer",
+    "lineNumber": 130,
+    "unknown": [
+      {
+        "tagName": "@method",
+        "tagValue": "getSystem"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "System"
+      ],
+      "spread": false,
+      "description": "The timer system"
+    },
+    "params": []
+  },
+  {
+    "kind": "index",
+    "content": "# Jecs Entity Component System\n\n## NEWS!\nVersion 1.1.0 introduces the Timer utility class.  \nRead about it in the [controlling speed](#controlling_speed) section.\n\n## description\nECS or [Entity Component System](https://en.wikipedia.org/wiki/Entity%E2%80%93component%E2%80%93system) is an architectural pattern particularly suitable for game development.  \nJecs is a javascript ECS engine for Node.js and the browser.  \n\n## installation\nnode-js:  \n```npm install --save jecs```\n\n## documentation\nYou can find the documentation [here](https://zakplus.github.io/jecs/) or under the \"docs\" directory.\n\n## in the browser\nYou can use jecs in a browser by loading the script in the directory 'browser'.\nThe library exports the Ecs class as a global Ecs variable (window.Ecs).\n\n```<script type=\"text/javascript\" src=\"path/to/jecs_min.js\"></script>```\n\n## live demo\nIncluded in this package you can find a simple text-based browser game demo using Jecs (actually it's a simulation because there is no user input...).  \nSee the demo [here](https://zakplus.github.io/jecs/example/mini-game). You can find the source code under the \"docs/example\" directory.\n\n## example\nIn this example we create a \"player\" entity and assign it the \"position\" and \"speed\" components.  \nWe define also a \"move\" system requiring \"position\" and \"speed\" components.  \nComponents can be any type of data, they will be passed to the systems without any modification.\n\nThe \"move\" system simply update position values by adding speed values and will be called once for every entity associated to both components (in this case there is only one, \"player\").  \n\nThe Simulator utility will update the engine for us taking care of limiting the maximum fps to 60.  \nIf you prefer, you can avoid using the simulator and directly call ecs.tick() to start next engine iteration.\n\n``` javascript\nimport Ecs from 'jecs';\n\n// Instantiate a new ecs engine\nconst ecs = new Ecs();\n\n// Declare a 'player' entity\nconst player = ecs.entity('player');\n\n// Associate the player entity to components.\n// In this case we set 'position' and 'speed'.\nplayer.setComponent('position', { x: 0, y: 0 });\nplayer.setComponent('speed', { x: 0.5, y: 0.7 });\n\n// Define a 'move' system for updating position of\n// entities associated to components 'position' and 'speed'\necs.system('move', ['position', 'speed'], (entity, {position, speed}) => {\n  position.x += speed.x;\n  position.y += speed.y;\n});\n\n// Instantiate a simulator\n// If you prefer, you can avoid using simulator and start\n// engine iterations manually by calling ecs.tick() in a loop.\nconst sim = new Ecs.Simulator(ecs);\n\n// Limit the fps to 60\nsim.setFps(60);\n\n// Start simulator\nsim.start();\n```\n\n## <a id=\"controlling_speed\"></a>controlling speed\nThe simulator fps limiter can limit the maximum frames per second. The limiter, wich is disabled by default, can be activated by calling ```Simulator.setFps(<value>)``` with value being a integer greater then 0. A value of 0 will disable the limiter.  \nThe limiter can be handy in some situation but generally what you really want is to run at the maximum possible speed...  \nIn order to get a consistent animation speed, your systems need to know how much time is passed since the previous call.\n\n### Jecs version 1.1.0 introduces the Timer helper class\nGet more informations in the [Timer API docs](https://zakplus.github.io/jecs/api/classes/Timer.html).  \nStarting with Jecs vestion 1.1.0 you can use the Timer helper class to solve this problem. You just have to instantiate the class passing your ecs instance object as parameter, then you can call the Timer getTime() method from your systems to get useful timings informations.\n\n```javascript\nconst ecs = new Ecs();\nconst timer = new Ecs.Timer(ecs);\n\necs.system('mySystem', ['myComponent'], (entity, {myComponent}) => {\n  const delta = timer.getTime().delta;\n  // Do your magic with delta time!\n  // ...\n});\n```\n\ntimer.getTime() returns a object with these properties:\n\n```javascript\n{\n  ticks,  // Number of ticks (frames)\n  start,  // Initial time (milliseconds since the EPOCH)\n  now,    // Current time (milliseconds since the EPOCH)\n  total,  // Total execution time (milliseconds)\n  delta   // Delta time from prev tick (milliseconds)\n}\n```\n\nYou can call timer.reset() method to reset all timing values to zero.\n\n### How to do with Jecs version < 1.1.0\nJecs version prior 1.1.0 does not calculate time info for you, instead you can use a dedicated component and system.  \nRemember that systems get called in the same order they are defined so you can define a *time-updater* system which will run before any other systems to calculate all the timing stuff.\n\n``` javascript\n// A time component\nconst time = {\n  start: 0,     // initial time\n  total: 0,     // total execution time\n  prev: 0,      // previous frame absolute time\n  delta: 0      // delta time from prev tick\n};\n\n// The clock entity\nconst clock = ecs.entity('clock');\n\n// Associate the time component to the clock entity.\n// You don't want to associate the time component to\n// entities other then clock, otherwise the time-update\n// system will be called for every those entities.\nclock.setComponent('time', time);\n\n// A system for updating the time component\necs.system('time-updater', ['time'], (entity, {time}) => {\n  const now = Date.now();\n  \n  // Init start time\n  if(time.start === 0) time.start = now;\n\n  // Update total time\n  time.total = now - time.start;\n\n  // Update delta\n  if(time.prev > 0) {\n    time.delta = now - time.prev;\n  }\n\n  // Update prev time\n  time.prev = now;\n});\n\n// Other systems can then use the time component.\n// Update position based on speed and time passed since previous update\necs.sistem('move', ['position', 'speed'], (entity, {position, speed}) => {\n  position.x += speed.x * time.delta;\n  position.y += speed.y * time.delta;\n});\n```\n\n## license\n\n```\nMIT License\n\nCopyright (c) 2018 Valerio Bianchi\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n```",
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"jecs\",\n  \"version\": \"1.1.2\",\n  \"description\": \"Entity Component System engine for NodeJs and the browser\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/zakplus/jecs.git\"\n  },\n  \"homepage\": \"https://zakplus.github.io/jecs/\",\n  \"scripts\": {\n    \"linter\": \"eslint --fix --format unix src/**/*.js\",\n    \"linter:tests\": \"eslint --fix --format unix test/**/*.js\",\n    \"pretest\": \"npm run linter:tests\",\n    \"test\": \"tape test/**/*.js | tap-spec\",\n    \"docs\": \"yuidoc src\",\n    \"esdoc\": \"esdoc\",\n    \"build-node\": \"rimraf lib && babel src -d lib\",\n    \"build-browser\": \"rimraf browser && webpack --config webpack.config.js\",\n    \"prebuild\": \"npm run linter\",\n    \"build\": \"npm run build-node && npm run build-browser\",\n    \"postbuild\": \"npm run test && npm run esdoc\"\n  },\n  \"publishConfig\": {\n    \"registry\": \"https://registry.npmjs.org/\"\n  },\n  \"keywords\": [\n    \"Entity Component System\",\n    \"Game Engine\",\n    \"ecs\"\n  ],\n  \"author\": {\n    \"name\": \"Valerio Bianchi\",\n    \"email\": \"contacts@valeriobianchi.com\",\n    \"url\": \"https://valeriobianchi.com\"\n  },\n  \"license\": \"MIT\",\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.5.5\",\n    \"@babel/core\": \"^7.5.5\",\n    \"@babel/preset-env\": \"^7.5.5\",\n    \"babel-loader\": \"^8.0.6\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^6.1.0\",\n    \"eslint-config-airbnb-base\": \"^14.0.0\",\n    \"eslint-plugin-import\": \"^2.18.2\",\n    \"tap-spec\": \"^5.0.0\",\n    \"tape\": \"^4.11.0\",\n    \"uglifyjs-webpack-plugin\": \"^1.2.2\",\n    \"webpack\": \"^4.39.2\",\n    \"webpack-cli\": \"^3.3.6\",\n    \"yuidoc-bootstrap-theme\": \"^1.0.6\",\n    \"yuidocjs\": \"^0.10.2\"\n  },\n  \"dependencies\": {\n    \"lodash\": \"^4.17.15\",\n    \"rimraf\": \"^3.0.0\"\n  }\n}\n",
+    "longname": "/media/zakplus/data/sviluppo/javascript/jecs/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

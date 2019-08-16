@@ -2,7 +2,6 @@ test
 src
 docs
 webpack.config.js
-webpack.config.prod.js
-yuidoc.json
+jsdoc.json
 .babelrc
 .eslintrc.js

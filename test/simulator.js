@@ -1,9 +1,9 @@
 const test = require('tape');
-const Ecs = require('../lib/ecs');
+const { Engine, Simulator } = require('../lib/jecs');
 
 test('Testing Simulator class...', (t) => {
-  const ecs = new Ecs();
-  const simulator = new Ecs.Simulator(ecs);
+  const engine = new Engine();
+  const simulator = new Simulator(engine);
 
   t.equal(typeof simulator.setFps, 'function', 'simulator.setFps should be a function');
   t.equal(typeof simulator.getFps, 'function', 'simulator.getFps should be a function');
@@ -36,14 +36,14 @@ test('Simulator functional test...', (t) => {
   const runTime = 1000;
   const expectedMaxTicks = fps * (runTime / 1000);
 
-  const ecs = new Ecs();
-  const sim = new Ecs.Simulator(ecs);
+  const engine = new Engine();
+  const sim = new Simulator(engine);
   sim.setFps(fps);
 
-  const clock = ecs.entity('clock');
+  const clock = engine.entity('clock');
   clock.setComponent('time', { ticks: 0 });
 
-  ecs.system('timer', ['time'], (entity, { time }) => {
+  engine.system('timer', ['time'], (entity, { time }) => {
     time.ticks += 1;
   });
 

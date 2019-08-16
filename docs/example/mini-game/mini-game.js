@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var game = (function () {
   // 'Screen' <div>
   var screen = document.getElementById('screen');
@@ -6,9 +8,9 @@ var game = (function () {
   var logarea = document.getElementById('log');
 
   // Instantiating engine, timer and simulator
-  var ecs = new Ecs();
-  var timer = new Ecs.Timer(ecs);
-  var sim = new Ecs.Simulator(ecs);
+  var engine = new Jecs.Engine();
+  var timer = new Jecs.Timer(engine);
+  var sim = new Jecs.Simulator(engine);
   
   // Possible move direction
   var up = { x: 0, y: -1 };
@@ -129,12 +131,12 @@ var game = (function () {
   }
 
   log('Setup entities...');
-  fps = ecs.entity('fps');
-  knight = ecs.entity('knight');
-  ogre = ecs.entity('ogre');
+  fps = engine.entity('fps');
+  knight = engine.entity('knight');
+  ogre = engine.entity('ogre');
 
   // A system for calculating FPS
-  ecs.system('fps-updater', ['fps'], function(entity, components) {
+  engine.system('fps-updater', ['fps'], function(entity, components) {
     var time = timer.getTime();
     var fpsData = components.fps;
 
@@ -155,7 +157,7 @@ var game = (function () {
 
   // Think system
   log('Setup think system...');
-  ecs.system('think', ['position', 'direction'], function(entity, components) {
+  engine.system('think', ['position', 'direction'], function(entity, components) {
     var x = components.position.x;
     var y = components.position.y;
     var direction = components.direction;
@@ -221,7 +223,7 @@ var game = (function () {
 
   // Move system
   log('Setup move system...');
-  ecs.system('move', ['position', 'direction', 'energy'], function(entity, components) {
+  engine.system('move', ['position', 'direction', 'energy'], function(entity, components) {
     var position = components.position;
     var direction = components.direction;
     var energy = components.energy;
@@ -239,7 +241,7 @@ var game = (function () {
   });
 
   log('Setup eat system...');
-  ecs.system('eat', ['position', 'energy'], function(entity, components) {
+  engine.system('eat', ['position', 'energy'], function(entity, components) {
     var x = components.position.x;
     var y = components.position.y;
 
@@ -284,7 +286,7 @@ var game = (function () {
   }
 
   // Redraw map each tick
-  ecs.on('tick-after', draw);
+  engine.on('tick:after', draw);
 
   // Init map and components
   init();

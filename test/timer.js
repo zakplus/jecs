@@ -1,15 +1,15 @@
 const test = require('tape');
 const _ = require('lodash');
-const Ecs = require('../lib/ecs');
+const { Engine, Timer } = require('../lib/jecs');
 
 test('Testing Timer class...', (t) => {
-  const ecs = new Ecs();
-  const timer = new Ecs.Timer(ecs);
+  const engine = new Engine();
+  const timer = new Timer(engine);
 
-  const dummy = ecs.entity('dummyEntity');
+  const dummy = engine.entity('dummyEntity');
   dummy.setComponent('dummyComponent', {});
 
-  ecs.system('timer-tester', ['dummyComponent'], () => {
+  engine.system('timer-tester', ['dummyComponent'], () => {
     const timings = timer.getTime();
     t.true(timings.ticks > 0, 'timings.ticks should be greater than 0');
     t.true(timings.start > 0, 'timings.start should be greater than 0');
@@ -26,9 +26,9 @@ test('Testing Timer class...', (t) => {
     }
   });
 
-  t.true(_.every(timer.getTime(), value => value === 0), 'Every timer.getTime() properties value is 0');
-  ecs.tick();
+  t.true(_.every(timer.getTime(), (value) => value === 0), 'Every timer.getTime() properties value is 0');
+  engine.tick();
   setTimeout(() => {
-    ecs.tick();
+    engine.tick();
   }, 10);
 });

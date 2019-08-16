@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>engine - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-engine-Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="module-engine-Engine.html#entity">entity</a></li><li data-type='method'><a href="module-engine-Engine.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#removeEntity">removeEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#removeSystem">removeSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#system">system</a></li><li data-type='method'><a href="module-engine-Engine.html#tick">tick</a></li><li data-type='method'><a href="module-engine-Engine.html#updateSystemsVsEntities">updateSystemsVsEntities</a></li></ul></li><li><a href="module-entity-Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="module-entity-Entity.html#deleteComponent">deleteComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#destroy">destroy</a></li><li data-type='method'><a href="module-entity-Entity.html#getComponent">getComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#getName">getName</a></li><li data-type='method'><a href="module-entity-Entity.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#setComponent">setComponent</a></li></ul></li><li><a href="module-simulator-Simulator.html">Simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator-Simulator.html#getFps">getFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isPaused">isPaused</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isRunning">isRunning</a></li><li data-type='method'><a href="module-simulator-Simulator.html#pause">pause</a></li><li data-type='method'><a href="module-simulator-Simulator.html#run">run</a></li><li data-type='method'><a href="module-simulator-Simulator.html#setFps">setFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#start">start</a></li><li data-type='method'><a href="module-simulator-Simulator.html#stop">stop</a></li></ul></li><li><a href="module-system-System.html">System</a><ul class='methods'><li data-type='method'><a href="module-system-System.html#destroy">destroy</a></li><li data-type='method'><a href="module-system-System.html#getName">getName</a></li><li data-type='method'><a href="module-system-System.html#isCompatibleEntity">isCompatibleEntity</a></li></ul></li><li><a href="module-timer-Timer.html">Timer</a><ul class='methods'><li data-type='method'><a href="module-timer-Timer.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-timer-Timer.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-timer-Timer.html#getTime">getTime</a></li><li data-type='method'><a href="module-timer-Timer.html#reset">reset</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-engine.html">engine</a></li><li><a href="module-entity.html">entity</a></li><li><a href="module-jecs.html">jecs</a></li><li><a href="module-simulator.html">simulator</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timer.html">timer</a></li></ul><h3>Events</h3><ul><li><a href="module-engine.html#~event:tick:after">tick:after</a></li><li><a href="module-engine.html#~event:tick:before">tick:before</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">engine</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description"><p>The engine module exports the Engine class</p></div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="engine.js.html">engine.js</a>, <a href="engine.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-engine-Engine.html">Engine</a></dt>
+            <dd></dd>
+        </dl>
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Events</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="~event:tick:after">tick:after</h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="engine.js.html">engine.js</a>, <a href="engine.js.html#line183">line 183</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Emitted by then engine after running all the systems.<br/>
+The payload is the Engine instance that originated the event.</p>
+</div>
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Engine</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~event:tick:before">tick:before</h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="engine.js.html">engine.js</a>, <a href="engine.js.html#line165">line 165</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Emitted by the engine just before running the systems.<br/>
+The payload is the Engine instance that originated the event.</p>
+</div>
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Engine</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Aug 16 2019 22:20:07 GMT+0200 (GMT+02:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,118 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <title>Jecs API</title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="./assets/vendor/prettify/prettify-min.css">
-    <link rel="stylesheet" href="./assets/css/main.css" id="site_styles">
-    <link rel="stylesheet" href="./assets/css/custom.css">
-    <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" type="image/png" href="./assets/favicon.png">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-	    <img alt="Jecs API" src="./assets/css/logo.png" style="max-height: 65%;" title="Jecs API">
-            Jecs API
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>1.1.0</b>
-                </p>
-            </li>
-        </div>
-        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
-            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/Ecs", "classes/Entity", "classes/Simulator", "classes/System", "classes/Timer", "modules/jecs"]'>
-        </form>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	    <div>
-	        <h3>APIs</h3>
-	        <div id="sidebar">
-	            <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
-	                <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
-	                <li><a href="#modules" data-toggle="tab">Modules</a></li>
-	            </ul>
-	    
-	            <div id="api-tabview-filter">
-	                <input type="search" placeholder="Type to filter APIs">
-	            </div>
-	    
-	            <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
-	                <div class="tab-pane active" id="classes">
-	                    <ul id="api-classes" class="nav nav-list">
-	                            <li><a href="./classes/Ecs.html">Ecs</a></li>
-	                            <li><a href="./classes/Simulator.html">Simulator</a></li>
-	                            <li><a href="./classes/Timer.html">Timer</a></li>
-	                    </ul>
-	                </div>
-	    
-	                <div class="tab-pane" id="modules">
-	                    <ul id="api-modules" class="nav nav-list">
-	                            <li><a href="./modules/jecs.html">jecs</a></li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-        </div>
-        <div class="span9">
-                <form id="options-form" class="form-inline pull-right">
-                    Show:
-                    <label for="api-show-inherited" class="checkbox">
-                        <input type="checkbox" id="api-show-inherited" checked>
-                        Inherited
-                    </label>
-            
-                    <label for="api-show-protected" class="checkbox">
-                        <input type="checkbox" id="api-show-protected">
-                        Protected
-                    </label>
-            
-                    <label for="api-show-private" class="checkbox">
-                        <input type="checkbox" id="api-show-private">
-                        Private
-                    </label>
-                    <label for="api-show-deprecated" class="checkbox">
-                        <input type="checkbox" id="api-show-deprecated">
-                        Deprecated
-                    </label>
-            
-                </form>
-            
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-<p>Browse to a module or class using the sidebar to view its API documentation.</p>
+<body>
 
-<h2>Keyboard Shortcuts</h2>
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
 
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-engine-Engine.html">Engine</a><ul class='methods'><li data-type='method'><a href="module-engine-Engine.html#entity">entity</a></li><li data-type='method'><a href="module-engine-Engine.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#removeEntity">removeEntity</a></li><li data-type='method'><a href="module-engine-Engine.html#removeSystem">removeSystem</a></li><li data-type='method'><a href="module-engine-Engine.html#system">system</a></li><li data-type='method'><a href="module-engine-Engine.html#tick">tick</a></li><li data-type='method'><a href="module-engine-Engine.html#updateSystemsVsEntities">updateSystemsVsEntities</a></li></ul></li><li><a href="module-entity-Entity.html">Entity</a><ul class='methods'><li data-type='method'><a href="module-entity-Entity.html#deleteComponent">deleteComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#destroy">destroy</a></li><li data-type='method'><a href="module-entity-Entity.html#getComponent">getComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#getName">getName</a></li><li data-type='method'><a href="module-entity-Entity.html#hasComponent">hasComponent</a></li><li data-type='method'><a href="module-entity-Entity.html#setComponent">setComponent</a></li></ul></li><li><a href="module-simulator-Simulator.html">Simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator-Simulator.html#getFps">getFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isPaused">isPaused</a></li><li data-type='method'><a href="module-simulator-Simulator.html#isRunning">isRunning</a></li><li data-type='method'><a href="module-simulator-Simulator.html#pause">pause</a></li><li data-type='method'><a href="module-simulator-Simulator.html#run">run</a></li><li data-type='method'><a href="module-simulator-Simulator.html#setFps">setFps</a></li><li data-type='method'><a href="module-simulator-Simulator.html#start">start</a></li><li data-type='method'><a href="module-simulator-Simulator.html#stop">stop</a></li></ul></li><li><a href="module-system-System.html">System</a><ul class='methods'><li data-type='method'><a href="module-system-System.html#destroy">destroy</a></li><li data-type='method'><a href="module-system-System.html#getName">getName</a></li><li data-type='method'><a href="module-system-System.html#isCompatibleEntity">isCompatibleEntity</a></li></ul></li><li><a href="module-timer-Timer.html">Timer</a><ul class='methods'><li data-type='method'><a href="module-timer-Timer.html#getEntity">getEntity</a></li><li data-type='method'><a href="module-timer-Timer.html#getSystem">getSystem</a></li><li data-type='method'><a href="module-timer-Timer.html#getTime">getTime</a></li><li data-type='method'><a href="module-timer-Timer.html#reset">reset</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-engine.html">engine</a></li><li><a href="module-entity.html">entity</a></li><li><a href="module-jecs.html">jecs</a></li><li><a href="module-simulator.html">simulator</a></li><li><a href="module-system.html">system</a></li><li><a href="module-timer.html">timer</a></li></ul><h3>Events</h3><ul><li><a href="module-engine.html#~event:tick:after">tick:after</a></li><li><a href="module-engine.html#~event:tick:before">tick:before</a></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme">
+        <article><h1>Jecs Entity Component System</h1>
+<h2>⚠ Version 2.0.0 breaking changes ⚠</h2>
+<p>Some changes in version 2.0.0 are not backward compatible.<br>
+Please read the migration guide here: <a href="#migration_guide_2.0.0">2.0.0 migration guide</a></p>
+<h2>Description</h2>
+<p>ECS or <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93component%E2%80%93system">Entity Component System</a> is an architectural pattern particularly suitable for game development.<br>
+Jecs is a javascript ECS engine for Node.js and the browser.</p>
+<h2>Installation</h2>
+<h3>NodeJs with npm:</h3>
+<pre class="prettyprint source"><code>npm install jecs
+</code></pre>
+<h3>NodeJs with yarn:</h3>
+<pre class="prettyprint source"><code>yarn add jecs
+</code></pre>
+<h2>Documentation</h2>
+<p>You can find the documentation <a href="https://zakplus.github.io/jecs/">here</a> or under the &quot;docs&quot; directory.</p>
+<h2>Usage in the browser</h2>
+<p>You can use jecs in a browser by loading the script in the directory 'browser'.
+The library exports the Ecs class as a global Ecs variable (window.Ecs).</p>
+<pre class="prettyprint source lang-javascript"><code>&lt;script type=&quot;text/javascript&quot; src=&quot;path/to/jecs_min.js&quot;>&lt;/script>
+</code></pre>
+<h2>Live demo</h2>
+<p>Included in this package you can find a simple text-based browser game demo using Jecs (actually it's a simulation because there is no user input...).<br>
+See the demo <a href="https://zakplus.github.io/jecs/example/mini-game">here</a>. You can find the source code under the &quot;docs/example&quot; directory.</p>
+<h2>Example</h2>
+<p>In this example we create a &quot;player&quot; entity and assign it the &quot;position&quot; and &quot;speed&quot; components.<br>
+We define also a &quot;move&quot; system requiring &quot;position&quot; and &quot;speed&quot; components.<br>
+Components can be any type of data, they will be passed to the systems without any modification.</p>
+<p>The &quot;move&quot; system simply update position values by adding speed values and will be called once for every entity associated to both components (in this case there is only one, &quot;player&quot;).</p>
+<p>The Simulator utility will update the engine for us taking care of limiting the maximum fps to 60.<br>
+If you prefer, you can avoid using the simulator and directly call ecs.tick() to start next engine iteration.</p>
+<pre class="prettyprint source lang-javascript"><code>import { Engine, Simulator } from 'jecs';
+
+// Instantiate a new engine
+const engine = new Engine();
+
+// Declare a 'player' entity
+const player = engine.entity('player');
+
+// Associate the player entity to components.
+// In this case we set 'position' and 'speed'.
+player.setComponent('position', { x: 0, y: 0 });
+player.setComponent('speed', { x: 0.5, y: 0.7 });
+
+// Define a 'move' system for updating position of
+// entities associated to components 'position' and 'speed'
+engine.system('move', ['position', 'speed'], (entity, {position, speed}) => {
+  position.x += speed.x;
+  position.y += speed.y;
+});
+
+// Instantiate a simulator
+// If you prefer, you can avoid using simulator and start
+// engine iterations manually by calling engine.tick() in a loop.
+const sim = new Simulator(engine);
+
+// Limit the fps to 60
+sim.setFps(60);
+
+// Start simulator
+sim.start();
+</code></pre>
+<h2>Controlling speed</h2>
+<p>The simulator fps limiter can limit the maximum frames per second. The limiter, wich is disabled by default, can be activated by calling <code>Simulator.setFps(&lt;value&gt;)</code> with value being a integer greater then 0. A value of 0 will disable the limiter.<br>
+The limiter can be handy in some situation but generally what you really want is to run at the maximum possible speed...<br>
+In order to get a consistent animation speed, your systems need to know how much time is passed since the previous call.</p>
+<h3>The Timer helper class</h3>
+<p>You can use the <a href="https://zakplus.github.io/jecs/api/module-timer-Timer.html">Timer helper class</a> to get timings informations in your systems.<br>
+You just have to instantiate the class passing your engine instance as parameter, then you can call the Timer getTime() method from your systems to get useful timings informations.</p>
+<pre class="prettyprint source lang-javascript"><code>const engine = new Engine();
+const timer = new Timer(engine);
+
+engine.system('mySystem', ['myComponent'], (entity, { myComponent }) => {
+  const delta = timer.getTime().delta;
+  // Do your magic with delta time!
+  // ...
+});
+</code></pre>
+<p>timer.getTime() returns a object with these properties:</p>
+<pre class="prettyprint source lang-javascript"><code>{
+  ticks,  // Number of ticks (frames)
+  start,  // Initial time (milliseconds since the EPOCH)
+  now,    // Current time (milliseconds since the EPOCH)
+  total,  // Total execution time (milliseconds)
+  delta   // Delta time from prev tick (milliseconds)
+}
+</code></pre>
+<p>You can call timer.reset() method to reset all timing values to zero.</p>
+<h1><a id="migration_guide_2.0.0"></a>Version 2.0.0 migration guide</h1>
+<p>Version 2.0.0 introduces some non backward compatible changes.<br>
+This guide will help you to update your code.</p>
+<h2>Classes location</h2>
+<p>Versions prior 2.0.0 exported one single class, the <code>Ecs</code> class.<br>
+The <code>Entity</code>, <code>System</code>, <code>Timer</code> and <code>Simulator</code> classes where exposed by the <code>Ecs</code> class.</p>
+<p>In version 2.0.0, the <code>Ecs</code> class is renamed to <code>Engine</code> and the main module, <code>jecs</code>, exports all the classes you are supposed to directly istantiate: <code>Engine</code>, <code>Simulator</code> and <code>Timer</code>.
+<code>Entity</code> and <code>System</code> are not directly available, but they were never meant to be directly istantiated anyway. In order to get a new <code>Entity</code> or <code>System</code> istance you have to call the Engine <code>entity()</code> and <code>system()</code> methods.</p>
+<p>Prior 2.0.0:</p>
+<pre class="prettyprint source lang-javascript"><code>import Ecs from 'jecs';
+
+const ecs = new Ecs();
+const simulator = new Ecs.Simulator(ecs);
+const timer = new Ecs.Timer(ecs);
+</code></pre>
+<p>After 2.0.0:</p>
+<pre class="prettyprint source lang-javascript"><code>import { Engine, Simulator, Timer } from 'jecs';
+
+const engine = new Engine();
+const simulator = new Simulator(engine);
+const timer = new Timer(engine);
+</code></pre>
+<h2>Events emitted before and after running the systems</h2>
+<p>Versions prior 2.0.0 exposed the <code>Ecs</code> class static string properties <code>TICK_BEFORE</code> and <code>TICK_AFTER</code>.<br>
+Theese properties vaules represented the names of the events emitted just before and after running the systems, respectively.<br>
+In 2.0.0, the properties have been removed from the new <code>Engine</code> class (which replaces the old <code>Ecs</code> class). You will have to use the event names directly.<br>
+The event names have been changed to a more standard form too:</p>
 <ul>
-    <li><p>Press <kbd>s</kbd> to focus the API search box.</p></li>
-
-    <li><p>Use <kbd>Up</kbd> and <kbd>Down</kbd> to select classes, modules, and search results.</p></li>
-
-    <li class="mac-only"><p>With the API search box or sidebar focused, use <kbd><span class="cmd">&#x2318;</span>-Left</kbd> or <kbd><span class="cmd">&#x2318;</span>-Right</kbd> to switch sidebar tabs.</p></li>
-
-    <li class="pc-only"><p>With the API search box or sidebar focused, use <kbd>Ctrl+Left</kbd> and <kbd>Ctrl+Right</kbd> to switch sidebar tabs.</p></li>
+<li><code>tick-before</code> become <code>tick:before</code></li>
+<li><code>tick-after</code> become <code>tick:after</code>.</li>
 </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<p>Prior 2.0.0:</p>
+<pre class="prettyprint source lang-javascript"><code>ecs.on(Ecs.TICK_BEFORE, (ecs) => { /* Do something */ }));
+ecs.on('tick-after', (ecs) => { /* Do something */ }));
+</code></pre>
+<p>After 2.0.0:</p>
+<pre class="prettyprint source lang-javascript"><code>engine.on('tick:before', (engine) => { /* Do something */ }));
+engine.on('tick:after', (engine) => { /* Do something */ }));
+</code></pre>
+<h2>license</h2>
+<pre class="prettyprint source"><code>MIT License
+
+Copyright (c) 2018 Valerio Bianchi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+    
+    
 </div>
-<script src="./assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="./assets/vendor/bootstrap/js/bootstrap.js"></script>
-<script src="./assets/vendor/prettify/prettify-min.js"></script>
-<script src="./assets/js/yuidoc-bootstrap.js"></script>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Aug 16 2019 22:20:07 GMT+0200 (GMT+02:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
 <script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
 </body>
 </html>

@@ -1,4 +1,10 @@
-import Ecs from './ecs';
+/**
+ * The timer module exports the Timer class
+ *
+ * @module timer
+ */
+
+import Engine from './engine';
 
 function randomId(prefix) {
   return `${prefix}-${Math.floor(Math.random() * 1000)}`;
@@ -9,26 +15,20 @@ function randomId(prefix) {
  * By creating a new instance of this class, you will be able to retrieve timings
  * informations in your systems.
  *
- * @class Timer
- * @constructor
- * @param {Ecs} ecs Ecs instance this Timer will belong to
- *
  * @example
- * ```javascript
+ * import { Engine, Timer } from 'jecs';
  *
- * const ecs = new Ecs();
- * const timer = new Ecs.Timer(ecs);
+ * const engine = new Engine();
+ * const timer = new Timer(engine);
  *
- * ecs.system('mySystem', ['myComponent'], (entity, {myComponent}) => {
+ * engine.system('mySystem', ['myComponent'], (entity, { myComponent }) => {
  *   const delta = timer.getTime().delta;
  *   // Do your magic with delta time!
  *   // ...
  * });
- * ```
  *
- * Object returned by getTime() has this structure:
- * ```javascript
- *
+ * @example
+ * // Object returned by getTime() has this structure:
  * {
  *   ticks,  // Number of ticks (frames)
  *   start,  // Initial time (milliseconds since the EPOCH)
@@ -36,11 +36,13 @@ function randomId(prefix) {
  *   total,  // Total execution time (milliseconds)
  *   delta   // Delta time from prev tick (milliseconds)
  * }
- * ```
  */
-export default class Timer {
-  constructor(ecs) {
-    if (!(ecs instanceof Ecs)) throw new Error('ecs must be a Ecs instance');
+class Timer {
+  /**
+   * @param {Engine} engine Engine instance this Timer will belong to
+   */
+  constructor(engine) {
+    if (!(engine instanceof Engine)) throw new Error('engine must be a Engine instance');
 
     const entityName = randomId('clock');
     const componentName = randomId('time');
@@ -51,13 +53,13 @@ export default class Timer {
     this.reset();
 
     // clock entity
-    this.entity = ecs.entity(entityName);
+    this.entity = engine.entity(entityName);
 
     // Associate the time component to the clock entity.
     this.entity.setComponent(componentName, this.time);
 
     // A system for updating the time component
-    this.system = ecs.system(systemName, [componentName], (entity, components) => {
+    this.system = engine.system(systemName, [componentName], (entity, components) => {
       const time = components[componentName];
       const now = Date.now();
 
@@ -82,8 +84,6 @@ export default class Timer {
 
   /**
    * Reset all timing values to 0
-   *
-   * @method reset
    */
   reset() {
     this.time.ticks = 0; // Number of ticks (frames)
@@ -96,7 +96,6 @@ export default class Timer {
   /**
    * Returns the time component
    *
-   * @method getTime
    * @return {Object} A time component object
    * @example
    * The time object contains these properties:<br/>
@@ -114,7 +113,6 @@ export default class Timer {
   /**
    * Returns the entity used by this timer
    *
-   * @method getEntity
    * @return {Entity} The timer entity
    */
   getEntity() {
@@ -124,10 +122,11 @@ export default class Timer {
   /**
    * Returns the system used by this timer
    *
-   * @method getSystem
    * @return {System} The timer system
    */
   getSystem() {
     return this.system;
   }
 }
+
+export default Timer;
